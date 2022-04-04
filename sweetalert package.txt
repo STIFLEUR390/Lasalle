@@ -1,0 +1,105 @@
+$this->alert('success', 'Hello!', [
+ 'position' => 'center',
+ 'timer' => 3000,
+ 'toast' => true,
+ 'timerProgressBar' => true,
+]);
+
+
+
+
+$this->alert('success', 'Hello!', [
+ 'position' => 'center',
+ 'timer' => 3000,
+ 'toast' => false,
+ 'text' => 'gggg',
+ 'timerProgressBar' => true,
+]);
+
+
+<body> 
+
+  @livewireScripts
+
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  <x-livewire-alert::scripts />
+  
+</body> 
+
+
+
+
+
+
+<script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script> 
+<x-livewire-alert::flash />
+
+---------------------------------------------------------------
+
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+ 
+class Index extends Component
+{
+    use LivewireAlert;
+    
+    public function submit()
+    {
+        $this->alert('success', 'Basic Alert');
+    }
+}
+
+
+
+--------------------------------------------------------------------------------------------------------------
+
+//composant livewiere
+
+    public function destroy($orderId)
+    {
+        Order::find($orderId)->delete();
+
+        session()->flash('message','Order deleted successfully!');
+    }
+//lame
+
+//deleteButton -> triggers the sweetAlert
+
+<a href="#"  wire:click="$emit('triggerDelete',{{ $order->id }})">
+	<span class="ua-icon-alert-close text-danger"></span>
+</a>
+
+//scripts stack
+
+@push('scripts')
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+
+        @this.on('triggerDelete', orderId => {
+            Swal.fire({
+                title: 'Are You Sure?',
+                text: 'Order record will be deleted!',
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: 'var(--success)',
+                cancelButtonColor: 'var(--primary)',
+                confirmButtonText: 'Delete!'
+            }).then((result) => {
+		//if user clicks on delete
+                if (result.value) {
+		     // calling destroy method to delete
+                    @this.call('destroy',orderId)
+		    // success response
+                    responseAlert({title: session('message'), type: 'success'});
+                    
+                } else {
+                    responseAlert({
+                        title: 'Operation Cancelled!',
+                        type: 'success'
+                    });
+                }
+            });
+        });
+    })
+</script>
+@endpush

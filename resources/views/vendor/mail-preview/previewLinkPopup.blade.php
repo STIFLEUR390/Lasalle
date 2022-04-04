@@ -8,11 +8,10 @@
 ">
     An email was just sent!
     <ul>
-        <li>
-            <a style="text-decoration: underline" href="{{ $previewUrl }}&file_type=html">Preview sent mail in browser</a>
+            <a style="text-decoration: underline" target="_blank" rel="noopener noreferrer" href="{{ $previewUrl }}&file_type=html">Preview sent mail in browser</a>
         </li>
         <li>
-            <a style="text-decoration: underline" href="{{ $previewUrl }}&file_type=eml">Open mail in email client</a>
+            <a style="text-decoration: underline" target="_blank" rel="noopener noreferrer" href="{{ $previewUrl }}&file_type=eml">Open mail in email client</a>
         </li>
     </ul>
 </div>
