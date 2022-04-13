@@ -12,6 +12,28 @@
 
 namespace App\Models{
 /**
+ * App\Models\AppSetting
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $logo
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\AppSettingFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|AppSetting newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AppSetting newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AppSetting query()
+ * @method static \Illuminate\Database\Eloquent\Builder|AppSetting whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AppSetting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AppSetting whereLogo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AppSetting whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AppSetting whereUpdatedAt($value)
+ */
+	class AppSetting extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Membership
  *
  * @property int $id
@@ -93,6 +115,7 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property string $email
+ * @property string $img
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $two_factor_secret
@@ -108,6 +131,10 @@ namespace App\Models{
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Team[] $ownedTeams
  * @property-read int|null $owned_teams_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
+ * @property-read int|null $permissions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Role[] $roles
+ * @property-read int|null $roles_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Team[] $teams
  * @property-read int|null $teams_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
@@ -115,12 +142,15 @@ namespace App\Models{
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User permission($permissions)
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCurrentTeamId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereImg($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath($value)
