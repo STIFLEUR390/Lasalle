@@ -717,5 +717,11 @@
     "Zambia": "Zambie",
     "Zimbabwe": "Zimbabwe",
     "Zip / Postal Code": "Code postal",
-    "Åland Islands": "Les îles d'Åland"
+    "Åland Islands": "Les îles d'Åland",
+    "The password entered does not match the current password.": "Le mot de passe saisie ne correspond pas au mot de passe actuel.",
+    "Password change successfully.": "Mot de passe modifier avec succès",
+    "Profile updated successfully.": "Profile mis à jour avec succès.",
+    "Two factor authentication has been enabled.": "L'authentification à deux facteurs a été activée.",
+    "Disable Two-Factor Authentication": "Désactiver l'authentification à deux facteurs",
+    "Enable Two-Factor Authentication": "Activer l'authentification à deux facteurs"
 }

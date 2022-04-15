@@ -1,0 +1,144 @@
+Alert
+bootbox.alert("Your message here…")
+
+bootbox.alert("Your message <b>here…</b>")
+
+bootbox.alert("Your message here…", function(){
+    /* your callback code */
+})
+
+bootbox.alert({
+    size: "small",
+    title: "Your Title",
+    message: "Your message here…",
+    callback: function(){ /* your callback code */ }
+})
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+confirm
+bootbox.confirm("Are you sure?", function(result){
+    /* your callback code */
+})
+
+bootbox.confirm({
+    size: "small",
+    message: "Are you sure?",
+    callback: function(result){ /* result is a boolean; true = OK, false = Cancel*/ }
+})
+
+bootbox.confirm({
+    message: "This is a confirm with custom button text and color! Do you like it?",
+    buttons: {
+        confirm: {
+            label: 'Yes',
+            className: 'btn-success'
+        },
+        cancel: {
+            label: 'No',
+            className: 'btn-danger'
+        }
+    },
+    callback: function (result) {
+        console.log('This was logged in the callback: ' + result);
+    }
+});
+
+bootbox.confirm({
+    title: "Destroy planet?",
+    message: "Do you want to activate the Deathstar now? This cannot be undone.",
+    buttons: {
+        cancel: {
+            label: '<i class="fa fa-times"></i> Cancel'
+        },
+        confirm: {
+            label: '<i class="fa fa-check"></i> Confirm'
+        }
+    },
+    callback: function (result) {
+        console.log('This was logged in the callback: ' + result);
+    }
+});
+
+
+var locale = $('#locales').val();
+
+bootbox.confirm({
+    message: "This confirm uses the selected locale. Were the labels what you expected?",
+    locale: locale,
+    callback: function (result) {
+        console.log('This was logged in the callback: ' + result);
+    }
+});
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+Prompt
+bootbox.prompt("What is your name?", function(result){
+    /* your callback code */
+})
+
+bootbox.prompt({
+    size: "small",
+    title: "What is your name?",
+    callback: function(result){
+        /* result = String containing user input if OK clicked or null if Cancel clicked */
+    }
+});
+
+bootbox.prompt("What is your name?", function(result) {
+    if (result === null) {
+        // Prompt dismissed
+    } else {
+        // result has a value
+    }
+});
+
+var dialog = bootbox.prompt("What is your name?", function(result) {
+    if (result === null) {
+        // Prompt dismissed
+    } else {
+        // result has a value
+        dialog.modal('hide');
+    }
+
+    return false;
+});
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My page</title>
+
+    <!-- CSS dependencies -->
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+</head>
+<body>
+
+    <p>Content here. <a class="show-alert" href=#>Alert!</a></p>
+
+    <!-- JS dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Bootstrap 4 dependency -->
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+
+    <!-- bootbox code -->
+    <script src="bootbox.min.js"></script>
+    <script src="bootbox.locales.min.js"></script>
+    <script>
+        $(document).on("click", ".show-alert", function(e) {
+            bootbox.alert("Hello world!", function() {
+                console.log("Alert Callback");
+            });
+        });
+    </script>
+</body>
+</html>

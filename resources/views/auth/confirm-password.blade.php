@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $app_setting->name }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset($app_setting->logo) }}"/>
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
@@ -26,7 +27,7 @@
         <div class="lockscreen-item">
             <!-- lockscreen image -->
             <div class="lockscreen-image">
-                <img src="{{ Auth::user()->img }}" alt="{{ Auth::user()->name }}">
+                <img src="{{ asset(Auth::user()->img) }}" alt="{{ Auth::user()->name }}">
             </div>
             <!-- /.lockscreen-image -->
 
@@ -35,8 +36,8 @@
                 @csrf
 
                 <div class="input-group">
-                    <input type="password" class="form-control @error('password') is-invalid @enderror"
-                        placeholder="password">
+                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
+                        placeholder="password" required autocomplete="current-password" autofocus />
 
                     <div class="input-group-append">
                         <button type="submit" class="btn">
@@ -52,7 +53,7 @@
 
         </div>
         <!-- /.lockscreen-item -->
-        <div class="help-block text-center">
+        <div class="text-center help-block">
             @lang("This is a secure area of the application. Please confirm your password before continuing.")
         </div>
         <div class="text-center">
@@ -62,13 +63,14 @@
             </form>
             {{-- <a href="login.html">Or sign in as a different user</a> --}}
         </div>
-        <div class="lockscreen-footer text-center">
-            Copyright &copy; 2022-
-            <script>
-                document.write(new Date().getFullYear());
-            </script> <b><a class="text-black" href="{{ url('/') }}"
-                    target="_blank">{{ config('app.name', 'Laravel') }}</a></b><br>
-            All rights reserved
+        <div class="text-center lockscreen-footer">
+            Copyright &copy; 2022-{{ Carbon\Carbon::now()->year }}
+            <b>
+                <a class="text-black" href="{{ url('/') }}"target="_blank">
+                    {{ $app_setting->name }}
+                </a>
+            </b>
+            <br>
         </div>
     </div>
     <!-- /.center -->

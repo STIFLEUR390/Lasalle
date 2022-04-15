@@ -1,0 +1,35 @@
+Attribuer des autorisations aux rôles
+Une autorisation peut être donnée à un rôle :
+
+$role->givePermissionTo('edit articles');
+Vous pouvez déterminer si un rôle dispose d'une certaine autorisation :
+
+$role->hasPermissionTo('edit articles');
+Une autorisation peut être révoquée à partir d'un rôle :
+
+$role->revokePermissionTo('edit articles');
+
+
+
+
+// get collection
+$role->permissions;
+
+// return only the permission names:
+$role->permissions->pluck('name');
+
+// count the number of permissions assigned to a role
+count($role->permissions);
+// or
+$role->permissions->count();
+
+
+
+
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
+
+Permission::create(['name' => 'base']);
+
+Role::create(['name' => 'Admin']);

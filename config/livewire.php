@@ -39,7 +39,8 @@ return [
     |
     */
 
-    'layout' => 'layouts.app',
+    // 'layout' => 'layouts.app',
+    'layout' => 'layouts.base',
 
     /*
     |--------------------------------------------------------------------------

@@ -8,9 +8,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ $app_setting->name }}</title>
+  <link rel="icon" type="image/x-icon" href="{{ asset($app_setting->logo) }}"/>
 
   <!-- Styles -->
+  <style>
+      .invalid-feedback {
+          display: block !important;
+      }
+
+  </style>
+  <!-- Styles -->
+
+    @stack('style')
+
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
   @livewireStyles
@@ -18,11 +29,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Scripts -->
   <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
 <div class="wrapper">
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  {{-- <nav class="main-header navbar navbar-expand navbar-dark"> --}}
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -45,7 +57,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </ul>
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
+    <ul class="ml-auto navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -66,7 +78,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="pb-3 mt-3 mb-3 user-panel d-flex">
         <div class="image">
           <img src="{{ asset(Auth::user()->img) }}" class="img-circle elevation-2" alt="{{ Auth::user()->name }}">
         </div>
@@ -139,7 +151,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="mb-2 row">
           <div class="col-sm-12">
             <h1 class="m-0">@lang($title)</h1>
           </div><!-- /.col -->
@@ -167,13 +179,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div>
 <!-- ./wrapper -->
 
-<!-- REQUIRED SCRIPTS -->
+<!-- JS dependencies -->
 
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+@stack('modals')
+
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+{{-- <script src="{{ asset('js/alpine.min.js') }}"></script> --}}
+
+<!-- bootbox code -->
+<script src="{{ asset('bootbox/bootbox.min.js') }}"></script>
+<script src="{{ asset('bootbox/bootbox.locales.min.js') }}"></script>
+@stack('script')
+
+@livewireScripts
+
+<script src="{{ asset('js/sweetalert2@11.js') }}"></script>
+
+<x-livewire-alert::scripts />
 </body>
 </html>
