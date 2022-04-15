@@ -723,5 +723,15 @@
     "Profile updated successfully.": "Profile mis à jour avec succès.",
     "Two factor authentication has been enabled.": "L'authentification à deux facteurs a été activée.",
     "Disable Two-Factor Authentication": "Désactiver l'authentification à deux facteurs",
-    "Enable Two-Factor Authentication": "Activer l'authentification à deux facteurs"
+    "Enable Two-Factor Authentication": "Activer l'authentification à deux facteurs",
+    "First name": "Prénom",
+    "Last name": "Nom de famille",
+    "Gender": "Sexe",
+    "phone": "Téléphone",
+    "footprint": "Empreinte",
+    "title": "Titre",
+    "UE code": "Code UE",
+    "Faculty": "Filiere",
+    "Start time": "Heure de début",
+    "End time": "Heure de fin"
 }

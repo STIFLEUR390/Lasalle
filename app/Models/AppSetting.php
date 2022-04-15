@@ -15,6 +15,6 @@ class AppSetting extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'name', 'logo'
     ];
 }

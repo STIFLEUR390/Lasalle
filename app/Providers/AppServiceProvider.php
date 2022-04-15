@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Models\AppSetting;
-use Illuminate\Support\Facades\{ Blade, Route, Schema, View };
+use Illuminate\Support\Facades\{ Route, Schema, View };
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
