@@ -7,6 +7,9 @@
 
 
                 <div class="float-right mb-2">
+                    <button type="button" wire:click="createTeacher('12')" class="btn btn-primary">
+                        Aujouter un professeur
+                    </button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
                         Aujouter un professeur
                     </button>

@@ -7,14 +7,12 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Rules\Password;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Support\Facades\{Auth, File, Hash};
 use Laravel\Fortify\Actions\{GenerateNewRecoveryCodes, EnableTwoFactorAuthentication, DisableTwoFactorAuthentication};
 
 class ProfileComponent extends Component
 {
     use WithFileUploads;
-    use LivewireAlert;
 
     public $name;
     public $email;
@@ -64,12 +62,11 @@ class ProfileComponent extends Component
         }
         $user->save();
 
-        $this->alert('success', 'Profile', [
-            'position' => 'center',
-            'timer' => 3000,
-            'toast' => false,
-            'text' => __('Profile updated successfully.'),
-            'timerProgressBar' => true,
+        $this->emit('swal:alert', [
+            'icon' => 'success',
+            'type'  => 'success',
+            'title'  => __("Profile updated successfully."),
+            'timeout' => 10000
         ]);
     }
 
@@ -87,12 +84,11 @@ class ProfileComponent extends Component
                 'password' => Hash::make($this->password),
             ])->save();
 
-            $this->alert('success', 'Profile', [
-                'position' => 'center',
-                'timer' => 3000,
-                'toast' => false,
-                'text' => __('Password change successfully.'),
-                'timerProgressBar' => true,
+            $this->emit('swal:alert', [
+                'icon' => 'success',
+                'type'  => 'success',
+                'title'  => __('Password change successfully.'),
+                'timeout' => 10000
             ]);
         } else {
             $this->addError('current_password', __('The password entered does not match the current password.'));

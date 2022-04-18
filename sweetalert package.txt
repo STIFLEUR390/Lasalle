@@ -1,204 +1,32 @@
-$this->alert('success', 'Hello!', [
- 'position' => 'center',
- 'timer' => 3000,
- 'toast' => true,
- 'timerProgressBar' => true,
-]);
+alert modal
+
+/* $this->emit('swal:modal', [
+            'icon' => 'success',
+            'type'  => 'success',
+            'title' => 'Success!!',
+            'text'  => "This is a success message",
+        ]); */
 
 
+Toast
+
+        /* $this->emit('swal:alert', [
+            'icon' => 'success',
+            'type'    => 'success',
+            'title'   => 'This is a success alert!!',
+            'timeout' => 10000
+        ]); */
 
 
-$this->alert('success', 'Hello!', [
- 'position' => 'center',
- 'timer' => 3000,
- 'toast' => false,
- 'text' => 'gggg',
- 'timerProgressBar' => true,
-]);
+Confirm deletetion
 
 
-<body> 
-
-  @livewireScripts
-
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
-  <x-livewire-alert::scripts />
-  
-</body> 
-
-
-
-
-
-<script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script> 
-<x-livewire-alert::flash />
-
----------------------------------------------------------------
-
-use Jantinnerezo\LivewireAlert\LivewireAlert;
- 
-class Index extends Component
-{
-    use LivewireAlert;
-    
-    public function submit()
-    {
-        $this->alert('success', 'Basic Alert');
-    }
-}
-
-
-
---------------------------------------------------------------------------------------------------------------
-
-//composant livewiere
-
-    public function destroy($orderId)
-    {
-        Order::find($orderId)->delete();
-
-        session()->flash('message','Order deleted successfully!');
-    }
-//lame
-
-//deleteButton -> triggers the sweetAlert
-
-<a href="#"  wire:click="$emit('triggerDelete',{{ $order->id }})">
-	<span class="ua-icon-alert-close text-danger"></span>
-</a>
-
-//scripts stack
-
-@push('scripts')
-<script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function () {
-
-        @this.on('triggerDelete', orderId => {
-            Swal.fire({
-                title: 'Are You Sure?',
-                text: 'Order record will be deleted!',
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: 'var(--success)',
-                cancelButtonColor: 'var(--primary)',
-                confirmButtonText: 'Delete!'
-            }).then((result) => {
-		//if user clicks on delete
-                if (result.value) {
-		     // calling destroy method to delete
-                    @this.call('destroy',orderId)
-		    // success response
-                    responseAlert({title: session('message'), type: 'success'});
-                    
-                } else {
-                    responseAlert({
-                        title: 'Operation Cancelled!',
-                        type: 'success'
-                    });
-                }
-            });
-        });
-    })
-</script>
-@endpush
-
-
--------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------
-
-// ES6 Modules or TypeScript
-import Swal from 'sweetalert2'
-
-// CommonJS
-const Swal = require('sweetalert2')
---------------------------------------------------------------------------
-import Swal from 'sweetalert2/dist/sweetalert2.js'
-
-import 'sweetalert2/src/sweetalert2.scss'
-
---------------------------------------------------------------------------
-
-Avec SASS :
-
-your-app.js:
-
-importer  Swal  depuis  'sweetalert2/dist/sweetalert2.js'
-your-app.scss:
-
-@import  ' sweetalert2/theme-bootstrap-4/bootstrap-4.scss ' ;
-
---------------------------------------------------------------------------
-
-Swal.fire({
-  title: 'Error!',
-  text: 'Do you want to continue',
-  icon: 'error',
-  confirmButtonText: 'Cool'
-})
-
-
-Swal.fire({
-  position: 'top-end',
-  icon: 'success',
-  title: 'Your work has been saved',
-  showConfirmButton: false,
-  timer: 1500
-})
-
-
-
-Swal.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
-}).then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire(
-      'Deleted!',
-      'Your file has been deleted.',
-      'success'
-    )
-  }
-})
-
-
-const swalWithBootstrapButtons = Swal.mixin({
-  customClass: {
-    confirmButton: 'btn btn-success',
-    cancelButton: 'btn btn-danger'
-  },
-  buttonsStyling: false
-})
-
-swalWithBootstrapButtons.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonText: 'Yes, delete it!',
-  cancelButtonText: 'No, cancel!',
-  reverseButtons: true
-}).then((result) => {
-  if (result.isConfirmed) {
-    swalWithBootstrapButtons.fire(
-      'Deleted!',
-      'Your file has been deleted.',
-      'success'
-    )
-  } else if (
-    /* Read more about handling dismissals below */
-    result.dismiss === Swal.DismissReason.cancel
-  ) {
-    swalWithBootstrapButtons.fire(
-      'Cancelled',
-      'Your imaginary file is safe :)',
-      'error'
-    )
-  }
-})
+        /* $this->emit("swal:confirm", [
+            'type'        => 'warning',
+            'title'       => 'Are you sure?',
+            'text'        => "You won't be able to revert this!",
+            'confirmText' => 'Yes, delete!',
+            'method'      => 'confirm',
+            'params'      => $id, // optional, send params to success confirmation
+            'callback'    => 'annuler', // optional, fire event if no confirmed
+        ]); */
