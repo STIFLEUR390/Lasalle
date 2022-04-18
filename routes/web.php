@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Back\AdminController;
 use App\Http\Livewire\Back\User\ProfileComponent;
+use App\Http\Livewire\TeacherComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,5 +26,6 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'permission:base
     Route::middleware(['role:Admin'])->group(function () {
         Route::name('dashboard')->get('/', [AdminController::class, 'index']);
         Route::name('profile')->middleware(['password.confirm'])->get('user/profile', ProfileComponent::class);
+        Route::name('teachers')->get('teachers', TeacherComponent::class);
     });
 });

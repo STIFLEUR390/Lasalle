@@ -34,6 +34,79 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Course
+ *
+ * @property int $id
+ * @property string $title
+ * @property string $ue_code
+ * @property int $faculty_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Faculty $faculty
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedule
+ * @property-read int|null $schedule_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Course newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Course newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Course query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Course whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Course whereFacultyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Course whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Course whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Course whereUeCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Course whereUpdatedAt($value)
+ */
+	class Course extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Department
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Faculty[] $faculties
+ * @property-read int|null $faculties_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Department newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Department newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Department query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Department whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Department whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Department whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Department whereUpdatedAt($value)
+ */
+	class Department extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Faculty
+ *
+ * @property int $id
+ * @property string $name
+ * @property int $department_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Course[] $courses
+ * @property-read int|null $courses_count
+ * @property-read \App\Models\Department $department
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedule
+ * @property-read int|null $schedule_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Faculty newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Faculty newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Faculty query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Faculty whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Faculty whereDepartmentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Faculty whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Faculty whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Faculty whereUpdatedAt($value)
+ */
+	class Faculty extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Membership
  *
  * @property int $id
@@ -53,6 +126,109 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Membership whereUserId($value)
  */
 	class Membership extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Room
+ *
+ * @property int $id
+ * @property string $name
+ * @property int $is_available
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedule
+ * @property-read int|null $schedule_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Room newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Room newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Room query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereIsAvailable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereUpdatedAt($value)
+ */
+	class Room extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Schedule
+ *
+ * @property int $id
+ * @property int $teacher_id
+ * @property int $faculty_id
+ * @property string $date
+ * @property string $start_time
+ * @property string $end_time
+ * @property int $room_id
+ * @property int $course_id
+ * @property string $ue_code
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Course|null $courses
+ * @property-read \App\Models\Faculty|null $faculties
+ * @property-read \App\Models\Room|null $rooms
+ * @property-read \App\Models\Teacher $teacher
+ * @method static \Illuminate\Database\Eloquent\Builder|Schedule newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Schedule newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Schedule query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereCourseId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereEndTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereFacultyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereRoomId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereStartTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereTeacherId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereUeCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereUpdatedAt($value)
+ */
+	class Schedule extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Teacher
+ *
+ * @property int $id
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $grade
+ * @property string $matricule
+ * @property string $status
+ * @property string $photo
+ * @property string $email
+ * @property string $gender
+ * @property string $phone
+ * @property string $footprint1
+ * @property string $footprint2
+ * @property string $footprint3
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedule
+ * @property-read int|null $schedule_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereFootprint1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereFootprint2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereFootprint3($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereGender($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereGrade($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereMatricule($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher wherePhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereUpdatedAt($value)
+ */
+	class Teacher extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -120,6 +296,7 @@ namespace App\Models{
  * @property string $password
  * @property string|null $two_factor_secret
  * @property string|null $two_factor_recovery_codes
+ * @property string|null $reference
  * @property string|null $remember_token
  * @property int|null $current_team_id
  * @property string|null $profile_photo_path
@@ -154,6 +331,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereReference($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)

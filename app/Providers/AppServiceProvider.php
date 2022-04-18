@@ -26,7 +26,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share('app_setting', AppSetting::firstOrFail());
+        if (Schema::hasTable('users')) {
+            View::share('app_setting', AppSetting::firstOrFail());
+        }
+        // View::share('app_setting', AppSetting::firstOrFail());
 
         View::composer('layouts.base', function ($view) {
             $title = config('titles.' .

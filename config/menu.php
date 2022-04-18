@@ -11,4 +11,9 @@ return [
         'route' => 'profile',
         'icon' => 'user',
     ],
+    'All teachers' => [
+        'permission' => 'manage teacher',
+        'route' => 'teachers',
+        'icon' => 'chalkboard-teacher',
+    ],
 ];
