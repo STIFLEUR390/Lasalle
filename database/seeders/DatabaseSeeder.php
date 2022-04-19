@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\AppSetting;
+use App\Models\Room;
 use App\Models\Teacher;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         AppSetting::factory(1)->create();
         Teacher::factory(15)->create();
+        Room::factory(15)->create();
         $this->call(PermissionsSeeder::class);
         $this->call(UserSeeder::class);
     }

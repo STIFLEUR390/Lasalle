@@ -78,7 +78,7 @@
                                                         </div>
                                                         <div class="modal-footer justify-content-between">
                                                             <button type="button" class="btn btn-danger"
-                                                                data-dismiss="modal">Close</button>
+                                                                data-dismiss="modal">@lang("Close")</button>
                                                         </div>
                                                     </div>
                                                     <!-- /.modal-content -->
@@ -97,7 +97,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <span class="float-right">
+                    <span class="float-right mr-2">
                         {{ $teachers->links() }}
                     </span>
                 </div>

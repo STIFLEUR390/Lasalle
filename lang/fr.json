@@ -761,5 +761,13 @@
     "Sort by": "Trier par",
     "From newest to oldest": "Du plus récent au plus ancien",
     "From oldest to newest": "Du plus ancien au plus récent",
-    "Create the": "Créer le"
+    "Create the": "Créer le",
+    "Manage rooms": "Gérer les salles",
+    "Room name": "Nom de la salle",
+    "Room": "Salle",
+    "room": "salle",
+    "Is available": "Est disponible",
+    "Add room": "Ajouter une salle",
+    "All rooms": "Toutes les salles",
+    "available ?": "disponible ?"
 }

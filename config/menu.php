@@ -28,4 +28,9 @@ return [
             ],
         ]
     ],
+    'Manage rooms' => [
+        'permission' => 'manage room',
+        'route' => 'rooms',
+        'icon' => 'school',
+    ],
 ];

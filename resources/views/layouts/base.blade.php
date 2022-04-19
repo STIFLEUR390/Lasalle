@@ -250,6 +250,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
         this.livewire.on('swal:alert', data => {
             SwalAlert(data.icon, data.title, data.timeout)
         })
+
+        this.livewire.on('modalClose', data =>  {
+            $('#'+data.id).modal('hide')
+        })
+
+        this.livewire.on('modalShow', data =>  {
+            setTimeout(() => {
+                $('#'+data.id).modal('show')
+            }, 500);
+        })
     })
 </script>
 </body>

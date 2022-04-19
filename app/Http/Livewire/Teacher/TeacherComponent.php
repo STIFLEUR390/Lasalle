@@ -33,9 +33,9 @@ class TeacherComponent extends Component
                 ->orWhere('matricule', 'like', $search)
                 ->orWhere('email', 'like', $search)
                 ->orWhere('phone', 'like', $search)
-                ->orderBy('updated_at', $this->oderBy)->paginate($this->pageSize);
+                ->orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
         } else {
-            $teachers = Teacher::orderBy('updated_at', $this->oderBy)->paginate($this->pageSize);
+            $teachers = Teacher::orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
         }
 
         return view('livewire.teacher.teacher-component', compact('teachers'));
