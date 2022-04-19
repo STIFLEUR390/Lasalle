@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignId('room_id')->constrained('rooms')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('course_id')->constrained('courses')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('ue_code');
+            $table->enum('status', ['waiting', 'in_progress', 'finish', 'absent'])->default('waiting');
             $table->timestamps();
         });
     }

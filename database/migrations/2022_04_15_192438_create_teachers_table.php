@@ -20,13 +20,13 @@ return new class extends Migration
             $table->string('grade');
             $table->string('matricule')->unique();
             $table->string('status');
-            $table->string('photo');
-            $table->string('email');
-            $table->string('gender');
-            $table->string('phone');
-            $table->string('footprint1');
-            $table->string('footprint2');
-            $table->string('footprint3');
+            $table->string('photo')->default('/dist/img/avatar.png');
+            $table->string('email')->unique();
+            $table->enum('gender', ['male', 'female'])->default('male');
+            $table->string('phone', 9)->unique();
+            $table->string('footprint1')->nullable();
+            $table->string('footprint2')->nullable();
+            $table->string('footprint3')->nullable();
             $table->timestamps();
         });
     }

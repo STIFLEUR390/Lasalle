@@ -11,9 +11,21 @@ return [
         'route' => 'profile',
         'icon' => 'user',
     ],
-    'All teachers' => [
+    'Manage teachers' => [
         'permission' => 'manage teacher',
-        'route' => 'teachers',
+        // 'route' => 'teachers.index',
         'icon' => 'chalkboard-teacher',
+        'children' => [
+            [
+                'permission' => 'manage teacher',
+                'route' => 'teachers.index',
+                'name' => 'Manage teachers'
+            ],
+            [
+                'permission' => 'manage teacher',
+                'route' => 'teachers.create',
+                'name' => 'Add teacher'
+            ],
+        ]
     ],
 ];

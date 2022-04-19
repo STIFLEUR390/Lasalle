@@ -164,6 +164,7 @@ namespace App\Models{
  * @property int $room_id
  * @property int $course_id
  * @property string $ue_code
+ * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Course|null $courses
@@ -181,6 +182,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereRoomId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereStartTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereTeacherId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereUeCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereUpdatedAt($value)
@@ -202,13 +204,14 @@ namespace App\Models{
  * @property string $email
  * @property string $gender
  * @property string $phone
- * @property string $footprint1
- * @property string $footprint2
- * @property string $footprint3
+ * @property string|null $footprint1
+ * @property string|null $footprint2
+ * @property string|null $footprint3
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedule
  * @property-read int|null $schedule_count
+ * @method static \Database\Factories\TeacherFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher query()
@@ -302,6 +305,7 @@ namespace App\Models{
  * @property string|null $profile_photo_path
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Models\Team|null $currentTeam
  * @property-read string $profile_photo_url
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
@@ -319,11 +323,13 @@ namespace App\Models{
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|User permission($permissions)
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCurrentTeamId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
@@ -336,6 +342,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|User withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  */
 	class User extends \Eloquent {}
 }

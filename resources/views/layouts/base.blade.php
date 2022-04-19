@@ -206,6 +206,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText,
+            cancelButtonText: '@lang("Cancel")',
             reverseButtons: true,
         }).then(result => {
             if (result.value) {
@@ -224,6 +225,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             position: 'top-end',
             showConfirmButton: false,
             timer: timeout,
+            timerProgressBar: true,
             onOpen: toast => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
                 toast.addEventListener('mouseleave', Swal.resumeTimer)

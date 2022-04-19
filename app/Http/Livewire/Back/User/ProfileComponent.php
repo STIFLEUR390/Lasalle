@@ -62,11 +62,11 @@ class ProfileComponent extends Component
         }
         $user->save();
 
-        $this->emit('swal:alert', [
+        $this->emit('swal:modal', [
             'icon' => 'success',
             'type'  => 'success',
-            'title'  => __("Profile updated successfully."),
-            'timeout' => 10000
+            'title' => appName(),
+            'text'  => __("Profile updated successfully."),
         ]);
     }
 
@@ -87,8 +87,8 @@ class ProfileComponent extends Component
             $this->emit('swal:alert', [
                 'icon' => 'success',
                 'type'  => 'success',
-                'title'  => __('Password change successfully.'),
-                'timeout' => 10000
+                'title' => appName(),
+                'text'  => __('Password change successfully.'),
             ]);
         } else {
             $this->addError('current_password', __('The password entered does not match the current password.'));

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\AppSetting;
+
 if (!function_exists('currentRouteActive')) {
     function currentRouteActive(...$routes)
     {
@@ -31,5 +33,16 @@ if (!function_exists('isRole')) {
     function isRole($role)
     {
         return auth()->user()->role === $role;
+    }
+}
+
+if (!function_exists('appName')) {
+    function appName()
+    {
+        if (Schema::hasTable('users')) {
+            return AppSetting::find(1)->name;
+        } else {
+            return 'Dev Master';
+        }
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Back\AdminController;
 use App\Http\Livewire\Back\User\ProfileComponent;
-use App\Http\Livewire\TeacherComponent;
-use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Teacher\{CreateTeacherComponent, EditTeacherComponent, ShowTeacherComponent, TeacherComponent};
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +26,12 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'permission:base
     Route::middleware(['role:Admin'])->group(function () {
         Route::name('dashboard')->get('/', [AdminController::class, 'index']);
         Route::name('profile')->middleware(['password.confirm'])->get('user/profile', ProfileComponent::class);
-        Route::name('teachers')->get('teachers', TeacherComponent::class);
+
+        //teachers management
+        Route::prefix("teachers")->name('teachers.')->group(function() {
+            Route::name('index')->get('/', TeacherComponent::class);
+            Route::name('create')->get('/create', CreateTeacherComponent::class);
+            Route::name('edit')->get('/{teacher}/edit', EditTeacherComponent::class);
+        });
     });
 });

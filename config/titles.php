@@ -3,5 +3,9 @@
 return [
     'dashboard' => 'Dashboard',
     'profile' => 'Profile',
-    'teachers' => 'All teachers'
+    'teachers' => [
+        'index' => 'All teachers',
+        'create' => 'Add teacher',
+        'edit' => 'Edit a teacher',
+    ],
 ];
