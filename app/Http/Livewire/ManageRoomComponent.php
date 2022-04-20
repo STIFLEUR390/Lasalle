@@ -76,9 +76,9 @@ class ManageRoomComponent extends Component
         $this->room_id = null;
     }
 
-    public function createRoom($id)
+    public function createRoom()
     {
-        $this->emit("modalClose", ['id'=> $id]);
+        $this->emit("modalClose", ['id'=> "modal-default"]);
         /* $validator = Validator::make($this->all(), [
             'name' => 'required|min:2|string',
             'is_available' => 'required',
@@ -103,20 +103,19 @@ class ManageRoomComponent extends Component
         // return redirect()->route('rooms');
     }
 
-    public function getData($id, $modalId)
+    public function getData($id)
     {
-        $this->emit("modalClose", ['id'=> $modalId]);
         $room = Room::find($id);
         $this->name = $room->name;
         $this->is_available = $room->is_available ? true : false;
         $this->room_id = $room->id;
         sleep(1);
-        $this->emit("modalShow", ['id'=> $modalId]);
+        $this->emit("modalShow", ['id'=> 'modal-update']);
     }
 
-    public function updateRoom($id)
+    public function updateRoom()
     {
-        $this->emit("modalClose", ['id'=> $id]);
+        $this->emit("modalClose", ['id'=> 'modal-update']);
         $validatedData = $this->validate();
         $room = Room::find($this->room_id);
         $room->update($validatedData);

@@ -51,40 +51,7 @@
                                     </td>
                                     <td class="row">
                                         <div class="mr-2 col-md-3">
-                                            <button type="button" wire:click="getData({{ $room->id }}, 'modal-default{{ $key + 1 }}')" class="btn btn-primary" data-toggle="modal" data-target="#modal-default{{ $key + 1 }}"><i class="fa fa-edit"></i></button>
-                                            <div class="modal fade" id="modal-default{{ $key + 1 }}">
-                                                <div class="modal-dialog">
-                                                  <div class="modal-content">
-                                                    <div class="modal-header">
-                                                      <h4 class="modal-title">@lang("Add room")</h4>
-                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                      </button>
-                                                    </div>
-                                                    <div class="modal-body row">
-                                                        <div class="form-group col-md-6">
-                                                            <label>@lang("Name")</label>
-                                                            <input type="text" class="form-control @error('name') is-invalid @enderror" wire:model.defer='name' placeholder="{{ trans_choice("Enter :name", 0, ['name'=> __('Name')]) }}">
-                                                            @error('name')
-                                                                    <span class="invalid-feedback">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                        <div class="form-group col-md-6" style="margin-top: 2.5rem !important;">
-                                                            <div class="custom-control custom-checkbox">
-                                                              <input type="checkbox" class="custom-control-input" wire:model.defer='is_available' id="ckeck{{ $key + 1 }}">
-                                                              <label class="custom-control-label" for="ckeck{{ $key + 1 }}">@lang('available ?')</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer justify-content-between">
-                                                      <button type="button" class="btn btn-danger" data-dismiss="modal">@lang("Close")</button>
-                                                      <button type="button" wire:click="updateRoom('modal-default{{ $key + 1 }}')" class="btn btn-primary">Save changes</button>
-                                                    </div>
-                                                  </div>
-                                                  <!-- /.modal-content -->
-                                                </div>
-                                                <!-- /.modal-dialog -->
-                                            </div>
+                                            <button type="button" wire:click="getData('{{ $room->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
                                         </div>
                                         <div class="col-md-3">
                                             <button type="button" class="btn btn-danger"
@@ -103,6 +70,39 @@
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->
+            <div class="modal fade" id="modal-update">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">@lang("Add room")</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body row">
+                        <div class="form-group col-md-6">
+                            <label>@lang("Name")</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" wire:model.defer='name' placeholder="{{ trans_choice("Enter :name", 0, ['name'=> __('Name')]) }}">
+                            @error('name')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-6" style="margin-top: 2.5rem !important;">
+                            <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input" wire:model.defer='is_available' id="ckeck{{ $key + 1 }}">
+                              <label class="custom-control-label" for="ckeck{{ $key + 1 }}">@lang('available ?')</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">@lang("Close")</button>
+                      <button type="button" wire:click="updateRoom" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
             <div class="modal fade" id="modal-default">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -129,7 +129,7 @@
                     </div>
                     <div class="modal-footer justify-content-between">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">@lang("Close")</button>
-                      <button type="button" wire:click="createRoom('modal-default')" class="btn btn-primary">Save changes</button>
+                      <button type="button" wire:click="createRoom()" class="btn btn-primary">Save changes</button>
                     </div>
                   </div>
                   <!-- /.modal-content -->
