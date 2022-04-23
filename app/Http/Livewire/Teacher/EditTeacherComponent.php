@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Teacher;
 use File;
 use App\Models\Teacher;
 use Livewire\Component;
+use App\Models\TeacherGrade;
+use App\Models\TeacherStatus;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 
@@ -23,15 +25,17 @@ class EditTeacherComponent extends Component
     public $photo;
     public $img;
     public $teacher_id;
+    public $teacherStatusArray;
+    public $teacherGradeArray;
 
     protected function rules()
     {
         return [
             'first_name' => 'required|string|min:4',
             'last_name' => 'required|string|min:4',
-            'grade' => 'required|string',
+            'grade' => ['required',Rule::in($this->teacherStatusArray)],
             'matricule' => ['required','string','min:4',Rule::unique('teachers')->ignore($this->teacher_id)],
-            'status' => 'required|string',
+            'status' => ['required',Rule::in($this->teacherStatusArray)],
             'email' => ['required','email',Rule::unique('teachers')->ignore($this->teacher_id)],
             'gender' => 'required|in:male,female',
             'phone' => ['required','numeric','digits:9',Rule::unique('teachers')->ignore($this->teacher_id)],
@@ -51,6 +55,9 @@ class EditTeacherComponent extends Component
         $this->phone = $teacher->phone;
         $this->photo = $teacher->photo;
         $this->teacher_id = $teacher->id;
+
+        $this->teacherStatusArray = TeacherStatus::pluck('name');
+        $this->teacherGradeArray = TeacherGrade::pluck('name');
     }
 
     public function updated($propertyName)
@@ -60,7 +67,9 @@ class EditTeacherComponent extends Component
 
     public function render()
     {
-        return view('livewire.teacher.edit-teacher-component');
+        $teacher_status = TeacherStatus::all();
+        $teacher_grade = TeacherGrade::all();
+        return view('livewire.teacher.edit-teacher-component', compact('teacher_status', 'teacher_grade'));
     }
 
     public function updateTeacher()

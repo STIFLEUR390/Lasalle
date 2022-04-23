@@ -29,10 +29,20 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-3">
-                            <label>@lang('Grade')</label>
-                            <input type="text" class="form-control @error('grade') is-invalid @enderror" wire:model='grade' placeholder="{{ trans_choice("Enter :name", 0, ['name'=> __('Grade')]) }}">
+                            <div wire:ignore>
+                                <label>@lang('Grade')</label>
+                                <select id="select2-grade" class="form-control @error('grade') is-invalid @enderror"
+                                    wire:model='grade' style="width: 100%;">
+                                    <option value="">
+                                        {{ trans_choice('Select a :name', 0, ['name' => __('grade')]) }}</option>
+                                    @foreach ($teacher_status as $grade)
+                                        <option value="{{ $grade->name }}">{{ $grade->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                             @error('grade')
-                                    <span class="invalid-feedback">{{ $message }}</span>
+                                <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group col-md-3">
@@ -43,10 +53,20 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-3">
-                            <label>@lang('Status')</label>
-                            <input type="text" class="form-control @error('status') is-invalid @enderror" wire:model='status' placeholder="{{ trans_choice("Enter :name", 0, ['name'=> __('Status')]) }}">
+                            <div wire:ignore>
+                                <label>@lang('Status')</label>
+                                <select id="select2-status" class="form-control @error('status') is-invalid @enderror"
+                                    wire:model='status' style="width: 100%;">
+                                    <option value="">
+                                        {{ trans_choice('Select a :name', 0, ['name' => __('status')]) }}</option>
+                                    @foreach ($teacher_status as $status)
+                                        <option value="{{ $status->name }}">{{ $status->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                             @error('status')
-                                    <span class="invalid-feedback">{{ $message }}</span>
+                                <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group col-md-3">
@@ -103,3 +123,24 @@
     </div>
     <!-- /.row -->
 </div><!-- /.container-fluid -->
+
+
+@push('script')
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/select2/js/select2.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#select2-status').select2();
+            $('#select2-status').on('change', function(e) {
+                var data = $('#select2-status').select2("val");
+                @this.set('status', data);
+            });
+
+            $('#select2-grade').select2();
+            $('#select2-grade').on('change', function(e) {
+                var data = $('#select2-grade').select2("val");
+                @this.set('grade', data);
+            });
+        });
+    </script>
+@endpush

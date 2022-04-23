@@ -6,11 +6,6 @@ return [
         'route' => 'dashboard',
         'icon' => 'tachometer-alt',
     ],
-    'Profile' => [
-        'permission' => 'base',
-        'route' => 'profile',
-        'icon' => 'user',
-    ],
     'Manage teachers' => [
         'permission' => 'manage teacher',
         // 'route' => 'teachers.index',
@@ -32,6 +27,11 @@ return [
         'permission' => 'manage room',
         'route' => 'rooms',
         'icon' => 'school',
+    ],
+    'Profile' => [
+        'permission' => 'base',
+        'route' => 'profile',
+        'icon' => 'user',
     ],
     'App setting' => [
         'permission' => 'manage setting',
