@@ -4,7 +4,10 @@ namespace App\Http\Livewire\Teacher;
 
 use App\Models\Teacher;
 use Livewire\Component;
+use App\Models\TeacherGrade;
+use App\Models\TeacherStatus;
 use Livewire\WithFileUploads;
+use Illuminate\Validation\Rule;
 
 class CreateTeacherComponent extends Component
 {
@@ -19,18 +22,29 @@ class CreateTeacherComponent extends Component
     public $gender;
     public $phone;
     public $photo;
+    public $teacherStatusArray;
+    public $teacherGradeArray;
 
-    protected $rules = [
-        'first_name' => 'required|string|min:4',
-        'last_name' => 'required|string|min:4',
-        'grade' => 'required|string',
-        'matricule' => 'required|string|min:4',
-        'status' => 'required|string',
-        'email' => 'required|email|unique:teachers,email',
-        'gender' => 'required|in:male,female',
-        'phone' => 'required|numeric|digits:9',
-        'photo' => 'required|image|max:4096',
-    ];
+    protected function rules()
+    {
+        return [
+            'first_name' => 'required|string|min:4',
+            'last_name' => 'required|string|min:4',
+            'grade' => ['required',Rule::in($this->teacherStatusArray)],
+            'matricule' => 'required|string|min:4',
+            'status' => ['required',Rule::in($this->teacherStatusArray)],
+            'email' => 'required|email|unique:teachers,email',
+            'gender' => 'required|in:male,female',
+            'phone' => 'required|numeric|digits:9',
+            'photo' => 'required|image|max:4096',
+        ];
+    }
+
+    public function mount()
+    {
+        $this->teacherStatusArray = TeacherStatus::pluck('name');
+        $this->teacherGradeArray = TeacherGrade::pluck('name');
+    }
 
     public function updated($propertyName)
     {
@@ -39,13 +53,14 @@ class CreateTeacherComponent extends Component
 
     public function render()
     {
-        return view('livewire.teacher.create-teacher-component');
+        $teacher_status = TeacherStatus::all();
+        $teacher_grade = TeacherGrade::all();
+        return view('livewire.teacher.create-teacher-component', compact('teacher_status', 'teacher_grade'));
     }
 
     public function createTeacher()
     {
         $validatedData = $this->validate();
-
         $teacher = Teacher::create($validatedData);
 
         $teacher_update = Teacher::find($teacher->id);

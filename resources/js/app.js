@@ -8,7 +8,7 @@ import 'admin-lte/dist/js/adminlte';
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
-window.$ = window.jQuery = $;
+// window.$ = window.jQuery = $;
 window.$ = window.jQuery = require('jquery');
 
 Alpine.start();

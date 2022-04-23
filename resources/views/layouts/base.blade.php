@@ -233,8 +233,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <script src="{{ asset('sweetalert/sweetalert2@11.js') }}"></script>
 
-    @stack('script')
-
     @livewireScripts
     <script>
         const SwalModal = (icon, title, html) => {
@@ -311,6 +309,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             })
         })
     </script>
+
+    @stack('script')
 </body>
 
 </html>
