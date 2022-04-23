@@ -105,6 +105,9 @@ class ManageRoomComponent extends Component
 
     public function getData($id)
     {
+        $this->resetValidation();
+        $this->resetErrorBag();
+
         $room = Room::find($id);
         $this->name = $room->name;
         $this->is_available = $room->is_available ? true : false;

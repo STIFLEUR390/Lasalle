@@ -33,4 +33,9 @@ return [
         'route' => 'rooms',
         'icon' => 'school',
     ],
+    'App setting' => [
+        'permission' => 'manage setting',
+        'route' => 'settings',
+        'icon' => 'cogs',
+    ],
 ];

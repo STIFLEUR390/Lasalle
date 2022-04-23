@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('app_settings', function (Blueprint $table) {
+        Schema::create('teacher_grades', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('logo');
-            $table->boolean('matricule')->default(true);
-            $table->boolean('teacher_grade')->default(true);
-            $table->boolean('teacher_status')->default(true);
-            $table->boolean('schedule_status')->default(true);
+            $table->string('Name');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('app_settings');
+        Schema::dropIfExists('teacher_grades');
     }
 };

@@ -769,5 +769,10 @@
     "Is available": "Est disponible",
     "Add room": "Ajouter une salle",
     "All rooms": "Toutes les salles",
-    "available ?": "disponible ?"
+    "available ?": "disponible ?",
+    "App setting": "Réglage de l'application",
+    "App info": "Information sur l'application",
+    "App name": "Nom de l'application",
+    "App logo": "Logo de l'application",
+    "Appplication information updated successfully": "les informationssur l'application ont été mis à jour avec succès"
 }

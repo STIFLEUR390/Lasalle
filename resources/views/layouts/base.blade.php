@@ -4,263 +4,313 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>{{ $app_setting->name }}</title>
-  <link rel="icon" type="image/x-icon" href="{{ asset($app_setting->logo) }}"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ $app_setting->name }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset($app_setting->logo) }}" />
 
-  <!-- Styles -->
-  <style>
-      .invalid-feedback {
-          display: block !important;
-      }
+    <!-- Styles -->
+    <style>
+        .invalid-feedback {
+            display: block !important;
+        }
 
-  </style>
-  <!-- Styles -->
-  <link rel="stylesheet" href="{{ asset('sweetalert/bootstrap-4.css') }}" />
+    </style>
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('sweetalert/bootstrap-4.css') }}" />
     @stack('style')
 
-  <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-  @livewireStyles
+    @livewireStyles
 
-  <!-- Scripts -->
-  <script src="{{ mix('js/app.js') }}" defer></script>
+    <!-- Scripts -->
+    <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
-<div class="wrapper">
 
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-  {{-- <nav class="main-header navbar navbar-expand navbar-dark"> --}}
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      {{-- <li class="nav-item d-none d-sm-inline-block">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            {{-- <nav class="main-header navbar navbar-expand navbar-dark"> --}}
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
+                </li>
+                {{-- <li class="nav-item d-none d-sm-inline-block">
         <a href="index3.html" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li> --}}
-      <li class="nav-item d-none d-sm-inline-block">
-        <form action="{{ route('logout') }}" method="POST" hidden>
-            @csrf
-        </form>
-        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); this.previousElementSibling.submit();">
-            @lang('Logout')
-        </a>
-      </li>
-    </ul>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <form action="{{ route('logout') }}" method="POST" hidden>
+                        @csrf
+                    </form>
+                    <a class="nav-link" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); this.previousElementSibling.submit();">
+                        @lang('Logout')
+                    </a>
+                </li>
+            </ul>
 
-    <!-- Right navbar links -->
-    <ul class="ml-auto navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
+            <!-- Right navbar links -->
+            <ul class="ml-auto navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
 
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="{{ asset($app_setting->logo) }}" alt="{{ $app_setting->name }}" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">{{ $app_setting->name }}</span>
-    </a>
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="{{ asset($app_setting->logo) }}" alt="{{ $app_setting->name }}"
+                    class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">{{ $app_setting->name }}</span>
+            </a>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="pb-3 mt-3 mb-3 user-panel d-flex">
-        <div class="image">
-          <img src="{{ asset(Auth::user()->img) }}" class="img-circle elevation-2" alt="{{ Auth::user()->name }}">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
-        </div>
-      </div>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="pb-3 mt-3 mb-3 user-panel d-flex">
+                    <div class="image">
+                        <img src="{{ asset(Auth::user()->img) }}" class="img-circle elevation-2"
+                            alt="{{ Auth::user()->name }}">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                    </div>
+                </div>
 
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+                <!-- SidebarSearch Form -->
+                <div class="form-inline">
+                    <div class="input-group" data-widget="sidebar-search">
+                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
+                            aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-sidebar">
+                                <i class="fas fa-search fa-fw"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          {{-- #menu ici --}}
-          @foreach (config('menu') as $name => $elements)
-          {{-- Auth::user()->hasAnyPermission(explode('|', $elements['permission'])); --}}
-              @if (Auth::user()->hasAllPermissions(explode('|', $elements['permission'])))
-                @isset($elements['children'])
-                    <li class="nav-item {{ menuOpen($elements['children']) }}">
-                        <a href="#" class="nav-link {{ currentChildActive($elements['children']) }}">
-                            <i class="nav-icon fas fa-{{ $elements['icon'] }}"></i>
-                            <p>
-                                @lang($name)
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            @foreach ($elements['children'] as $child)
-                            {{-- Auth::user()->hasAnyPermission((explode('|', $child['permission'])); --}}
-                                @if (Auth::user()->hasAllPermissions(explode('|', $child['permission'])) && $child['name'] !== 'fake')
-                                    <x-back.menu-item :route="$child['route']" :sub=true>
-                                        @lang($child['name'])
-                                    </x-back.menu-item>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </li>
-                @else
-                    <x-back.menu-item
-                        :route="$elements['route']"
-                        :icon="$elements['icon']"
-                    >
-                        @lang($name)
-                    </x-back.menu-item>
-                @endisset
-              @endif
-          @endforeach
+                        {{-- #menu ici --}}
+                        @foreach (config('menu') as $name => $elements)
+                            {{-- Auth::user()->hasAnyPermission(explode('|', $elements['permission'])); --}}
+                            @if (Auth::user()->hasAllPermissions(explode('|', $elements['permission'])))
+                                @isset($elements['children'])
+                                    @isset($elements['active'])
+                                        @if ($elements['active'])
+                                            <li class="nav-item {{ menuOpen($elements['children']) }}">
+                                                <a href="#" class="nav-link {{ currentChildActive($elements['children']) }}">
+                                                    <i class="nav-icon fas fa-{{ $elements['icon'] }}"></i>
+                                                    <p>
+                                                        @lang($name)
+                                                        <i class="right fas fa-angle-left"></i>
+                                                    </p>
+                                                </a>
+                                                <ul class="nav nav-treeview">
+                                                    @foreach ($elements['children'] as $child)
+                                                        {{-- Auth::user()->hasAnyPermission((explode('|', $child['permission'])); --}}
+                                                        @isset($child['active'])
+                                                            @if ($child['active'])
+                                                                @if (Auth::user()->hasAllPermissions(explode('|', $child['permission'])) && $child['name'] !== 'fake')
+                                                                    <x-back.menu-item :route="$child['route']" :sub=true>
+                                                                        @lang($child['name'])
+                                                                    </x-back.menu-item>
+                                                                @endif
+                                                            @endif
+                                                        @else
+                                                            @if (Auth::user()->hasAllPermissions(explode('|', $child['permission'])) && $child['name'] !== 'fake')
+                                                                <x-back.menu-item :route="$child['route']" :sub=true>
+                                                                    @lang($child['name'])
+                                                                </x-back.menu-item>
+                                                            @endif
+                                                        @endisset
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        @endif
+                                    @else
+                                        <li class="nav-item {{ menuOpen($elements['children']) }}">
+                                            <a href="#" class="nav-link {{ currentChildActive($elements['children']) }}">
+                                                <i class="nav-icon fas fa-{{ $elements['icon'] }}"></i>
+                                                <p>
+                                                    @lang($name)
+                                                    <i class="right fas fa-angle-left"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                @foreach ($elements['children'] as $child)
+                                                    {{-- Auth::user()->hasAnyPermission((explode('|', $child['permission'])); --}}
+                                                    @if (Auth::user()->hasAllPermissions(explode('|', $child['permission'])) && $child['name'] !== 'fake')
+                                                        <x-back.menu-item :route="$child['route']" :sub=true>
+                                                            @lang($child['name'])
+                                                        </x-back.menu-item>
+                                                    @endif
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                    @endisset
+                                @else
+                                    @isset($elements['active'])
+                                        @if ($elements['active'])
+                                            <x-back.menu-item :route="$elements['route']" :icon="$elements['icon']">
+                                                @lang($name)
+                                            </x-back.menu-item>
+                                        @endif
+                                    @else
+                                        <x-back.menu-item :route="$elements['route']" :icon="$elements['icon']">
+                                            @lang($name)
+                                        </x-back.menu-item>
+                                    @endisset
+                                @endisset
+                            @endif
+                        @endforeach
 
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="mb-2 row">
+                        <div class="col-sm-12">
+                            <h1 class="m-0">@lang($title)</h1>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <div class="content">
+                <div class="container-fluid">
+                    {{ $slot }}
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- Default to the left -->
+            {{-- <strong>Copyright &copy; {{ Carbon\Carbon::now()->year }} <a href="{{ env('APP_URL') }}">{{ $app_setting->name }}</a>.</strong> --}}
+            <strong>Copyright &copy; 2022-{{ Carbon\Carbon::now()->year }} <a
+                    href="{{ env('APP_URL') }}">{{ $app_setting->name }}</a>.</strong>
+        </footer>
     </div>
-    <!-- /.sidebar -->
-  </aside>
+    <!-- ./wrapper -->
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="mb-2 row">
-          <div class="col-sm-12">
-            <h1 class="m-0">@lang($title)</h1>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+    <!-- JS dependencies -->
 
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-        {{ $slot }}
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+    @stack('modals')
 
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <!-- Default to the left -->
-    {{-- <strong>Copyright &copy; {{ Carbon\Carbon::now()->year }} <a href="{{ env('APP_URL') }}">{{ $app_setting->name }}</a>.</strong> --}}
-    <strong>Copyright &copy; 2022-{{ Carbon\Carbon::now()->year }} <a href="{{ env('APP_URL') }}">{{ $app_setting->name }}</a>.</strong>
-  </footer>
-</div>
-<!-- ./wrapper -->
+    <script src="{{ asset('sweetalert/sweetalert2@11.js') }}"></script>
 
-<!-- JS dependencies -->
+    @stack('script')
 
-@stack('modals')
+    @livewireScripts
+    <script>
+        const SwalModal = (icon, title, html) => {
+            Swal.fire({
+                icon,
+                title,
+                html
+            })
+        }
 
-<script src="{{ asset('sweetalert/sweetalert2@11.js') }}"></script>
+        const SwalConfirm = (icon, title, html, confirmButtonText, method, params, callback) => {
+            Swal.fire({
+                icon,
+                title,
+                html,
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText,
+                cancelButtonText: '@lang("Cancel")',
+                reverseButtons: true,
+            }).then(result => {
+                if (result.value) {
+                    return livewire.emit(method, params)
+                }
 
-@stack('script')
+                if (callback) {
+                    return livewire.emit(callback)
+                }
+            })
+        }
 
-@livewireScripts
-<script>
-    const SwalModal = (icon, title, html) => {
-        Swal.fire({
-            icon,
-            title,
-            html
+        const SwalAlert = (icon, title, timeout = 7000) => {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: timeout,
+                timerProgressBar: true,
+                onOpen: toast => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon,
+                title
+            })
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            this.livewire.on('swal:modal', data => {
+                SwalModal(data.icon, data.title, data.text)
+            })
+
+            this.livewire.on('swal:confirm', data => {
+                SwalConfirm(data.icon, data.title, data.text, data.confirmText, data.method, data.params,
+                    data.callback)
+            })
+
+            this.livewire.on('swal:alert', data => {
+                SwalAlert(data.icon, data.title, data.timeout)
+            })
+
+            this.livewire.on('modalClose', data => {
+                $('#' + data.id).modal('hide')
+            })
+
+            this.livewire.on('modalShow', data => {
+                setTimeout(() => {
+                    $('#' + data.id).modal('show')
+                }, 500);
+            })
         })
-    }
-
-    const SwalConfirm = (icon, title, html, confirmButtonText, method, params, callback) => {
-        Swal.fire({
-            icon,
-            title,
-            html,
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText,
-            cancelButtonText: '@lang("Cancel")',
-            reverseButtons: true,
-        }).then(result => {
-            if (result.value) {
-                return livewire.emit(method, params)
-            }
-
-            if (callback) {
-                return livewire.emit(callback)
-            }
-        })
-    }
-
-    const SwalAlert = (icon, title, timeout = 7000) => {
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: timeout,
-            timerProgressBar: true,
-            onOpen: toast => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-
-        Toast.fire({
-            icon,
-            title
-        })
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        this.livewire.on('swal:modal', data => {
-            SwalModal(data.icon, data.title, data.text)
-        })
-
-        this.livewire.on('swal:confirm', data => {
-            SwalConfirm(data.icon, data.title, data.text, data.confirmText, data.method, data.params, data.callback)
-        })
-
-        this.livewire.on('swal:alert', data => {
-            SwalAlert(data.icon, data.title, data.timeout)
-        })
-
-        this.livewire.on('modalClose', data =>  {
-            $('#'+data.id).modal('hide')
-        })
-
-        this.livewire.on('modalShow', data =>  {
-            setTimeout(() => {
-                $('#'+data.id).modal('show')
-            }, 500);
-        })
-    })
-</script>
+    </script>
 </body>
+
 </html>
