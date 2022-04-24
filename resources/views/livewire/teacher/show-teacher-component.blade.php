@@ -30,11 +30,11 @@
         </tr>
         <tr>
             <td>@lang('Grade')</td>
-            <td>{{ $teacher->grade }}</td>
+            <td>{{ $teacher->teacherGrade->name }}</td>
         </tr>
         <tr>
             <td>@lang('Status')</td>
-            <td>{{ $teacher->status }}</td>
+            <td>{{ $teacher->teacherStatus->name }}</td>
         </tr>
         <tr>
             <td>{{ __('Create the') }}</td>

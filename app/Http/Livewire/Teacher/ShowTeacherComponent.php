@@ -16,7 +16,7 @@ class ShowTeacherComponent extends Component
 
     public function render()
     {
-        $teacher = Teacher::find($this->teacher_id);
+        $teacher = Teacher::with(['teacherStatus', 'teacherGrade'])->whereId($this->teacher_id)->first();
         return view('livewire.teacher.show-teacher-component', compact('teacher'));
     }
 }

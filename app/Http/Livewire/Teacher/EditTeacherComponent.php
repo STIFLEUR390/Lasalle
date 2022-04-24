@@ -16,9 +16,9 @@ class EditTeacherComponent extends Component
 
     public $first_name;
     public $last_name;
-    public $grade;
+    public $grade_id;
     public $matricule;
-    public $status;
+    public $statut_id;
     public $email;
     public $gender;
     public $phone;
@@ -33,9 +33,9 @@ class EditTeacherComponent extends Component
         return [
             'first_name' => 'required|string|min:4',
             'last_name' => 'required|string|min:4',
-            'grade' => ['required',Rule::in($this->teacherStatusArray)],
+            'grade_id' => ['required',Rule::in($this->teacherGradeArray)],
             'matricule' => ['required','string','min:4',Rule::unique('teachers')->ignore($this->teacher_id)],
-            'status' => ['required',Rule::in($this->teacherStatusArray)],
+            'statut_id' => ['required',Rule::in($this->teacherStatusArray)],
             'email' => ['required','email',Rule::unique('teachers')->ignore($this->teacher_id)],
             'gender' => 'required|in:male,female',
             'phone' => ['required','numeric','digits:9',Rule::unique('teachers')->ignore($this->teacher_id)],
@@ -47,17 +47,16 @@ class EditTeacherComponent extends Component
     {
         $this->first_name = $teacher->first_name;
         $this->last_name = $teacher->last_name;
-        $this->grade = $teacher->grade;
+        $this->grade_id = $teacher->grade_id;
         $this->matricule = $teacher->matricule;
-        $this->status = $teacher->status;
+        $this->statut_id = $teacher->statut_id;
         $this->email = $teacher->email;
         $this->gender = $teacher->gender;
         $this->phone = $teacher->phone;
         $this->photo = $teacher->photo;
         $this->teacher_id = $teacher->id;
-
-        $this->teacherStatusArray = TeacherStatus::pluck('name');
-        $this->teacherGradeArray = TeacherGrade::pluck('name');
+        $this->teacherStatusArray = TeacherStatus::pluck('id');
+        $this->teacherGradeArray = TeacherGrade::pluck('id');
     }
 
     public function updated($propertyName)
@@ -68,8 +67,8 @@ class EditTeacherComponent extends Component
     public function render()
     {
         $teacher_status = TeacherStatus::all();
-        $teacher_grade = TeacherGrade::all();
-        return view('livewire.teacher.edit-teacher-component', compact('teacher_status', 'teacher_grade'));
+        $teacher_grades = TeacherGrade::all();
+        return view('livewire.teacher.edit-teacher-component', compact('teacher_status', 'teacher_grades'));
     }
 
     public function updateTeacher()
@@ -79,9 +78,9 @@ class EditTeacherComponent extends Component
         $teacher = Teacher::find($this->teacher_id);
         $teacher->first_name = $this->first_name;
         $teacher->last_name = $this->last_name;
-        $teacher->grade = $this->grade;
+        $teacher->grade_id = $this->grade_id;
         $teacher->matricule = $this->matricule;
-        $teacher->status = $this->status;
+        $teacher->statut_id = $this->statut_id;
         $teacher->email = $this->email;
         $teacher->gender = $this->gender;
         $teacher->phone = $this->phone;

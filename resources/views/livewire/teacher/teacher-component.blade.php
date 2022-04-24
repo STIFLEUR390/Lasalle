@@ -30,7 +30,7 @@
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                {{-- <th>#</th> --}}
                                 <th>@lang('Photo')</th>
                                 <th>@lang('Name')</th>
                                 <th>@lang('Matricule')</th>
@@ -43,7 +43,7 @@
                         <tbody>
                             @foreach ($teachers as $key => $teacher)
                                 <tr>
-                                    <td>{{ $key + 1 }}</td>
+                                    {{-- <td>{{ $key + 1 }}</td> --}}
                                     <td><img width="50" src="{{ asset($teacher->photo) }}"
                                             alt="{{ $teacher->first_name }} {{ $teacher->last_name }}" /></td>
                                     <td>{{ $teacher->first_name }} {{ $teacher->last_name }}</td>

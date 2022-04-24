@@ -31,17 +31,17 @@
                         <div class="form-group col-md-3">
                             <div wire:ignore>
                                 <label>@lang('Grade')</label>
-                                <select id="select2-grade" class="form-control @error('grade') is-invalid @enderror"
-                                    wire:model='grade' style="width: 100%;">
+                                <select id="select2-grade" class="form-control @error('grade_id') is-invalid @enderror"
+                                    wire:model='grade_id' style="width: 100%;">
                                     <option value="">
                                         {{ trans_choice('Select a :name', 0, ['name' => __('grade')]) }}</option>
-                                    @foreach ($teacher_status as $grade)
-                                        <option value="{{ $grade->name }}">{{ $grade->name }}</option>
+                                    @foreach ($teacher_grades as $grade)
+                                        <option value="{{ $grade->id }}">{{ $grade->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
 
-                            @error('grade')
+                            @error('grade_id')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
@@ -55,17 +55,17 @@
                         <div class="form-group col-md-3">
                             <div wire:ignore>
                                 <label>@lang('Status')</label>
-                                <select id="select2-status" class="form-control @error('status') is-invalid @enderror"
-                                    wire:model='status' style="width: 100%;">
+                                <select id="select2-status" class="form-control @error('statut_id') is-invalid @enderror"
+                                    wire:model='statut_id' style="width: 100%;">
                                     <option value="">
                                         {{ trans_choice('Select a :name', 0, ['name' => __('status')]) }}</option>
                                     @foreach ($teacher_status as $status)
-                                        <option value="{{ $status->name }}">{{ $status->name }}</option>
+                                        <option value="{{ $status->id }}">{{ $status->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
 
-                            @error('status')
+                            @error('statut_id')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>

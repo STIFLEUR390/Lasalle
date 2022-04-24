@@ -32,7 +32,7 @@ class CreateTeacherComponent extends Component
         return [
             'first_name' => 'required|string|min:4',
             'last_name' => 'required|string|min:4',
-            'grade_id' => ['required',Rule::in($this->teacherStatusArray)],
+            'grade_id' => ['required',Rule::in($this->teacherGradeArray)],
             'matricule' => 'required|string|min:4',
             'statut_id' => ['required',Rule::in($this->teacherStatusArray)],
             'email' => 'required|email|unique:teachers,email',
@@ -65,8 +65,8 @@ class CreateTeacherComponent extends Component
     public function render()
     {
         $teacher_status = TeacherStatus::all();
-        $teacher_grade = TeacherGrade::all();
-        return view('livewire.teacher.create-teacher-component', compact('teacher_status', 'teacher_grade'));
+        $teacher_grades = TeacherGrade::all();
+        return view('livewire.teacher.create-teacher-component', compact('teacher_status', 'teacher_grades'));
     }
 
     public function createTeacher()

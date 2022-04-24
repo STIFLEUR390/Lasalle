@@ -27,7 +27,8 @@ class TeacherComponent extends Component
     {
         if (!empty($this->search)) {
             $search = '%'.$this->search.'%';
-            $teachers = Teacher::where('first_name', 'like', $search)
+            $teachers = Teacher::with(['teacherStatus', 'teacherGrade'])
+                ->where('first_name', 'like', $search)
                 ->orWhere('last_name', 'like', $search)
                 ->orWhere('gender', 'like', $search)
                 ->orWhere('matricule', 'like', $search)
@@ -35,7 +36,7 @@ class TeacherComponent extends Component
                 ->orWhere('phone', 'like', $search)
                 ->orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
         } else {
-            $teachers = Teacher::orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
+            $teachers = Teacher::with(['teacherStatus', 'teacherGrade'])->orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
         }
 
         return view('livewire.teacher.teacher-component', compact('teachers'));
