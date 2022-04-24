@@ -2,46 +2,43 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Room;
+use App\Models\TeacherStatus;
 use Livewire\Component;
 use Livewire\WithPagination;
-// use Illuminate\Support\Facades\Validator;
 
-class ManageRoomComponent extends Component
+class TeacherStatusComponent extends Component
 {
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
-    protected $listeners = ['delete' => 'deleteRoom'];
+    protected $listeners = ['delete' => 'deleteTeacherStatus'];
 
     public $name;
-    public $is_available;
-    public $room_id;
+    public $teacherStatus_id;
     public $search;
     public $oderBy;
     public $pageSize;
 
     protected $rules = [
         'name' => 'required|min:2|string',
-        'is_available' => 'required',
     ];
 
     public function mount()
     {
         $this->oderBy = 'desc';
         $this->pageSize = 7;
-        $this->initializeRoom();
+        $this->initializeTeacherStatus();
     }
 
     public function render()
     {
         if (!empty($this->search)) {
             $search = '%'.$this->search.'%';
-            $rooms = Room::where('name', 'like', $search)->orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
+            $teacherStatuses = TeacherStatus::where('name', 'like', $search)->orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
         } else {
-            $rooms = Room::orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
+            $teacherStatuses = TeacherStatus::orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
         }
-        return view('livewire.manage-room-component', compact('rooms'));
+        return view('livewire.teacher-status-component', compact('teacherStatuses'));
     }
 
     public function confirmDeletion($id)
@@ -57,39 +54,40 @@ class ManageRoomComponent extends Component
         ]);
     }
 
-    public function deleteRoom($id)
+    public function deleteTeacherStatus($id)
     {
-        Room::find($id)->delete();
+        TeacherStatus::find($id)->delete();
 
         $this->emit('swal:modal', [
             'icon' => 'success',
             'type'    => 'success',
             'title' => appName(),
-            'text'   => __(':attribute deleted successfully', ['attribute' =>  __('Room')]),
+            'text'   => __(':attribute deleted successfully', ['attribute' =>  __('Teacher status')]),
         ]);
     }
 
-    public function initializeRoom()
+    public function initializeTeacherStatus()
     {
         $this->name = null;
         $this->is_available = false;
-        $this->room_id = null;
+        $this->teacherStatus_id = null;
     }
 
-    public function createRoom()
+    public function createTeacherStatus()
     {
         $this->emit("modalClose", ['id'=> "modal-default"]);
         $validatedData = $this->validate();
-        Room::create($validatedData);
+        TeacherStatus::create($validatedData);
 
-        $this->initializeRoom();
+        $this->initializeTeacherStatus();
 
         $this->emit('swal:modal', [
             'icon' => 'success',
             'type'    => 'success',
             'title' => appName(),
-            'text'   => __(':attribute created successfully', ['attribute' =>  __('Room')]),
+            'text'   => __(':attribute created successfully', ['attribute' =>  __('Teacher status')]),
         ]);
+
     }
 
     public function getData($id)
@@ -97,27 +95,26 @@ class ManageRoomComponent extends Component
         $this->resetValidation();
         $this->resetErrorBag();
 
-        $room = Room::find($id);
-        $this->name = $room->name;
-        $this->is_available = $room->is_available ? true : false;
-        $this->room_id = $room->id;
+        $teacherStatus = TeacherStatus::find($id);
+        $this->name = $teacherStatus->name;
+        $this->teacherStatus_id = $teacherStatus->id;
         $this->emit("modalShow", ['id'=> 'modal-update']);
     }
 
-    public function updateRoom()
+    public function updateTeacherStatus()
     {
         $this->emit("modalClose", ['id'=> 'modal-update']);
         $validatedData = $this->validate();
-        $room = Room::find($this->room_id);
-        $room->update($validatedData);
+        $teacherStatus = TeacherStatus::find($this->teacherStatus_id);
+        $teacherStatus->update($validatedData);
 
-        $this->initializeRoom();
+        $this->initializeTeacherStatus();
 
         $this->emit('swal:modal', [
             'icon' => 'success',
             'type'    => 'success',
             'title' => appName(),
-            'text'   => __(':attribute updated successfully', ['attribute' =>  __('Room')]),
+            'text'   => __(':attribute updated successfully', ['attribute' =>  __('Teacher status')]),
         ]);
     }
 }

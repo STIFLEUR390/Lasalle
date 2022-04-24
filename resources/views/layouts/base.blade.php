@@ -118,7 +118,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             @if (Auth::user()->hasAllPermissions(explode('|', $elements['permission'])))
                                 @isset($elements['children'])
                                     @isset($elements['active'])
-                                        @if ($elements['active'])
+                                        @if (activeFunction($elements['active']))
                                             <li class="nav-item {{ menuOpen($elements['children']) }}">
                                                 <a href="#" class="nav-link {{ currentChildActive($elements['children']) }}">
                                                     <i class="nav-icon fas fa-{{ $elements['icon'] }}"></i>
@@ -131,7 +131,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     @foreach ($elements['children'] as $child)
                                                         {{-- Auth::user()->hasAnyPermission((explode('|', $child['permission'])); --}}
                                                         @isset($child['active'])
-                                                            @if ($child['active'])
+                                                            @if (activeFunction($child['active']))
                                                                 @if (Auth::user()->hasAllPermissions(explode('|', $child['permission'])) && $child['name'] !== 'fake')
                                                                     <x-back.menu-item :route="$child['route']" :sub=true>
                                                                         @lang($child['name'])
@@ -160,19 +160,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </a>
                                             <ul class="nav nav-treeview">
                                                 @foreach ($elements['children'] as $child)
-                                                    {{-- Auth::user()->hasAnyPermission((explode('|', $child['permission'])); --}}
-                                                    @if (Auth::user()->hasAllPermissions(explode('|', $child['permission'])) && $child['name'] !== 'fake')
-                                                        <x-back.menu-item :route="$child['route']" :sub=true>
-                                                            @lang($child['name'])
-                                                        </x-back.menu-item>
-                                                    @endif
-                                                @endforeach
+                                                        {{-- Auth::user()->hasAnyPermission((explode('|', $child['permission'])); --}}
+                                                        @isset($child['active'])
+                                                            @if (activeFunction($child['active']))
+                                                                @if (Auth::user()->hasAllPermissions(explode('|', $child['permission'])) && $child['name'] !== 'fake')
+                                                                    <x-back.menu-item :route="$child['route']" :sub=true>
+                                                                        @lang($child['name'])
+                                                                    </x-back.menu-item>
+                                                                @endif
+                                                            @endif
+                                                        @else
+                                                            @if (Auth::user()->hasAllPermissions(explode('|', $child['permission'])) && $child['name'] !== 'fake')
+                                                                <x-back.menu-item :route="$child['route']" :sub=true>
+                                                                    @lang($child['name'])
+                                                                </x-back.menu-item>
+                                                            @endif
+                                                        @endisset
+                                                    @endforeach
                                             </ul>
                                         </li>
                                     @endisset
                                 @else
                                     @isset($elements['active'])
-                                        @if ($elements['active'])
+                                        @if (activeFunction($elements['active']))
                                             <x-back.menu-item :route="$elements['route']" :icon="$elements['icon']">
                                                 @lang($name)
                                             </x-back.menu-item>
@@ -309,7 +319,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             })
         })
     </script>
-
     @stack('script')
 </body>
 

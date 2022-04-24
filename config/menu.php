@@ -21,6 +21,18 @@ return [
                 'route' => 'teachers.create',
                 'name' => 'Add teacher'
             ],
+            [
+                'active' => 'teacher_grade',
+                'permission' => 'manage teacher grade',
+                'route' => 'teachers.grade',
+                'name' => 'Add grade',
+            ],
+            [
+                'active' => 'teacher_status',
+                'permission' => 'manage teacher status',
+                'route' => 'teachers.status',
+                'name' => 'Add status',
+            ],
         ]
     ],
     'Manage rooms' => [

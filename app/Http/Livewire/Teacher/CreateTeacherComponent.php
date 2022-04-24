@@ -4,8 +4,10 @@ namespace App\Http\Livewire\Teacher;
 
 use App\Models\Teacher;
 use Livewire\Component;
+use App\Models\AppSetting;
 use App\Models\TeacherGrade;
 use App\Models\TeacherStatus;
+use Carbon\Carbon;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 
@@ -44,6 +46,15 @@ class CreateTeacherComponent extends Component
     {
         $this->teacherStatusArray = TeacherStatus::pluck('name');
         $this->teacherGradeArray = TeacherGrade::pluck('name');
+        $app_setting = AppSetting::firstOrFail();
+        if ($app_setting->matricule) {
+            $pre = null;
+            $pres = preg_split("/[\s,_-]+/", $app_setting->name);
+            foreach ($pres as $value) {
+                $pre.=$value[0];
+            }
+            $this->matricule = $pre. Carbon::now()->format('YmdHms');
+        }
     }
 
     public function updated($propertyName)

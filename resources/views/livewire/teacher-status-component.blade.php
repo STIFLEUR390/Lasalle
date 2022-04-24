@@ -22,7 +22,7 @@
 
                         <div class="float-right" style="margin-left: 10% !important;">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
-                                @lang("Add room")
+                                @lang("Add status")
                             </button>
                         </div>
                     </div>
@@ -32,29 +32,21 @@
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th>@lang('Room name')</th>
-                                <th>@lang('Is available')</th>
+                                <th>@lang('Name')</th>
                                 <th>@lang('Action')</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($rooms as $room)
+                            @foreach ($teacherStatuses as $teacherStatus)
                                 <tr>
-                                    <td>{{ $room->name }}</td>
-                                    <td>
-                                        @if ($room->is_available)
-                                            <span class="badge bg-primary">@lang("Yes")</span>
-                                        @else
-                                            <span class="badge bg-danger">@lang('No')</span>
-                                        @endif
-                                    </td>
+                                    <td>{{ $teacherStatus->name }}</td>
                                     <td class="row">
                                         <div class="mr-2 col-md-3">
-                                            <button type="button" wire:click="getData('{{ $room->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                                            <button type="button" wire:click="getData('{{ $teacherStatus->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
                                         </div>
                                         <div class="col-md-3">
                                             <button type="button" class="btn btn-danger"
-                                                wire:click="confirmDeletion('{{ $room->id }}')"><i
+                                                wire:click="confirmDeletion('{{ $teacherStatus->id }}')"><i
                                                     class="fa fa-trash"></i></button>
                                         </div>
                                     </td>
@@ -63,7 +55,7 @@
                         </tbody>
                     </table>
                     <span class="float-right mr-2">
-                        {{ $rooms->links() }}
+                        {{ $teacherStatuses->links() }}
                     </span>
                 </div>
                 <!-- /.card-body -->
@@ -73,7 +65,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title">@lang("Edit room")</h4>
+                      <h4 class="modal-title">@lang("Edit a status")</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -86,16 +78,10 @@
                                     <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group col-md-6" style="margin-top: 2.5rem !important;">
-                            <div class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input" wire:model.defer='is_available' id="ckeck0">
-                              <label class="custom-control-label" for="ckeck0">@lang('available ?')</label>
-                            </div>
-                        </div>
                     </div>
                     <div class="modal-footer justify-content-between">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">@lang("Close")</button>
-                      <button type="button" wire:click="updateRoom" class="btn btn-primary">@lang('Update')</button>
+                      <button type="button" wire:click="updateTeacherStatus" class="btn btn-primary">@lang('Update')</button>
                     </div>
                   </div>
                   <!-- /.modal-content -->
@@ -106,7 +92,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title">@lang("Add room")</h4>
+                      <h4 class="modal-title">@lang("Add status")</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -119,16 +105,10 @@
                                     <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group col-md-6" style="margin-top: 2.5rem !important;">
-                            <div class="custom-control custom-checkbox">
-                              <input type="checkbox" name="terms" class="custom-control-input" wire:model.defer='is_available' id="exampleCheck1">
-                              <label class="custom-control-label" for="exampleCheck1">@lang('available ?')</label>
-                            </div>
-                        </div>
                     </div>
                     <div class="modal-footer justify-content-between">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">@lang("Close")</button>
-                      <button type="button" wire:click="createRoom()" class="btn btn-primary">@lang('Save')</button>
+                      <button type="button" wire:click="createTeacherStatus" class="btn btn-primary">@lang('Save')</button>
                     </div>
                   </div>
                   <!-- /.modal-content -->

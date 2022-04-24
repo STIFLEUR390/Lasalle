@@ -46,3 +46,14 @@ if (!function_exists('appName')) {
         }
     }
 }
+
+if (!function_exists('activeFunction')) {
+    function activeFunction(String $id)
+    {
+        if (Schema::hasTable('users')) {
+            return AppSetting::find(1)->$id;
+        } else {
+            return 0;
+        }
+    }
+}

@@ -17,6 +17,10 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property string $logo
+ * @property int $matricule
+ * @property int $teacher_grade
+ * @property int $teacher_status
+ * @property int $schedule_status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Database\Factories\AppSettingFactory factory(...$parameters)
@@ -26,7 +30,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|AppSetting whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AppSetting whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AppSetting whereLogo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AppSetting whereMatricule($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AppSetting whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AppSetting whereScheduleStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AppSetting whereTeacherGrade($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AppSetting whereTeacherStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AppSetting whereUpdatedAt($value)
  */
 	class AppSetting extends \Eloquent {}
@@ -109,21 +117,9 @@ namespace App\Models{
 /**
  * App\Models\Membership
  *
- * @property int $id
- * @property int $team_id
- * @property int $user_id
- * @property string|null $role
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Membership newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Membership newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Membership query()
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereRole($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereTeamId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereUserId($value)
  */
 	class Membership extends \Eloquent {}
 }
@@ -139,6 +135,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedule
  * @property-read int|null $schedule_count
+ * @method static \Database\Factories\RoomFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Room newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Room newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Room query()
@@ -236,14 +233,48 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Team
+ * App\Models\TeacherGrade
  *
  * @property int $id
- * @property int $user_id
  * @property string $name
- * @property bool $personal_team
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\TeacherGradeFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|TeacherGrade newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TeacherGrade newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TeacherGrade query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TeacherGrade whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TeacherGrade whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TeacherGrade whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TeacherGrade whereUpdatedAt($value)
+ */
+	class TeacherGrade extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\TeacherStatus
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\TeacherStatusFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|TeacherStatus newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TeacherStatus newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TeacherStatus query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TeacherStatus whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TeacherStatus whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TeacherStatus whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TeacherStatus whereUpdatedAt($value)
+ */
+	class TeacherStatus extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Team
+ *
  * @property-read \App\Models\User|null $owner
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\TeamInvitation[] $teamInvitations
  * @property-read int|null $team_invitations_count
@@ -253,12 +284,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Team newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Team newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Team query()
- * @method static \Illuminate\Database\Eloquent\Builder|Team whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Team whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Team whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Team wherePersonalTeam($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Team whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Team whereUserId($value)
  */
 	class Team extends \Eloquent {}
 }
@@ -267,22 +292,10 @@ namespace App\Models{
 /**
  * App\Models\TeamInvitation
  *
- * @property int $id
- * @property int $team_id
- * @property string $email
- * @property string|null $role
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Team $team
+ * @property-read \App\Models\Team|null $team
  * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation query()
- * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereRole($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereTeamId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereUpdatedAt($value)
  */
 	class TeamInvitation extends \Eloquent {}
 }
@@ -299,10 +312,7 @@ namespace App\Models{
  * @property string $password
  * @property string|null $two_factor_secret
  * @property string|null $two_factor_recovery_codes
- * @property string|null $reference
  * @property string|null $remember_token
- * @property int|null $current_team_id
- * @property string|null $profile_photo_path
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -328,7 +338,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCurrentTeamId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
@@ -336,8 +345,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereImg($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereReference($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)

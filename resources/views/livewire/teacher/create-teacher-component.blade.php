@@ -17,8 +17,7 @@
                         <div class="form-group col-md-3">
                             <label>@lang("First name")</label>
                             <input type="text"
-                                class="form-control @error('first_name') is-invalid @enderror"" wire:model='first_name' placeholder="
-                                {{ trans_choice('Enter :name', 0, ['name' => __('First name')]) }}">
+                                class="form-control @error('first_name') is-invalid @enderror"" wire:model='first_name' placeholder="{{ trans_choice('Enter :name', 0, ['name' => __('First name')]) }}">
                             @error('first_name')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -49,15 +48,22 @@
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group col-md-3">
-                            <label>@lang("Matricule")</label>
-                            <input type="text" class="form-control @error('matricule') is-invalid @enderror"
-                                wire:model='matricule'
-                                placeholder="{{ trans_choice('Enter :name', 0, ['name' => __('Matricule')]) }}">
-                            @error('matricule')
-                                <span class="invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
+                        @if ($app_setting->matricule)
+                            <div class="form-group col-md-3">
+                                <label>@lang("Matricule")</label>
+                                <input type="text" class="form-control" wire:model='matricule' disabled>
+                            </div>
+                        @else
+                            <div class="form-group col-md-3">
+                                <label>@lang("Matricule")</label>
+                                <input type="text" class="form-control @error('matricule') is-invalid @enderror"
+                                    wire:model='matricule'
+                                    placeholder="{{ trans_choice('Enter :name', 0, ['name' => __('Matricule')]) }}">
+                                @error('matricule')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        @endif
                         <div class="form-group col-md-3">
                             <div wire:ignore>
                                 <label>@lang('Status')</label>
