@@ -21,4 +21,14 @@ class Teacher extends Model
     {
         return $this->hasMany(Schedule::class);
     }
+
+    public function teacherGrade()
+    {
+        return $this->belongsTo(TeacherGrade::class, 'grade_id');
+    }
+
+    public function teacherStatus()
+    {
+        return $this->belongsTo(TeacherStatus::class, 'statut_id');
+    }
 }

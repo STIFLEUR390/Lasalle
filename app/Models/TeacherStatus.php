@@ -15,4 +15,10 @@ class TeacherStatus extends Model
      * @var array
      */
     protected $guarded = [];
+
+
+    public function teachers()
+    {
+        return $this->Teacher(Faculty::class);
+    }
 }

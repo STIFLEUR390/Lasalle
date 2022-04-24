@@ -31,9 +31,9 @@ class TeacherFactory extends Factory
         return [
             'first_name' => $firstName,
             'last_name' => $this->faker->lastName,
-            'grade' => 'Grade',
+            // 'grade' => 'Grade',
             'matricule' => "DV".$phone,
-            'status' => 'active',
+            // 'status' => 'active',
             'photo' => $img,
             'email' => $this->faker->email,
             'gender' => $sexe,

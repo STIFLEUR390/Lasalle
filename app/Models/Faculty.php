@@ -17,10 +17,10 @@ class Faculty extends Model
     protected $guarded = [];
 
 
-    public function courses()
+    /* public function courses()
     {
         return $this->hasMany(Course::class);
-    }
+    } */
 
     public function department()
     {

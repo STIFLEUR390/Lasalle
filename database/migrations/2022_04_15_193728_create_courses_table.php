@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
+        // Schema::disableForeignKeyConstraints();
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('ue_code');
-            $table->foreignId('faculty_id')->constrained('faculties')->cascadeOnUpdate()->cascadeOnDelete();
+            // $table->foreignId('faculty_id')->constrained('faculties')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

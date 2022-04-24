@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('grade');
+            $table->foreignId('grade_id')->constrained('teacher_grades')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('statut_id')->constrained('teacher_statuses')->cascadeOnUpdate()->cascadeOnDelete();
+            // $table->string('grade');
             $table->string('matricule')->unique();
-            $table->string('status');
+            // $table->string('status');
             $table->string('photo')->default('/dist/img/avatar.png');
             $table->string('email')->unique();
             $table->enum('gender', ['male', 'female'])->default('male');

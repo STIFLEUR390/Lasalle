@@ -34,17 +34,17 @@
                         <div class="form-group col-md-3">
                             <div wire:ignore>
                                 <label>@lang('Grade')</label>
-                                <select id="select2-grade" class="form-control @error('grade') is-invalid @enderror"
-                                    wire:model='grade' style="width: 100%;">
+                                <select id="select2-grade" class="form-control @error('grade_id') is-invalid @enderror"
+                                    wire:model='grade_id' style="width: 100%;">
                                     <option value="">
                                         {{ trans_choice('Select a :name', 0, ['name' => __('grade')]) }}</option>
                                     @foreach ($teacher_status as $grade)
-                                        <option value="{{ $grade->name }}">{{ $grade->name }}</option>
+                                        <option value="{{ $grade->id }}">{{ $grade->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
 
-                            @error('grade')
+                            @error('grade_id')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
@@ -56,10 +56,10 @@
                         @else
                             <div class="form-group col-md-3">
                                 <label>@lang("Matricule")</label>
-                                <input type="text" class="form-control @error('matricule') is-invalid @enderror"
-                                    wire:model='matricule'
+                                <input type="text" class="form-control @error('statut_id') is-invalid @enderror"
+                                    wire:model='statut_id'
                                     placeholder="{{ trans_choice('Enter :name', 0, ['name' => __('Matricule')]) }}">
-                                @error('matricule')
+                                @error('statut_id')
                                     <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>

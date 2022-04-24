@@ -17,10 +17,10 @@ class Course extends Model
     protected $guarded = [];
 
 
-    public function faculty()
+    /* public function faculty()
     {
         return $this->belongsTo(Faculty::class);
-    }
+    } */
 
     public function schedule()
     {

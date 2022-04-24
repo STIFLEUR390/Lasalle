@@ -15,4 +15,10 @@ class TeacherGrade extends Model
      * @var array
      */
     protected $guarded = [];
+
+
+    public function teachers()
+    {
+        return $this->hasMany(Teacher::class);
+    }
 }

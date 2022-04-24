@@ -17,9 +17,9 @@ class CreateTeacherComponent extends Component
 
     public $first_name;
     public $last_name;
-    public $grade;
+    public $grade_id;
     public $matricule;
-    public $status;
+    public $statut_id;
     public $email;
     public $gender;
     public $phone;
@@ -32,9 +32,9 @@ class CreateTeacherComponent extends Component
         return [
             'first_name' => 'required|string|min:4',
             'last_name' => 'required|string|min:4',
-            'grade' => ['required',Rule::in($this->teacherStatusArray)],
+            'grade_id' => ['required',Rule::in($this->teacherStatusArray)],
             'matricule' => 'required|string|min:4',
-            'status' => ['required',Rule::in($this->teacherStatusArray)],
+            'statut_id' => ['required',Rule::in($this->teacherStatusArray)],
             'email' => 'required|email|unique:teachers,email',
             'gender' => 'required|in:male,female',
             'phone' => 'required|numeric|digits:9',
@@ -44,8 +44,8 @@ class CreateTeacherComponent extends Component
 
     public function mount()
     {
-        $this->teacherStatusArray = TeacherStatus::pluck('name');
-        $this->teacherGradeArray = TeacherGrade::pluck('name');
+        $this->teacherStatusArray = TeacherStatus::pluck('id');
+        $this->teacherGradeArray = TeacherGrade::pluck('id');
         $app_setting = AppSetting::firstOrFail();
         if ($app_setting->matricule) {
             $pre = null;
