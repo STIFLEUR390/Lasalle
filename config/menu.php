@@ -40,6 +40,11 @@ return [
         'route' => 'rooms',
         'icon' => 'school',
     ],
+    'Manage courses' => [
+        'permission' => 'manage course',
+        'route' => 'courses',
+        'icon' => 'book',
+    ],
     'Profile' => [
         'permission' => 'base',
         'route' => 'profile',

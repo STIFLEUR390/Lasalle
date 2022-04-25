@@ -793,5 +793,9 @@
     "Automatically generate the matricule": "Générer automatiquement le matricule",
     "Change attendance status": "Modifier le statut des présences",
     "Authorize the creation of the status of a teacher": "Autoriser la création du statut d'enseignant",
-    "Authorize the creation of a teacher's grade": "Autoriser la création du grade d'enseignant"
+    "Authorize the creation of a teacher's grade": "Autoriser la création du grade d'enseignant",
+    "Manage courses": "Gérer les cours",
+    "Cours": "Cours",
+    "Add cours": "Ajouter un cours",
+    "Edit a cours": "Modifier un cours"
 }

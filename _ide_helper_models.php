@@ -47,17 +47,15 @@ namespace App\Models{
  * @property int $id
  * @property string $title
  * @property string $ue_code
- * @property int $faculty_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Faculty $faculty
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedule
  * @property-read int|null $schedule_count
+ * @method static \Database\Factories\CourseFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Course newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Course newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Course query()
  * @method static \Illuminate\Database\Eloquent\Builder|Course whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Course whereFacultyId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Course whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Course whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Course whereUeCode($value)
@@ -76,6 +74,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Faculty[] $faculties
  * @property-read int|null $faculties_count
+ * @method static \Database\Factories\DepartmentFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Department newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Department newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Department query()
@@ -96,11 +95,10 @@ namespace App\Models{
  * @property int $department_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Course[] $courses
- * @property-read int|null $courses_count
  * @property-read \App\Models\Department $department
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedule
  * @property-read int|null $schedule_count
+ * @method static \Database\Factories\FacultyFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Faculty newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Faculty newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Faculty query()
@@ -194,9 +192,9 @@ namespace App\Models{
  * @property int $id
  * @property string $first_name
  * @property string $last_name
- * @property string $grade
+ * @property int $grade_id
+ * @property int $statut_id
  * @property string $matricule
- * @property string $status
  * @property string $photo
  * @property string $email
  * @property string $gender
@@ -208,6 +206,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedule
  * @property-read int|null $schedule_count
+ * @property-read \App\Models\TeacherGrade $teacherGrade
+ * @property-read \App\Models\TeacherStatus $teacherStatus
  * @method static \Database\Factories\TeacherFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher newQuery()
@@ -219,13 +219,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereFootprint2($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereFootprint3($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereGender($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereGrade($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereGradeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereLastName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereMatricule($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher wherePhoto($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereStatutId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereUpdatedAt($value)
  */
 	class Teacher extends \Eloquent {}
@@ -239,6 +239,8 @@ namespace App\Models{
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Teacher[] $teachers
+ * @property-read int|null $teachers_count
  * @method static \Database\Factories\TeacherGradeFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|TeacherGrade newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TeacherGrade newQuery()

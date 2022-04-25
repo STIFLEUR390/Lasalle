@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Back\AdminController;
 use App\Http\Livewire\Back\User\ProfileComponent;
-use App\Http\Livewire\{AppSetting, ManageRoomComponent, TeacherGradeComponent, TeacherStatusComponent};
+use App\Http\Livewire\{AppSetting, CourseComponent, ManageRoomComponent, TeacherGradeComponent, TeacherStatusComponent};
 use App\Http\Livewire\Teacher\{CreateTeacherComponent, EditTeacherComponent, TeacherComponent};
 
 /*
@@ -41,6 +41,9 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'permission:base
 
         // rooms managent
         Route::name('rooms')->get('rooms', ManageRoomComponent::class);
+
+        // courses managent
+        Route::name('courses')->get('courses', CourseComponent::class);
     });
 
     Route::middleware(['role:Super Admin'])->group(function(){
