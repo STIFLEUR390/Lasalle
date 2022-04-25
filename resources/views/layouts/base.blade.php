@@ -196,6 +196,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             @endif
                         @endforeach
 
+                        {{-- <li class="nav-item">
+                            <form action="{{ route('logout') }}" method="POST" hidden>
+                                @csrf
+                            </form>
+                            <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); this.previousElementSibling.submit();">
+                              <i class="nav-icon fas fa-sign-out-alt"></i>
+                              <p>
+                                @lang('Logout')
+                              </p>
+                            </a>
+                        </li> --}}
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

@@ -38,12 +38,17 @@ return [
     'Manage rooms' => [
         'permission' => 'manage room',
         'route' => 'rooms',
-        'icon' => 'school',
+        'icon' => 'door-open ',
     ],
     'Manage courses' => [
         'permission' => 'manage course',
         'route' => 'courses',
-        'icon' => 'book',
+        'icon' => 'book-open',
+    ],
+    'Manage departments' => [
+        'permission' => 'manage course',
+        'route' => 'departments',
+        'icon' => 'building',//university, book, school, graduation-cap,  user-cog
     ],
     'Profile' => [
         'permission' => 'base',
@@ -51,7 +56,7 @@ return [
         'icon' => 'user',
     ],
     'App setting' => [
-        'permission' => 'manage setting',
+        'permission' => 'manage department',
         'route' => 'settings',
         'icon' => 'cogs',
     ],

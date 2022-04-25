@@ -33,6 +33,7 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'manage teacher status']);
         Permission::create(['name' => 'manage teacher grade']);
         Permission::create(['name' => 'manage schedule status']);
+        Permission::create(['name' => 'manage department']);
 
         // create roles and assign existing permissions
         $role1 = Role::create(['name' => 'Admin']);
@@ -48,6 +49,7 @@ class PermissionsSeeder extends Seeder
         $role1->givePermissionTo('manage teacher status');
         $role1->givePermissionTo('manage teacher grade');
         $role1->givePermissionTo('manage schedule status');
+        $role1->givePermissionTo('manage department');
 
         $role2 = Role::create(['name' => 'Super Admin']);
         $role2->givePermissionTo('manage teacher');
@@ -62,6 +64,7 @@ class PermissionsSeeder extends Seeder
         $role1->givePermissionTo('manage teacher status');
         $role1->givePermissionTo('manage teacher grade');
         $role1->givePermissionTo('manage schedule status');
+        $role2->givePermissionTo('manage department');
 	}
 
 }
