@@ -48,7 +48,12 @@ return [
     'Manage departments' => [
         'permission' => 'manage course',
         'route' => 'departments',
-        'icon' => 'building',//university, book, school, graduation-cap,  user-cog
+        'icon' => 'building',
+    ],
+    'Manage faculties' => [
+        'permission' => 'manage faculty',
+        'route' => 'faculties',
+        'icon' => 'graduation-cap',//university, book, school, graduation-cap,  user-cog
     ],
     'Profile' => [
         'permission' => 'base',

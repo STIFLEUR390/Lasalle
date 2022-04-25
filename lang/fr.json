@@ -731,7 +731,7 @@
     "footprint": "Empreinte",
     "title": "Titre",
     "UE code": "Code UE",
-    "Faculty": "Filiere",
+    "Faculty": "Filière",
     "Start time": "Heure de début",
     "End time": "Heure de fin",
     "All teachers": "Tous les enseignants",
@@ -800,6 +800,11 @@
     "Edit a cours": "Modifier un cours",
     "Manage departments": "Gérer les départements",
     "Department": "Département",
+    "department": "département",
     "Add department": "Ajouter un département",
-    "Edit a department": "Modifier un département"
+    "Edit a department": "Modifier un département",
+    "Manage faculties": "Gérer les filières",
+    "faculty": "filière",
+    "Add faculty": "Ajouter une filière",
+    "Edit a faculty": "Modifier une filière"
 }

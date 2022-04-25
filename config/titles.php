@@ -13,5 +13,6 @@ return [
     'rooms' => 'All rooms',
     'settings' => 'App setting',
     'courses' => 'Manage courses',
-    'departments' => 'Manage departments'
+    'departments' => 'Manage departments',
+    'faculties' => 'Manage faculties',
 ];
