@@ -69,8 +69,17 @@ class TeacherStatusComponent extends Component
     public function initializeTeacherStatus()
     {
         $this->name = null;
-        $this->is_available = false;
         $this->teacherStatus_id = null;
+    }
+
+    public function initializeForCreateTeacherStatus()
+    {
+        $this->name = null;
+        $this->teacherStatus_id = null;
+        $this->resetValidation();
+        $this->resetErrorBag();
+
+        $this->emit("modalShow", ['id'=> 'modal-default']);
     }
 
     public function createTeacherStatus()

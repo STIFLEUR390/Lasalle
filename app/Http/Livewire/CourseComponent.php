@@ -70,9 +70,20 @@ class CourseComponent extends Component
 
     public function initializeCourse()
     {
-        $this->name = null;
-        $this->is_available = false;
+        $this->title = null;
+        $this->ue_code = null;
         $this->course_id = null;
+    }
+
+    public function initializeForCreateCourse()
+    {
+        $this->title = null;
+        $this->ue_code = null;
+        $this->course_id = null;
+        $this->resetValidation();
+        $this->resetErrorBag();
+
+        $this->emit("modalShow", ['id'=> 'modal-default']);
     }
 
     public function createCourse()
@@ -98,7 +109,8 @@ class CourseComponent extends Component
         $this->resetErrorBag();
 
         $Course = Course::find($id);
-        $this->name = $Course->name;
+        $this->title = $Course->title;
+        $this->ue_code = $Course->ue_code;
         $this->course_id = $Course->id;
         $this->emit("modalShow", ['id'=> 'modal-update']);
     }

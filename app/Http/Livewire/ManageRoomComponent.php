@@ -76,6 +76,17 @@ class ManageRoomComponent extends Component
         $this->room_id = null;
     }
 
+    public function initializeForCreateRoom()
+    {
+        $this->name = null;
+        $this->is_available = false;
+        $this->room_id = null;
+        $this->resetValidation();
+        $this->resetErrorBag();
+
+        $this->emit("modalShow", ['id'=> 'modal-default']);
+    }
+
     public function createRoom()
     {
         $this->emit("modalClose", ['id'=> "modal-default"]);

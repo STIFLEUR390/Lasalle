@@ -69,8 +69,17 @@ class TeacherGradeComponent extends Component
     public function initializeTeacherGrade()
     {
         $this->name = null;
-        $this->is_available = false;
         $this->teacherGrade_id = null;
+    }
+
+    public function initializeForCreateTeacherGrade()
+    {
+        $this->name = null;
+        $this->teacherGrade_id = null;
+        $this->resetValidation();
+        $this->resetErrorBag();
+
+        $this->emit("modalShow", ['id'=> 'modal-default']);
     }
 
     public function createTeacherGrade()

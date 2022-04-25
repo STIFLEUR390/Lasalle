@@ -21,7 +21,7 @@
                         </select>
 
                         <div class="float-right" style="margin-left: 10% !important;">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
+                            <button wire:click='initializeForCreateCourse' type="button" class="btn btn-primary">
                                 @lang("Add cours")
                             </button>
                         </div>
