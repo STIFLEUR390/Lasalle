@@ -55,6 +55,22 @@ return [
         'route' => 'faculties',
         'icon' => 'graduation-cap',//university, book, school, graduation-cap,  user-cog
     ],
+    'Manage schedules' => [
+        'permission' => 'manage schedule',
+        'icon' => 'clock',
+        'children' => [
+            [
+                'permission' => 'manage schedule',
+                'route' => 'schedules.index',
+                'name' => 'Manage schedules'
+            ],
+            [
+                'permission' => 'manage schedule',
+                'route' => 'schedules.create',
+                'name' => 'Add schedule'
+            ],
+        ]
+    ],
     'Profile' => [
         'permission' => 'base',
         'route' => 'profile',

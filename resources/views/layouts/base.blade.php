@@ -21,9 +21,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </style>
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('sweetalert/bootstrap-4.css') }}" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @stack('style')
 
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     @livewireStyles
 
@@ -330,6 +330,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 }, 500);
             })
         })
+    </script>
+    <script src="{{ asset('custom/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('custom/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+    <script>
+        $(function () {
+            bsCustomFileInput.init();
+        });
     </script>
     @stack('script')
 </body>

@@ -67,7 +67,7 @@
                         <div class="form-group col-md-3">
                             <div wire:ignore>
                                 <label>@lang('Status')</label>
-                                <select id="select2-status" class="form-control @error('statut_id') is-invalid @enderror"
+                                <select id="select2-status" class="form-control select2 @error('statut_id') is-invalid @enderror"
                                     wire:model='statut_id' style="width: 100%;">
                                     <option value="">
                                         {{ trans_choice('Select a :name', 0, ['name' => __('status')]) }}</option>
@@ -142,9 +142,13 @@
     <!-- /.row -->
 </div><!-- /.container-fluid -->
 
+@push('style')
+    <link rel="stylesheet" href="{{ asset('js/select2/css/select2.css') }}">
+@endpush
+
 @push('script')
     <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/select2/js/select2.js') }}"></script>
+    <script src="{{ asset('js/select2/css/select2.js') }}" defer></script>
     <script>
         $(document).ready(function() {
             $('#select2-status').select2();

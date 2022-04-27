@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Back\AdminController;
 use App\Http\Livewire\Back\User\ProfileComponent;
-use App\Http\Livewire\{AppSetting, CourseComponent, DepartmentComponent, FacultyComponent, ManageRoomComponent, TeacherGradeComponent, TeacherStatusComponent};
+use App\Http\Livewire\Schedule\{CreateScheduleComponent, EditScheduleComponent, ScheduleComponent};
 use App\Http\Livewire\Teacher\{CreateTeacherComponent, EditTeacherComponent, TeacherComponent};
+use App\Http\Livewire\{AppSetting, CourseComponent, DepartmentComponent, FacultyComponent, ManageRoomComponent, TeacherGradeComponent, TeacherStatusComponent};
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,14 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'permission:base
     });
 
     Route::middleware(['role:Super Admin'])->group(function(){
+        //schedule management
+        Route::prefix("schedules")->name('schedules.')->group(function() {
+            Route::name('index')->get('/', ScheduleComponent::class);
+            Route::name('create')->get('/create', CreateScheduleComponent::class);
+            Route::name('edit')->get('/{teacher}/edit', EditScheduleComponent::class);
+        });
+
+        //app setting
         Route::name("settings")->get('/setting', AppSetting::class);
     });
 });

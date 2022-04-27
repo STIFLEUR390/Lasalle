@@ -15,4 +15,9 @@ return [
     'courses' => 'Manage courses',
     'departments' => 'Manage departments',
     'faculties' => 'Manage faculties',
+    'schedules' => [
+        'index' => 'Manage schedules',
+        'create' => 'Add schedule',
+        'edit' => 'Edit schedule',
+    ],
 ];

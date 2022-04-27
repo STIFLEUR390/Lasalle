@@ -806,5 +806,12 @@
     "Manage faculties": "Gérer les filières",
     "faculty": "filière",
     "Add faculty": "Ajouter une filière",
-    "Edit a faculty": "Modifier une filière"
+    "Edit a faculty": "Modifier une filière",
+    "Manage schedules": "Gérer les emplois de temps",
+    "Add schedule": "Ajouter un emploi de temps",
+    "Edit schedule": "Modifier un emploi de temps",
+    "Select date": "Sélectionner la date",
+    "Select start time": "Sélectionner l'heure de départ",
+    "Select end time": "Sélectionner l'heure de fin",
+    "Schedule": "Emploi de temps"
 }
