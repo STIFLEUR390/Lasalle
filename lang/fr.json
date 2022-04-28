@@ -813,5 +813,11 @@
     "Select date": "Sélectionner la date",
     "Select start time": "Sélectionner l'heure de départ",
     "Select end time": "Sélectionner l'heure de fin",
-    "Schedule": "Emploi de temps"
+    "Schedule": "Emploi de temps",
+    "Filters": "Filtres",
+    "Select the filter": "Sélectionner le filtre",
+    "Filter value": "Valeur du filtre",
+    "Select filter value": "Sélectionner la valeur du filtre",
+    "Enter filter value": "Entrer la valeur du filtre",
+    "Status": "Statut"
 }

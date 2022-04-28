@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Validation\Rule;
 use App\Models\{Course, Faculty, Room, Schedule, Teacher};
 use Carbon\Carbon;
+use DB;
 
 class CreateScheduleComponent extends Component
 {

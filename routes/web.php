@@ -58,7 +58,7 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'permission:base
         Route::prefix("schedules")->name('schedules.')->group(function() {
             Route::name('index')->get('/', ScheduleComponent::class);
             Route::name('create')->get('/create', CreateScheduleComponent::class);
-            Route::name('edit')->get('/{teacher}/edit', EditScheduleComponent::class);
+            Route::name('edit')->get('/{id}/edit', EditScheduleComponent::class);
         });
 
         //app setting

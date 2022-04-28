@@ -17,7 +17,7 @@ class Room extends Model
     protected $guarded = [];
 
 
-    public function schedule()
+    public function schedules()
     {
         return $this->hasMany(Schedule::class);
     }

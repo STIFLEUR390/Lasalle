@@ -49,8 +49,8 @@ namespace App\Models{
  * @property string $ue_code
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedule
- * @property-read int|null $schedule_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedules
+ * @property-read int|null $schedules_count
  * @method static \Database\Factories\CourseFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Course newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Course newQuery()
@@ -96,8 +96,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Department $department
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedule
- * @property-read int|null $schedule_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedules
+ * @property-read int|null $schedules_count
  * @method static \Database\Factories\FacultyFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Faculty newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Faculty newQuery()
@@ -131,8 +131,8 @@ namespace App\Models{
  * @property int $is_available
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedule
- * @property-read int|null $schedule_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedules
+ * @property-read int|null $schedules_count
  * @method static \Database\Factories\RoomFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Room newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Room newQuery()
@@ -162,9 +162,9 @@ namespace App\Models{
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Course|null $courses
- * @property-read \App\Models\Faculty|null $faculties
- * @property-read \App\Models\Room|null $rooms
+ * @property-read \App\Models\Course $course
+ * @property-read \App\Models\Faculty $faculty
+ * @property-read \App\Models\Room $room
  * @property-read \App\Models\Teacher $teacher
  * @method static \Illuminate\Database\Eloquent\Builder|Schedule newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Schedule newQuery()
@@ -204,8 +204,8 @@ namespace App\Models{
  * @property string|null $footprint3
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedule
- * @property-read int|null $schedule_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedules
+ * @property-read int|null $schedules_count
  * @property-read \App\Models\TeacherGrade $teacherGrade
  * @property-read \App\Models\TeacherStatus $teacherStatus
  * @method static \Database\Factories\TeacherFactory factory(...$parameters)

@@ -22,17 +22,17 @@ class Schedule extends Model
         return $this->belongsTo(Teacher::class);
     }
 
-    public function faculties()
+    public function faculty()
     {
         return $this->belongsTo(Faculty::class);
     }
 
-    public function rooms()
+    public function room()
     {
         return $this->belongsTo(Room::class);
     }
 
-    public function courses()
+    public function course()
     {
         return $this->belongsTo(Course::class);
     }
