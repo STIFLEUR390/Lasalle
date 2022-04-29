@@ -12,7 +12,7 @@ return [
         'icon' => 'chalkboard-teacher',
         'children' => [
             [
-                'permission' => 'manage teacher',
+                'permission' => 'manage teacher|show teacher',
                 'route' => 'teachers.index',
                 'name' => 'Manage teachers'
             ],
@@ -23,13 +23,13 @@ return [
             ],
             [
                 'active' => 'teacher_grade',
-                'permission' => 'manage teacher grade',
+                'permission' => 'manage teacher grade|show teacher',
                 'route' => 'teachers.grade',
                 'name' => 'Add grade',
             ],
             [
                 'active' => 'teacher_status',
-                'permission' => 'manage teacher status',
+                'permission' => 'manage teacher status|show teacher',
                 'route' => 'teachers.status',
                 'name' => 'Add status',
             ],
@@ -60,7 +60,7 @@ return [
         'icon' => 'clock',
         'children' => [
             [
-                'permission' => 'manage schedule',
+                'permission' => 'manage schedule|show schedule',
                 'route' => 'schedules.index',
                 'name' => 'Manage schedules'
             ],
@@ -71,7 +71,7 @@ return [
             ],
             [
                 'active' => 'schedule_status',
-                'permission' => 'manage schedule',
+                'permission' => 'manage schedule status',
                 'route' => 'schedules.status',
                 'name' => 'Update status'
             ],

@@ -115,7 +115,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         {{-- #menu ici --}}
                         @foreach (config('menu') as $name => $elements)
                             {{-- Auth::user()->hasAnyPermission(explode('|', $elements['permission'])); --}}
-                            @if (Auth::user()->hasAllPermissions(explode('|', $elements['permission'])))
+                            @if (Auth::user()->hasAnyPermission(explode('|', $elements['permission'])))
                                 @isset($elements['children'])
                                     @isset($elements['active'])
                                         @if (activeFunction($elements['active']))
@@ -132,14 +132,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         {{-- Auth::user()->hasAnyPermission((explode('|', $child['permission'])); --}}
                                                         @isset($child['active'])
                                                             @if (activeFunction($child['active']))
-                                                                @if (Auth::user()->hasAllPermissions(explode('|', $child['permission'])) && $child['name'] !== 'fake')
+                                                                @if (Auth::user()->hasAnyPermission(explode('|', $child['permission'])) && $child['name'] !== 'fake')
                                                                     <x-back.menu-item :route="$child['route']" :sub=true>
                                                                         @lang($child['name'])
                                                                     </x-back.menu-item>
                                                                 @endif
                                                             @endif
                                                         @else
-                                                            @if (Auth::user()->hasAllPermissions(explode('|', $child['permission'])) && $child['name'] !== 'fake')
+                                                            @if (Auth::user()->hasAnyPermission(explode('|', $child['permission'])) && $child['name'] !== 'fake')
                                                                 <x-back.menu-item :route="$child['route']" :sub=true>
                                                                     @lang($child['name'])
                                                                 </x-back.menu-item>
@@ -163,14 +163,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         {{-- Auth::user()->hasAnyPermission((explode('|', $child['permission'])); --}}
                                                         @isset($child['active'])
                                                             @if (activeFunction($child['active']))
-                                                                @if (Auth::user()->hasAllPermissions(explode('|', $child['permission'])) && $child['name'] !== 'fake')
+                                                                @if (Auth::user()->hasAnyPermission(explode('|', $child['permission'])) && $child['name'] !== 'fake')
                                                                     <x-back.menu-item :route="$child['route']" :sub=true>
                                                                         @lang($child['name'])
                                                                     </x-back.menu-item>
                                                                 @endif
                                                             @endif
                                                         @else
-                                                            @if (Auth::user()->hasAllPermissions(explode('|', $child['permission'])) && $child['name'] !== 'fake')
+                                                            @if (Auth::user()->hasAnyPermission(explode('|', $child['permission'])) && $child['name'] !== 'fake')
                                                                 <x-back.menu-item :route="$child['route']" :sub=true>
                                                                     @lang($child['name'])
                                                                 </x-back.menu-item>

@@ -11,7 +11,7 @@
       <form action="{{ route('login') }}" method="post">
         @csrf
 
-        <div class="input-group mb-3">
+        <div class="mb-3 input-group">
           <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="@lang('Email')" type="email" name="email" value="{{ old('email') }}" required autofocus />
           <div class="input-group-append">
             <div class="input-group-text">
@@ -19,7 +19,7 @@
             </div>
           </div>
         </div>
-        <div class="input-group mb-3">
+        <div class="mb-3 input-group">
           <input type="password" class="form-control @error('email') is-invalid @enderror" placeholder="@lang('Password')" name="password" required autocomplete="current-password" />
           <div class="input-group-append">
             <div class="input-group-text">
@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-8">
+          <div class="col-12">
             <div class="icheck-primary">
               <input type="checkbox" id="remember" name="remember">
               <label for="remember">
@@ -37,20 +37,20 @@
             </div>
           </div>
           <!-- /.col -->
-          <div class="col-4">
+          <div class="col-12">
             <button type="submit" class="btn btn-primary btn-block">@lang("Log in")</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
 
-      {{-- <div class="social-auth-links text-center mb-3">
+      {{-- <div class="mb-3 text-center social-auth-links">
         <p>- OR -</p>
         <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+          <i class="mr-2 fab fa-facebook"></i> Sign in using Facebook
         </a>
         <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+          <i class="mr-2 fab fa-google-plus"></i> Sign in using Google+
         </a>
       </div> --}}
       <!-- /.social-auth-links -->
