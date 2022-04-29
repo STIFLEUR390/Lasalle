@@ -40,15 +40,9 @@
                             @foreach ($teacherGrades as $teacherGrade)
                                 <tr>
                                     <td>{{ $teacherGrade->name }}</td>
-                                    <td class="row">
-                                        <div class="mr-2 col-md-3">
-                                            <button type="button" wire:click="getData('{{ $teacherGrade->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button type="button" class="btn btn-danger"
-                                                wire:click="confirmDeletion('{{ $teacherGrade->id }}')"><i
-                                                    class="fa fa-trash"></i></button>
-                                        </div>
+                                    <td>
+                                        <button type="button" wire:click="getData('{{ $teacherGrade->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                                        <button type="button" class="ml-1 btn btn-danger" wire:click="confirmDeletion('{{ $teacherGrade->id }}')"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             @endforeach

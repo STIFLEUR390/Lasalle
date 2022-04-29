@@ -48,15 +48,9 @@
                                 <tr>
                                     <td>{{ $faculty->name }}</td>
                                     <td>{{ $faculty->department->name }}</td>
-                                    <td class="row">
-                                        <div class="mr-2 col-md-3">
-                                            <button type="button" wire:click="getData('{{ $faculty->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button type="button" class="btn btn-danger"
-                                                wire:click="confirmDeletion('{{ $faculty->id }}')"><i
-                                                    class="fa fa-trash"></i></button>
-                                        </div>
+                                    <td>
+                                        <button type="button" wire:click="getData('{{ $faculty->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                                        <button type="button" class="ml-1 btn btn-danger" wire:click="confirmDeletion('{{ $faculty->id }}')"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             @endforeach

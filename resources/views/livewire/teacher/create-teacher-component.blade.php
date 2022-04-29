@@ -143,25 +143,30 @@
 </div><!-- /.container-fluid -->
 
 @push('style')
-    <link rel="stylesheet" href="{{ asset('js/select2/css/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('custom/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('custom/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 @endpush
 
 @push('script')
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/select2/css/select2.js') }}" defer></script>
+    <script src="{{ asset('custom/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('custom/select2/js/select2.full.min.js') }}" defer></script>
     <script>
-        $(document).ready(function() {
-            $('#select2-status').select2();
+        $(function() {
+            $('#select2-status').select2({
+                theme: 'bootstrap4'
+            });
             $('#select2-status').on('change', function(e) {
                 var data = $('#select2-status').select2("val");
-                @this.set('status', data);
+                @this.set('statut_id', data);
             });
 
-            $('#select2-grade').select2();
+            $('#select2-grade').select2({
+                theme: 'bootstrap4'
+            });
             $('#select2-grade').on('change', function(e) {
                 var data = $('#select2-grade').select2("val");
-                @this.set('grade', data);
+                @this.set('grade_id', data);
             });
-        });
+        })
     </script>
 @endpush

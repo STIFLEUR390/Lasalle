@@ -10,7 +10,8 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>@lang('Select the filter')</label>
-                                <select wire:click="resetSearchValue" wire:model='search_type' class="form-control select2" id="select2-type" style="width: 100%;">
+                                <select wire:click="resetSearchValue" wire:model='search_type'
+                                    class="form-control select2" id="select2-type" style="width: 100%;">
                                     <option value="" selected="">@lang('Select the filter')</option>
                                     <option value="teacher_id">@lang('Teacher')</option>
                                     <option value="faculty_id">@lang('Faculty')</option>
@@ -26,17 +27,18 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('Filter value')</label>
-                                    @if ($search_type == "teacher_id")
-                                        <select wire:model='search_value'class="custom-select rounded-0">
+                                    @if ($search_type == 'teacher_id')
+                                        <select wire:model='search_value' class="custom-select rounded-0">
                                             <option value="" selected="selected">@lang('Select filter value')</option>
                                             @foreach ($teachers as $teacher)
-                                                <option value="{{ $teacher->id }}">{{ $teacher->last_name }} {{ $teacher->first_name }}</option>
+                                                <option value="{{ $teacher->id }}">{{ $teacher->last_name }}
+                                                    {{ $teacher->first_name }}</option>
                                             @endforeach
                                         </select>
                                     @endif
 
-                                    @if ($search_type == "faculty_id")
-                                        <select wire:model='search_value'class="custom-select rounded-0">
+                                    @if ($search_type == 'faculty_id')
+                                        <select wire:model='search_value' class="custom-select rounded-0">
                                             <option value="" selected="selected">@lang('Select filter value')</option>
                                             @foreach ($faculties as $faculty)
                                                 <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
@@ -44,8 +46,8 @@
                                         </select>
                                     @endif
 
-                                    @if ($search_type == "room_id")
-                                        <select wire:model='search_value'class="custom-select rounded-0">
+                                    @if ($search_type == 'room_id')
+                                        <select wire:model='search_value' class="custom-select rounded-0">
                                             <option value="" selected="selected">@lang('Select filter value')</option>
                                             @foreach ($rooms as $room)
                                                 <option value="{{ $room->id }}">{{ $room->name }}</option>
@@ -53,8 +55,8 @@
                                         </select>
                                     @endif
 
-                                    @if ($search_type == "course_id")
-                                        <select wire:model='search_value'class="custom-select rounded-0">
+                                    @if ($search_type == 'course_id')
+                                        <select wire:model='search_value' class="custom-select rounded-0">
                                             <option value="" selected="selected">@lang('Select filter value')</option>
                                             @foreach ($courses as $course)
                                                 <option value="{{ $course->id }}">{{ $course->title }}</option>
@@ -62,11 +64,11 @@
                                         </select>
                                     @endif
 
-                                    @if ($search_type == "date")
+                                    @if ($search_type == 'date')
                                         <input type="date" wire:model='search_value' class="form-control">
                                     @endif
 
-                                    @if ($search_type == "status")
+                                    @if ($search_type == 'status')
                                         <select wire:model='search_value' class="custom-select rounded-0">
                                             <option value="" selected="selected">@lang('Select filter value')</option>
                                             <option value="waiting">@lang('waiting')</option>
@@ -89,7 +91,8 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="exampleSelectRounded0">@lang("Per Page")</label>
-                                <select wire:model='pageSize' class="custom-select rounded-0" id="exampleSelectRounded0">
+                                <select wire:model='pageSize' class="custom-select rounded-0"
+                                    id="exampleSelectRounded0">
                                     <option value="5">5</option>
                                     <option value="7">7</option>
                                     <option value="10">10</option>
@@ -122,34 +125,34 @@
                                 <th>@lang('Teacher')</th>
                                 <th>@lang('Faculty')</th>
                                 <th>@lang('Date')</th>
-                                <th>@lang('Start time')</th>
-                                <th>@lang('End time')</th>
+                                {{-- <th>@lang('Start time')</th>
+                                <th>@lang('End time')</th> --}}
+                                <th>@lang('Hours')</th>
                                 <th>@lang('Room')</th>
                                 <th>@lang('Cours')</th>
+                                <th>@lang('Status')</th>
                                 <th>@lang('Action')</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($schedules as $schedule)
                                 <tr>
-                                    <td>{{ $schedule->teacher->last_name }} {{ $schedule->teacher->first_name }}</td>
+                                    <td>{{ $schedule->teacher->last_name }} {{ $schedule->teacher->first_name }}
+                                    </td>
                                     <td>{{ $schedule->faculty->name }}</td>
                                     <td>{{ $schedule->date }}</td>
-                                    <td>{{ substr($schedule->start_time, 0, 5) }}</td>
-                                    <td>{{ substr($schedule->end_time, 0, 5) }}</td>
+                                    {{-- <td>{{ substr($schedule->start_time, 0, 5) }}</td>
+                                    <td>{{ substr($schedule->end_time, 0, 5) }}</td> --}}
+                                    <td>{{ substr($schedule->start_time, 0, 5) }} -
+                                        {{ substr($schedule->end_time, 0, 5) }}</td>
                                     <td>{{ $schedule->room->name }}</td>
                                     <td>{{ $schedule->course->title }}</td>
-                                    <td class="row">
-                                        <div class="col-md-6">
-                                            <a class="btn btn-primary"
-                                                href="{{ route('schedules.edit', $schedule->id) }}"><i
-                                                    class="fa fa-edit"></i></a>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <button type="button" class="btn btn-danger"
-                                                wire:click="confirmDeletion('{{ $schedule->id }}')"><i
-                                                    class="fa fa-trash"></i></button>
-                                        </div>
+                                    <td>
+                                        <span class="badge bg-primary">@lang($schedule->status)</span>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary" href="{{ route('schedules.edit', $schedule->id) }}"><i class="fa fa-edit"></i></a>
+                                        <button type="button" class="ml-1 btn btn-danger" wire:click="confirmDeletion('{{ $schedule->id }}')"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             @endforeach

@@ -51,47 +51,38 @@
                                     <td>{{ $teacher->email }}</td>
                                     {{-- <td>@lang($teacher->gender)</td>
                                     <td>{{ $teacher->phone }}</td> --}}
-                                    <td class="row">
-                                        <div class="col-md-3">
-                                            <a class="btn btn-primary"
-                                                href="{{ route('teachers.edit', $teacher->id) }}"><i
-                                                    class="fa fa-edit"></i></a>
-                                        </div>
-                                        <div class="mx-2 col-md-3">
-                                            <button type="button" class="btn btn-info" data-toggle="modal"
-                                                data-target="#modal-lg-{{ $teacher->id }}">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                            <div class="modal fade" id="modal-lg-{{ $teacher->id }}">
-                                                <div class="modal-dialog modal-lg">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">@lang("Show teacher details")</h4>
-                                                            <button type="button" class="close"
-                                                                data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="p-0 modal-body">
-                                                            {{-- @livewire("teacher.show-teacher-component")> --}}
-                                                            <livewire:teacher.show-teacher-component :id="$teacher->id" :wire:key="$teacher->id">
-                                                        </div>
-                                                        <div class="modal-footer justify-content-between">
-                                                            <button type="button" class="btn btn-danger"
-                                                                data-dismiss="modal">@lang("Close")</button>
-                                                        </div>
+                                    <td>
+                                        <a class="btn btn-primary" href="{{ route('teachers.edit', $teacher->id) }}"><i class="fa fa-edit"></i></a>
+
+                                        <button type="button" class="mx-1 btn btn-info" data-toggle="modal" data-target="#modal-lg-{{ $teacher->id }}">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                        <div class="modal fade" id="modal-lg-{{ $teacher->id }}">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">@lang("Show teacher details")</h4>
+                                                        <button type="button" class="close"
+                                                            data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
                                                     </div>
-                                                    <!-- /.modal-content -->
+                                                    <div class="p-0 modal-body">
+                                                        {{-- @livewire("teacher.show-teacher-component")> --}}
+                                                        <livewire:teacher.show-teacher-component :id="$teacher->id"
+                                                            :wire:key="$teacher->id">
+                                                    </div>
+                                                    <div class="modal-footer justify-content-between">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-dismiss="modal">@lang("Close")</button>
+                                                    </div>
                                                 </div>
-                                                <!-- /.modal-dialog -->
+                                                <!-- /.modal-content -->
                                             </div>
-                                            {{-- <a class="btn btn-info" href="{{ route('teachers.show', $teacher->id) }}"><i class="fa fa-eye"></i></a> --}}
+                                            <!-- /.modal-dialog -->
                                         </div>
-                                        <div class="col-md-3">
-                                            <button type="button" class="btn btn-danger"
-                                                wire:click="confirmDeletion('{{ $teacher->id }}')"><i
-                                                    class="fa fa-trash"></i></button>
-                                        </div>
+
+                                        <button type="button" class="btn btn-danger" wire:click="confirmDeletion('{{ $teacher->id }}')"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             @endforeach

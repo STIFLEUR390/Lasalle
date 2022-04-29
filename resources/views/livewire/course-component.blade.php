@@ -42,15 +42,10 @@
                                 <tr>
                                     <td>{{ $cours->title }}</td>
                                     <td>{{ $cours->ue_code }}</td>
-                                    <td class="row">
-                                        <div class="mr-2 col-md-3">
-                                            <button type="button" wire:click="getData('{{ $cours->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button type="button" class="btn btn-danger"
-                                                wire:click="confirmDeletion('{{ $cours->id }}')"><i
-                                                    class="fa fa-trash"></i></button>
-                                        </div>
+                                    <td>
+                                        <button type="button" wire:click="getData('{{ $cours->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+
+                                        <button type="button" class="btn btn-danger ml-1" wire:click="confirmDeletion('{{ $cours->id }}')"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             @endforeach
