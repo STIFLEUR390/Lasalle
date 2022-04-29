@@ -811,6 +811,7 @@
     "Add schedule": "Ajouter un emploi de temps",
     "Edit schedule": "Modifier un emploi de temps",
     "Select date": "Sélectionner la date",
+    "Select status": "Sélectionner le statut",
     "Select start time": "Sélectionner l'heure de départ",
     "Select end time": "Sélectionner l'heure de fin",
     "Schedule": "Emploi de temps",
@@ -820,5 +821,8 @@
     "Select filter value": "Sélectionner la valeur du filtre",
     "Enter filter value": "Entrer la valeur du filtre",
     "Status": "Statut",
-    "Hours": "Heures"
+    "Hours": "Heures",
+    "Update the status of a schedule": "Mettre à jour le statut d'un emploi de temps",
+    "Update status": "Mettre à jour le status",
+    "Schedule status": "Statut de l'emploi du temps"
 }

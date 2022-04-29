@@ -113,11 +113,11 @@
         <div class="col-md-12">
             <!-- jquery validation -->
             <div class="card">
-                <div class="card-header">
+                {{-- <div class="card-header">
                     <div class="float-right" style="margin-left: 10% !important;">
                         <a href="{{ route('schedules.create') }}" class="btn btn-primary">@lang('Add schedule')</a>
                     </div>
-                </div>
+                </div> --}}
                 <div class="p-0 card-body table-responsive">
                     <table class="table table-hover text-nowrap">
                         <thead>
@@ -165,8 +165,9 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" href="{{ route('schedules.edit', $schedule->id) }}"><i class="fa fa-edit"></i></a>
-                                        <button type="button" class="ml-1 btn btn-danger" wire:click="confirmDeletion('{{ $schedule->id }}')"><i class="fa fa-trash"></i></button>
+                                        <button wire:click="getData('{{ $schedule->id }}')" type="button" class="btn btn-primary">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -178,6 +179,38 @@
                 </div>
             </div>
             <!-- /.card -->
+
+
+            <div class="modal fade" id="modal-default">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">@lang('Update status')</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="schedule-status">@lang("Schedule status")</label>
+                                <select wire:model.defer='status' id="schedule-status" class="custom-select rounded-0">
+                                    <option value="waiting">@lang('waiting')</option>
+                                    <option value="in_progress">@lang('in_progress')</option>
+                                    <option value="finish">@lang('finish')</option>
+                                    <option value="absent">@lang('absent')</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">@lang('Close')</button>
+                            <button type="button" wire:click='updateSchedule' class="btn btn-primary">@lang("Update")</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+
         </div>
         <!--/.col (left) -->
     </div>

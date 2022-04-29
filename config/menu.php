@@ -69,6 +69,12 @@ return [
                 'route' => 'schedules.create',
                 'name' => 'Add schedule'
             ],
+            [
+                'active' => 'schedule_status',
+                'permission' => 'manage schedule',
+                'route' => 'schedules.status',
+                'name' => 'Update status'
+            ],
         ]
     ],
     'Profile' => [

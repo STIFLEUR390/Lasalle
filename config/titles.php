@@ -19,5 +19,6 @@ return [
         'index' => 'Manage schedules',
         'create' => 'Add schedule',
         'edit' => 'Edit schedule',
+        'status' => 'Update the status of a schedule',
     ],
 ];
