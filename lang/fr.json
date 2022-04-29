@@ -824,5 +824,18 @@
     "Hours": "Heures",
     "Update the status of a schedule": "Mettre à jour le statut d'un emploi de temps",
     "Update status": "Mettre à jour le status",
-    "Schedule status": "Statut de l'emploi du temps"
+    "Schedule status": "Statut de l'emploi du temps",
+    "Manage users": "Gérer les utilisateurs",
+    "Add user": "Ajouter un utilisateur",
+    "Edit user": "Modifier un utilisateur",
+    "User": "Utilisateur",
+    "User name": "Nom de l'utilisateur",
+    "User email": "Email de l'utilisateur",
+    "User password": "Mot de passe de l'utilisateur",
+    "User photo": "Photo de l'utilisateur",
+    "User role": "Role de l'utilisateur",
+    "Select role": "Sélectionner le role",
+    "Guest": "Invité",
+    "Admin": "Administrateur",
+    "Super admin": "Super Administrateur"
 }

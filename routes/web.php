@@ -6,6 +6,7 @@ use App\Http\Livewire\Back\User\ProfileComponent;
 use App\Http\Livewire\Schedule\{CreateScheduleComponent, EditScheduleComponent, ScheduleComponent, UpdateStatusScheduleComponent};
 use App\Http\Livewire\Teacher\{CreateTeacherComponent, EditTeacherComponent, TeacherComponent};
 use App\Http\Livewire\{AppSetting, CourseComponent, DepartmentComponent, FacultyComponent, ManageRoomComponent, TeacherGradeComponent, TeacherStatusComponent};
+use App\Http\Livewire\User\{CreateUserComponent, EditUserComponent, UserComponent};
 
 /*
 |--------------------------------------------------------------------------
@@ -63,11 +64,11 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'permission:base
     });
 
     //user management
-    /* Route::prefix("schedules")->name('schedules.')->group(function () {
-        Route::name('index')->get('/', ScheduleComponent::class)->middleware(['permission:show user|manage user']);
-        Route::name('create')->get('/create', CreateScheduleComponent::class)->middleware(['permission:manage user']);
-        Route::name('edit')->get('/{id}/edit', EditScheduleComponent::class)->middleware(['permission:manage user']);
-    }); */
+    Route::prefix("users")->name('users.')->group(function () {
+        Route::name('index')->get('/', UserComponent::class)->middleware(['permission:show user|manage user']);
+        Route::name('create')->get('/create', CreateUserComponent::class)->middleware(['permission:manage user']);
+        Route::name('edit')->get('/{id}/edit', EditUserComponent::class)->middleware(['permission:manage user']);
+    });
 
     //app setting
     Route::name("settings")->get('/setting', AppSetting::class)->middleware(['permission:manage setting']);

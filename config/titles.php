@@ -21,4 +21,9 @@ return [
         'edit' => 'Edit schedule',
         'status' => 'Update the status of a schedule',
     ],
+    'users' => [
+        'index' => 'Manage users',
+        'create' => 'Add user',
+        'edit' => 'Edit user',
+    ],
 ];

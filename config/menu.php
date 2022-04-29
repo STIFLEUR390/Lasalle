@@ -7,7 +7,7 @@ return [
         'icon' => 'tachometer-alt',
     ],
     'Manage teachers' => [
-        'permission' => 'manage teacher',
+        'permission' => 'manage teacher|show teacher',
         // 'route' => 'teachers.index',
         'icon' => 'chalkboard-teacher',
         'children' => [
@@ -56,7 +56,7 @@ return [
         'icon' => 'graduation-cap',//university, book, school, graduation-cap,  user-cog
     ],
     'Manage schedules' => [
-        'permission' => 'manage schedule',
+        'permission' => 'manage schedule|show schedule',
         'icon' => 'clock',
         'children' => [
             [
@@ -74,6 +74,22 @@ return [
                 'permission' => 'manage schedule status',
                 'route' => 'schedules.status',
                 'name' => 'Update status'
+            ],
+        ]
+    ],
+    'Manage users' => [
+        'permission' => 'manage user|show user',
+        'icon' => 'users',
+        'children' => [
+            [
+                'permission' => 'manage user|show user',
+                'route' => 'users.index',
+                'name' => 'Manage users'
+            ],
+            [
+                'permission' => 'manage user',
+                'route' => 'users.create',
+                'name' => 'Add user'
             ],
         ]
     ],
