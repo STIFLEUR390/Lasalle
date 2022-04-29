@@ -1,11 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Back\AdminController;
 use App\Http\Livewire\Back\User\ProfileComponent;
 use App\Http\Livewire\Schedule\{CreateScheduleComponent, EditScheduleComponent, ScheduleComponent, UpdateStatusScheduleComponent};
 use App\Http\Livewire\Teacher\{CreateTeacherComponent, EditTeacherComponent, TeacherComponent};
-use App\Http\Livewire\{AppSetting, CourseComponent, DepartmentComponent, FacultyComponent, ManageRoomComponent, TeacherGradeComponent, TeacherStatusComponent};
+use App\Http\Livewire\{AppSetting, CourseComponent, DashboardComponent, DepartmentComponent, FacultyComponent, ManageRoomComponent, TeacherGradeComponent, TeacherStatusComponent};
 use App\Http\Livewire\User\{CreateUserComponent, EditUserComponent, UserComponent};
 
 /*
@@ -27,7 +26,7 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'role:Admin|Supe
 
     // Route::get("/", [AdminController::class, 'index'])->name('home');
 
-    Route::name('dashboard')->get('/', [AdminController::class, 'index']);
+    Route::name('dashboard')->get('/', DashboardComponent::class);
     Route::name('profile')->middleware(['password.confirm'])->get('user/profile', ProfileComponent::class);
 
     //teachers management
