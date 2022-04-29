@@ -29,21 +29,22 @@ class DatabaseSeeder extends Seeder
             ->has(Faculty::factory()->count(3))
             ->create();
 
-            for ($i=0; $i < 10; $i++) {
-                $teacherGrade = TeacherGrade::factory()->create();
-                $teacherStatus = TeacherStatus::factory()->create();
-                User::factory(5)->create();
+        User::factory(5)->create();
 
-                Teacher::factory()
-                    ->count(2)
-                    ->for($teacherGrade)
-                    ->for($teacherStatus)
-                    ->create();
-            }
+        for ($i = 0; $i < 10; $i++) {
+            $teacherGrade = TeacherGrade::factory()->create();
+            $teacherStatus = TeacherStatus::factory()->create();
+
+            Teacher::factory()
+                ->count(2)
+                ->for($teacherGrade)
+                ->for($teacherStatus)
+                ->create();
+        }
 
 
         AppSetting::factory(1)->create(); //Obligatoire
         $this->call(PermissionsSeeder::class); //Obligatoire
-        $this->call(UserSeeder::class); //Obligatoire
+        $this->call(UserSeeder::class); //optionnel
     }
 }
