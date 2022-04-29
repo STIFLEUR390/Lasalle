@@ -2,18 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Room;
-use App\Models\User;
-use App\Models\Course;
-use App\Models\Faculty;
-use App\Models\Teacher;
-use App\Models\AppSetting;
-use App\Models\Department;
-use App\Models\TeacherGrade;
-use App\Models\TeacherStatus;
+use App\Models\{AppSetting, Course, Department, Faculty, Room, Teacher, TeacherGrade, TeacherStatus, User};
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Spatie\Permission\PermissionRegistrar;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,8 +18,19 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         AppSetting::factory(1)->create(); //Obligatoire
-        $this->call(PermissionsSeeder::class); //Obligatoire
-        $this->call(UserSeeder::class); //optionnel
+        // Reset cached roles and permissions
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
+        Role::create(['name' => 'Super Admin']); //Obligatoire
+        Role::create(['name' => 'Admin']); //Obligatoire
+        Role::create(['name' => 'Invite']); //Obligatoire
+
+        $user = User::create([ //optionnel
+            'name' => 'Super Admin',
+            'email' => 'superadmin@gmail.com',
+            'password' => bcrypt('12345678'),
+        ]);
+
+        $user->assignRole(['Super Admin']);
 
         Room::factory(15)->create();
         Course::factory(10)->create();
@@ -37,7 +41,8 @@ class DatabaseSeeder extends Seeder
         for ($i=0; $i <15 ; $i++) {
             $roles = ['Admin', 'Super Admin', 'Invite'];
             $user = User::factory()->create();
-            $user->assignRole(array_rand($roles,1));
+            $ra = rand(0, 2);
+            $user->assignRole($roles[$ra]);
         }
 
         for ($i = 0; $i < 10; $i++) {

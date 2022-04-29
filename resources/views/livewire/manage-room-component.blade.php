@@ -20,11 +20,13 @@
                             <option value="100">100</option>
                         </select>
 
-                        <div class="float-right" style="margin-left: 10% !important;">
-                            <button type="button" wire:click='initializeForCreateRoom' class="btn btn-primary">
-                                @lang("Add room")
-                            </button>
-                        </div>
+                        @hasanyrole('Admin|Super Admin')
+                            <div class="float-right" style="margin-left: 10% !important;">
+                                <button type="button" wire:click='initializeForCreateRoom' class="btn btn-primary">
+                                    @lang("Add room")
+                                </button>
+                            </div>
+                        @endhasanyrole
                     </div>
                 </div>
                 <!-- /.card-header -->
@@ -34,7 +36,9 @@
                             <tr>
                                 <th>@lang('Room name')</th>
                                 <th>@lang('Is available')</th>
-                                <th>@lang('Action')</th>
+                                @hasanyrole('Admin|Super Admin')
+                                    <th>@lang('Action')</th>
+                                @endhasanyrole
                             </tr>
                         </thead>
                         <tbody>
@@ -48,10 +52,12 @@
                                             <span class="badge bg-danger">@lang('No')</span>
                                         @endif
                                     </td>
-                                    <td>
-                                        <button type="button" wire:click="getData('{{ $room->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
-                                        <button type="button" class="ml-1 btn btn-danger" wire:click="confirmDeletion('{{ $room->id }}')"><i class="fa fa-trash"></i></button>
-                                    </td>
+                                    @hasanyrole('Admin|Super Admin')
+                                        <td>
+                                            <button type="button" wire:click="getData('{{ $room->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="ml-1 btn btn-danger" wire:click="confirmDeletion('{{ $room->id }}')"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    @endhasanyrole
                                 </tr>
                             @endforeach
                         </tbody>

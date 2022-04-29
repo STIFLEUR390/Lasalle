@@ -24,9 +24,11 @@
                     <option value="100">100</option>
                 </select>
 
-                <div class="float-right ml-1">
-                    <a href="{{ route('users.create') }}" class="btn btn-primary">@lang('Add user')</a>
-                </div>
+                @role('Super Admin')
+                    <div class="float-right ml-1">
+                        <a href="{{ route('users.create') }}" class="btn btn-primary">@lang('Add user')</a>
+                    </div>
+                @endrole
 
             </div>
         </div>
@@ -39,7 +41,9 @@
                         <th>@lang("Email")</th>
                         <th>@lang("Role")</th>
                         <th>@lang("Create the")</th>
-                        <th>@lang('Action')</th>
+                        @role('Super Admin')
+                            <th>@lang('Action')</th>
+                        @endrole
                     </tr>
                 </thead>
                 <tbody>
@@ -52,13 +56,15 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->getRoleNames()[0] }}</td>
                             <td>{{ Carbon\Carbon::parse($user->created_at)->format('Y-m-d') }}</td>
-                            <td>
-                                <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}"><i
-                                        class="fa fa-edit"></i></a>
-                                <button type="button" class="ml-1 btn btn-danger"
-                                    wire:click="confirmDeletion('{{ $user->id }}')"><i
-                                        class="fa fa-trash"></i></button>
-                            </td>
+                            @role('Super Admin')
+                                <td>
+                                    <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}"><i
+                                            class="fa fa-edit"></i></a>
+                                    <button type="button" class="ml-1 btn btn-danger"
+                                        wire:click="confirmDeletion('{{ $user->id }}')"><i
+                                            class="fa fa-trash"></i></button>
+                                </td>
+                            @endrole
                         </tr>
                     @endforeach
                 </tbody>

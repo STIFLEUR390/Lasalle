@@ -113,11 +113,13 @@
         <div class="col-md-12">
             <!-- jquery validation -->
             <div class="card">
-                <div class="card-header">
-                    <div class="float-right" style="margin-left: 10% !important;">
-                        <a href="{{ route('schedules.create') }}" class="btn btn-primary">@lang('Add schedule')</a>
+                @role('Super Admin')
+                    <div class="card-header">
+                        <div class="float-right" style="margin-left: 10% !important;">
+                            <a href="{{ route('schedules.create') }}" class="btn btn-primary">@lang('Add schedule')</a>
+                        </div>
                     </div>
-                </div>
+                @endrole
                 <div class="p-0 card-body table-responsive">
                     <table class="table table-hover text-nowrap">
                         <thead>
@@ -131,7 +133,9 @@
                                 <th>@lang('Room')</th>
                                 <th>@lang('Cours')</th>
                                 <th>@lang('Status')</th>
-                                <th>@lang('Action')</th>
+                                @role('Super Admin')
+                                    <th>@lang('Action')</th>
+                                @endrole
                             </tr>
                         </thead>
                         <tbody>
@@ -164,10 +168,12 @@
                                             <span class="badge bg-danger">@lang($schedule->status)</span>
                                         @endif
                                     </td>
-                                    <td>
-                                        <a class="btn btn-primary" href="{{ route('schedules.edit', $schedule->id) }}"><i class="fa fa-edit"></i></a>
-                                        <button type="button" class="ml-1 btn btn-danger" wire:click="confirmDeletion('{{ $schedule->id }}')"><i class="fa fa-trash"></i></button>
-                                    </td>
+                                    @role('Super Admin')
+                                        <td>
+                                            <a class="btn btn-primary" href="{{ route('schedules.edit', $schedule->id) }}"><i class="fa fa-edit"></i></a>
+                                            <button type="button" class="ml-1 btn btn-danger" wire:click="confirmDeletion('{{ $schedule->id }}')"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    @endrole
                                 </tr>
                             @endforeach
                         </tbody>

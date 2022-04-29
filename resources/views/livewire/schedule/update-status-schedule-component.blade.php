@@ -131,7 +131,9 @@
                                 <th>@lang('Room')</th>
                                 <th>@lang('Cours')</th>
                                 <th>@lang('Status')</th>
-                                <th>@lang('Action')</th>
+                                @role('Super Admin')
+                                    <th>@lang('Action')</th>
+                                @endrole
                             </tr>
                         </thead>
                         <tbody>
@@ -164,11 +166,13 @@
                                             <span class="badge bg-danger">@lang($schedule->status)</span>
                                         @endif
                                     </td>
-                                    <td>
-                                        <button wire:click="getData('{{ $schedule->id }}')" type="button" class="btn btn-primary">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                    </td>
+                                    @role('Super Admin')
+                                        <td>
+                                            <button wire:click="getData('{{ $schedule->id }}')" type="button" class="btn btn-primary">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                        </td>
+                                    @endrole
                                 </tr>
                             @endforeach
                         </tbody>

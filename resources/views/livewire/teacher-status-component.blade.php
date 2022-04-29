@@ -20,11 +20,13 @@
                             <option value="100">100</option>
                         </select>
 
-                        <div class="float-right" style="margin-left: 10% !important;">
-                            <button type="button" class="btn btn-primary" wire:click='initializeForCreateTeacherStatus'>
-                                @lang("Add status")
-                            </button>
-                        </div>
+                        @hasanyrole('Admin|Super Admin')
+                            <div class="float-right" style="margin-left: 10% !important;">
+                                <button type="button" class="btn btn-primary" wire:click='initializeForCreateTeacherStatus'>
+                                    @lang("Add status")
+                                </button>
+                            </div>
+                        @endhasanyrole
                     </div>
                 </div>
                 <!-- /.card-header -->
@@ -33,18 +35,22 @@
                         <thead>
                             <tr>
                                 <th>@lang('Name')</th>
-                                <th>@lang('Action')</th>
+                                @hasanyrole('Admin|Super Admin')
+                                    <th>@lang('Action')</th>
+                                @endhasanyrole
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($teacherStatuses as $teacherStatus)
                                 <tr>
                                     <td>{{ $teacherStatus->name }}</td>
-                                    <td>
-                                        <button type="button" wire:click="getData('{{ $teacherStatus->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                                    @hasanyrole('Admin|Super Admin')
+                                        <td>
+                                            <button type="button" wire:click="getData('{{ $teacherStatus->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
 
-                                        <button type="button" class="btn btn-danger" wire:click="confirmDeletion('{{ $teacherStatus->id }}')"><i class="fa fa-trash"></i></button>
-                                    </td>
+                                            <button type="button" class="btn btn-danger" wire:click="confirmDeletion('{{ $teacherStatus->id }}')"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    @endhasanyrole
                                 </tr>
                             @endforeach
                         </tbody>

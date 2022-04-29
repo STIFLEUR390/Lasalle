@@ -20,9 +20,11 @@
                             <option value="100">100</option>
                         </select>
 
-                        <div class="float-right" style="margin-left: 10% !important;">
-                            <a href="{{ route('teachers.create') }}" class="btn btn-primary">@lang("Add teacher")</a>
-                        </div>
+                        @hasanyrole('Admin|Super Admin')
+                            <div class="float-right" style="margin-left: 10% !important;">
+                                <a href="{{ route('teachers.create') }}" class="btn btn-primary">@lang("Add teacher")</a>
+                            </div>
+                        @endhasanyrole
                     </div>
                 </div>
                 <!-- /.card-header -->
@@ -37,7 +39,9 @@
                                 <th>@lang('Email')</th>
                                 {{-- <th>@lang('Gender')</th>
                                 <th>@lang('phone')</th> --}}
-                                <th>@lang('Actions')</th>
+                                @hasanyrole('Admin|Super Admin')
+                                    <th>@lang('Actions')</th>
+                                @endhasanyrole
                             </tr>
                         </thead>
                         <tbody>
@@ -51,39 +55,41 @@
                                     <td>{{ $teacher->email }}</td>
                                     {{-- <td>@lang($teacher->gender)</td>
                                     <td>{{ $teacher->phone }}</td> --}}
-                                    <td>
-                                        <a class="btn btn-primary" href="{{ route('teachers.edit', $teacher->id) }}"><i class="fa fa-edit"></i></a>
+                                    @hasanyrole('Admin|Super Admin')
+                                        <td>
+                                            <a class="btn btn-primary" href="{{ route('teachers.edit', $teacher->id) }}"><i class="fa fa-edit"></i></a>
 
-                                        <button type="button" class="mx-1 btn btn-info" data-toggle="modal" data-target="#modal-lg-{{ $teacher->id }}">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
-                                        <div class="modal fade" id="modal-lg-{{ $teacher->id }}">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title">@lang("Show teacher details")</h4>
-                                                        <button type="button" class="close"
-                                                            data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                            <button type="button" class="mx-1 btn btn-info" data-toggle="modal" data-target="#modal-lg-{{ $teacher->id }}">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                            <div class="modal fade" id="modal-lg-{{ $teacher->id }}">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">@lang("Show teacher details")</h4>
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="p-0 modal-body">
+                                                            {{-- @livewire("teacher.show-teacher-component")> --}}
+                                                            <livewire:teacher.show-teacher-component :id="$teacher->id"
+                                                                :wire:key="$teacher->id">
+                                                        </div>
+                                                        <div class="modal-footer justify-content-between">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-dismiss="modal">@lang("Close")</button>
+                                                        </div>
                                                     </div>
-                                                    <div class="p-0 modal-body">
-                                                        {{-- @livewire("teacher.show-teacher-component")> --}}
-                                                        <livewire:teacher.show-teacher-component :id="$teacher->id"
-                                                            :wire:key="$teacher->id">
-                                                    </div>
-                                                    <div class="modal-footer justify-content-between">
-                                                        <button type="button" class="btn btn-danger"
-                                                            data-dismiss="modal">@lang("Close")</button>
-                                                    </div>
+                                                    <!-- /.modal-content -->
                                                 </div>
-                                                <!-- /.modal-content -->
+                                                <!-- /.modal-dialog -->
                                             </div>
-                                            <!-- /.modal-dialog -->
-                                        </div>
 
-                                        <button type="button" class="btn btn-danger" wire:click="confirmDeletion('{{ $teacher->id }}')"><i class="fa fa-trash"></i></button>
-                                    </td>
+                                            <button type="button" class="btn btn-danger" wire:click="confirmDeletion('{{ $teacher->id }}')"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    @endhasanyrole
                                 </tr>
                             @endforeach
                         </tbody>

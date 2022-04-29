@@ -26,11 +26,13 @@
                             <option value="100">100</option>
                         </select>
 
-                        <div class="float-right" style="margin-left: 10% !important;">
-                            <button wire:click='initializeForCreateFaculty' type="button" class="btn btn-primary">
-                                @lang("Add faculty")
-                            </button>
-                        </div>
+                        @hasanyrole('Admin|Super Admin')
+                            <div class="float-right" style="margin-left: 10% !important;">
+                                <button wire:click='initializeForCreateFaculty' type="button" class="btn btn-primary">
+                                    @lang("Add faculty")
+                                </button>
+                            </div>
+                        @endhasanyrole
                     </div>
                 </div>
                 <!-- /.card-header -->
@@ -40,7 +42,9 @@
                             <tr>
                                 <th>@lang('Name')</th>
                                 <th>@lang('Department')</th>
-                                <th>@lang('Action')</th>
+                                @hasanyrole('Admin|Super Admin')
+                                    <th>@lang('Action')</th>
+                                @endhasanyrole
                             </tr>
                         </thead>
                         <tbody>
@@ -48,10 +52,12 @@
                                 <tr>
                                     <td>{{ $faculty->name }}</td>
                                     <td>{{ $faculty->department->name }}</td>
-                                    <td>
-                                        <button type="button" wire:click="getData('{{ $faculty->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
-                                        <button type="button" class="ml-1 btn btn-danger" wire:click="confirmDeletion('{{ $faculty->id }}')"><i class="fa fa-trash"></i></button>
-                                    </td>
+                                    @hasanyrole('Admin|Super Admin')
+                                        <td>
+                                            <button type="button" wire:click="getData('{{ $faculty->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="ml-1 btn btn-danger" wire:click="confirmDeletion('{{ $faculty->id }}')"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    @endhasanyrole
                                 </tr>
                             @endforeach
                         </tbody>
