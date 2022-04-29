@@ -48,24 +48,47 @@
                 </thead>
                 <tbody>
                     @foreach ($users as $user)
-                        <tr>
-                            <td>
-                                <img src="{{ asset($user->img) }}" alt="{{ $user->name }}" style="width: 70px;">
-                            </td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->getRoleNames()[0] }}</td>
-                            <td>{{ Carbon\Carbon::parse($user->created_at)->format('Y-m-d') }}</td>
-                            @role('Super Admin')
+                        @if ($user->deleted_at)
+                            <tr class="bg-secondary">
                                 <td>
-                                    <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}"><i
-                                            class="fa fa-edit"></i></a>
-                                    <button type="button" class="ml-1 btn btn-danger"
-                                        wire:click="confirmDeletion('{{ $user->id }}')"><i
-                                            class="fa fa-trash"></i></button>
+                                    <img src="{{ asset($user->img) }}" alt="{{ $user->name }}" style="width: 70px;">
                                 </td>
-                            @endrole
-                        </tr>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->getRoleNames()[0] }}</td>
+                                <td>{{ Carbon\Carbon::parse($user->created_at)->format('Y-m-d') }}</td>
+                                @role('Super Admin')
+                                    <td>
+                                        <button type="button" class="ml-1 btn btn-info" wire:click="restorUser('{{ $user->id }}')">
+                                            {{-- <i class="fa fa-undo"></i> --}}
+                                            <i class="fa fa-trash-restore"></i>
+                                        </button>
+                                        <button type="button" class="ml-1 btn btn-danger" wire:click="confirmDeletion('{{ $user->id }}')">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                @endrole
+                            </tr>
+                        @else
+                            <tr>
+                                <td>
+                                    <img src="{{ asset($user->img) }}" alt="{{ $user->name }}" style="width: 70px;">
+                                </td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->getRoleNames()[0] }}</td>
+                                <td>{{ Carbon\Carbon::parse($user->created_at)->format('Y-m-d') }}</td>
+                                @role('Super Admin')
+                                    <td>
+                                        <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}"><i
+                                                class="fa fa-edit"></i></a>
+                                        <button type="button" class="ml-1 btn btn-warning"
+                                            wire:click="destroyUser('{{ $user->id }}')"><i
+                                                class="fa fa-user-times"></i></button>
+                                    </td>
+                                @endrole
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>

@@ -837,5 +837,8 @@
     "Select role": "Sélectionner le role",
     "Guest": "Invité",
     "Admin": "Administrateur",
-    "Super admin": "Super Administrateur"
+    "Super admin": "Super Administrateur",
+    "The user has been successfully deactivated": "L'utilisateur a été désactivé avec succès",
+    "User has been successfully activated": "L'utilisateur a été activé avec succès",
+    "User has been successfully deleted": "L'utilisateur a été supprimé avec succès"
 }

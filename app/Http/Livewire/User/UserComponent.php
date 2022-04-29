@@ -12,7 +12,7 @@ class UserComponent extends Component
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
-    protected $listeners = ['delete' => 'deleteUser'];
+    protected $listeners = ['delete' => 'forceDestroyUser'];
 
     public $oderBy;
     public $search_role;
@@ -30,15 +30,15 @@ class UserComponent extends Component
     {
         if (!empty($this->search) && $this->search_role) {
             $search = '%'.$this->search.'%';
-            $users = User::role($this->search_role, 'web')->where('name', 'like', $search)->orWhere('email', 'like', $search)->orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
+            $users = User::withTrashed()->role($this->search_role, 'web')->where('name', 'like', $search)->orWhere('email', 'like', $search)->orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
         }else if (!empty($this->search)) {
             $search = '%'.$this->search.'%';
-            $users = User::where('name', 'like', $search)->orWhere('email', 'like', $search)->orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
+            $users = User::withTrashed()->where('name', 'like', $search)->orWhere('email', 'like', $search)->orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
         }else if ($this->search_role) {
             $search = '%'.$this->search.'%';
-            $users = User::role($this->search_role, 'web')->orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
+            $users = User::withTrashed()->role($this->search_role, 'web')->orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
         } else {
-            $users = User::orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
+            $users = User::withTrashed()->orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
         }
 
         $roles = Role::all()->pluck('name');
@@ -58,7 +58,7 @@ class UserComponent extends Component
         ]);
     }
 
-    public function deleteUser($id)
+    /* public function deleteUser($id)
     {
         User::find($id)->delete();
 
@@ -67,6 +67,43 @@ class UserComponent extends Component
             'type'    => 'success',
             'title' => appName(),
             'text'   => __(':attribute deleted successfully', ['attribute' =>  __('User')]),
+        ]);
+    } */
+
+    public function destroyUser($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+
+        $this->emit('swal:modal', [
+            'icon' => 'success',
+            'type'    => 'success',
+            'title' => appName(),
+            'text'   => __("The user has been successfully deactivated"),
+        ]);
+    }
+
+    public function forceDestroyUser($id)
+    {
+        User::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
+
+        $this->emit('swal:modal', [
+            'icon' => 'success',
+            'type'    => 'success',
+            'title' => appName(),
+            'text'   => __('User has been successfully deleted'),
+        ]);
+    }
+
+    public function restorUser($id)
+    {
+        User::withTrashed()->whereId($id)->firstOrFail()->restore();
+
+        $this->emit('swal:modal', [
+            'icon' => 'success',
+            'type'    => 'success',
+            'title' => appName(),
+            'text'   => __("User has been successfully activated"),
         ]);
     }
 }
