@@ -840,5 +840,12 @@
     "Super admin": "Super Administrateur",
     "The user has been successfully deactivated": "L'utilisateur a été désactivé avec succès",
     "User has been successfully activated": "L'utilisateur a été activé avec succès",
-    "User has been successfully deleted": "L'utilisateur a été supprimé avec succès"
+    "User has been successfully deleted": "L'utilisateur a été supprimé avec succès",
+    "Users": "Utilisateurs",
+    "More info": "Plus d'information",
+    "Teachers": "Enseignants",
+    "Rooms": "Salles",
+    "Courses": "Cours",
+    "Departments": "Départements",
+    "Faculties": "Filières"
 }
