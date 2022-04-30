@@ -847,5 +847,7 @@
     "Rooms": "Salles",
     "Courses": "Cours",
     "Departments": "Départements",
-    "Faculties": "Filières"
+    "Faculties": "Filières",
+    "Export schedules": "Exporter les emplois de temps",
+    "Export to :attribute": "Exporter en fichier :attribute"
 }

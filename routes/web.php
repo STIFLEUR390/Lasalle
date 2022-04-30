@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\PDFController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Back\User\ProfileComponent;
 use App\Http\Livewire\Schedule\{CreateScheduleComponent, EditScheduleComponent, ScheduleComponent, UpdateStatusScheduleComponent};
 use App\Http\Livewire\Teacher\{CreateTeacherComponent, EditTeacherComponent, TeacherComponent};
-use App\Http\Livewire\{AppSetting, CourseComponent, DashboardComponent, DepartmentComponent, FacultyComponent, ManageRoomComponent, TeacherGradeComponent, TeacherStatusComponent};
+use App\Http\Livewire\{AppSetting, CourseComponent, DashboardComponent, DepartmentComponent, ExportDataComponent, FacultyComponent, ManageRoomComponent, TeacherGradeComponent, TeacherStatusComponent};
 use App\Http\Livewire\User\{CreateUserComponent, EditUserComponent, UserComponent};
 
 /*
@@ -68,6 +69,10 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'role:Admin|Supe
         Route::name('create')->get('/create', CreateUserComponent::class)->middleware(['role:Super Admin']);
         Route::name('edit')->get('/{id}/edit', EditUserComponent::class)->middleware(['role:Super Admin']);
     });
+
+    //Export data
+    Route::get('export-pdf', PDFController::class)->name('export.pdf');
+    Route::name("export")->get('/export', ExportDataComponent::class)->middleware(['role:Super Admin']);
 
     //app setting
     Route::name("settings")->get('/setting', AppSetting::class)->middleware(['role:Super Admin']);

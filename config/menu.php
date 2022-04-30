@@ -98,6 +98,11 @@ return [
         'route' => 'profile',
         'icon' => 'user',
     ],
+    'Export schedules' => [
+        'role' => 'Super Admin',
+        'route' => 'export',
+        'icon' => 'file-export',
+    ],
     'App setting' => [
         'role' => 'Super Admin',
         'route' => 'settings',

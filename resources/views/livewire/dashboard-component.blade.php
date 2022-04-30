@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-3 col-6">
+        <div class="col-lg-4 col-6">
             <div class="small-box bg-info">
                 <div class="inner">
                     <h3>{{ $users_count }}</h3>
@@ -10,11 +10,11 @@
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">@lang('More info') <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('users.index') }}" class="small-box-footer">@lang('More info') <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
-        <div class="col-lg-3 col-6">
+        <div class="col-lg-4 col-6">
             <div class="small-box bg-success">
                 <div class="inner">
                     <h3>{{ $teachers_count }}</h3>
@@ -24,11 +24,11 @@
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">@lang('More info') <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('teachers.index') }}" class="small-box-footer">@lang('More info') <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
-        <div class="col-lg-3 col-6">
+        <div class="col-lg-4 col-6">
             <div class="small-box bg-warning">
                 <div class="inner">
                     <h3>{{ $rooms_count }}</h3>
@@ -38,11 +38,11 @@
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">@lang('More info') <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('rooms') }}" class="small-box-footer">@lang('More info') <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
-        <div class="col-lg-3 col-6">
+        <div class="col-lg-4 col-6">
             <div class="small-box bg-danger">
                 <div class="inner">
                     <h3>{{ $courses_count }}</h3>
@@ -52,11 +52,11 @@
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">@lang('More info') <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('courses') }}" class="small-box-footer">@lang('More info') <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
-        <div class="col-lg-3 col-6">
+        <div class="col-lg-4 col-6">
             <div class="small-box bg-primary">
                 <div class="inner">
                     <h3>{{ $departments_count }}</h3>
@@ -66,11 +66,11 @@
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">@lang('More info') <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('departments') }}" class="small-box-footer">@lang('More info') <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
-        <div class="col-lg-3 col-6">
+        <div class="col-lg-4 col-6">
             <div class="small-box bg-secondary">
                 <div class="inner">
                     <h3>{{ $faculties_count }}</h3>
@@ -80,7 +80,7 @@
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">@lang('More info') <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('faculties') }}" class="small-box-footer">@lang('More info') <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 

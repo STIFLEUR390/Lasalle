@@ -26,4 +26,5 @@ return [
         'create' => 'Add user',
         'edit' => 'Edit user',
     ],
+    'export' => 'Export schedules',
 ];
