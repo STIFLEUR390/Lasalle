@@ -862,5 +862,6 @@
     ":attribute fetched.": ":attribute récupéré.",
     ":attribute does not exist.": ":attribute  n'existe pas.",
     "the :attribute fetched.": "{0} le :attribute récupéré.|{1} la :attribute récupéré. |{2} l':attribute récupéré.",
-    ":attribute updated.": ":attribute mis à jour."
+    ":attribute updated.": ":attribute mis à jour.",
+    "Teacher abscent for the day": "Professeur absent pour la journée"
 }
