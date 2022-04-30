@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\{Course, Department, Faculty, Room, Teacher, User};
 use Livewire\Component;
+use App\Models\{Course, Department, Faculty, Room, Teacher, User};
 
 class DashboardComponent extends Component
 {
@@ -17,6 +17,7 @@ class DashboardComponent extends Component
         $courses_count = Course::all()->count();
         $departments_count = Department::all()->count();
         $faculties_count = Faculty::all()->count();
+
         return view('livewire.dashboard-component', compact('courses_count', 'departments_count', 'faculties_count','rooms_count' ,'teachers_count' ,'users_count'));
     }
 }
