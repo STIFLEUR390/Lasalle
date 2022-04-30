@@ -27,9 +27,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->enum('gender', ['male', 'female'])->default('male');
             $table->string('phone', 9)->unique();
-            $table->string('footprint1')->nullable();
-            $table->string('footprint2')->nullable();
-            $table->string('footprint3')->nullable();
+            $table->text('footprint1')->nullable();
+            $table->text('footprint2')->nullable();
+            $table->text('footprint3')->nullable();
             $table->timestamps();
         });
     }

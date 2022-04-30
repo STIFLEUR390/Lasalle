@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         Role::create(['name' => 'Super Admin']); //Obligatoire
         Role::create(['name' => 'Admin']); //Obligatoire
         Role::create(['name' => 'Invite']); //Obligatoire
+        Role::create(['name' => 'Dev']); //Obligatoire
 
         $user = User::create([ //optionnel
             'name' => 'Super Admin',

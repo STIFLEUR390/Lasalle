@@ -24,7 +24,7 @@
             </div>
         </form>
 
-        <form method="POST" action="{{ route('logout') }}">
+        <form method="POST" action="{{ route('logout') }}" class="mt-1">
             @csrf
 
             <button type="submit" class="btn btn-secondary btn-block">@lang('Log Out')</button>

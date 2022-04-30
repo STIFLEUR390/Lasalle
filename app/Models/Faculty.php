@@ -16,6 +16,13 @@ class Faculty extends Model
      */
     protected $guarded = [];
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['department'];
+
 
     /* public function courses()
     {

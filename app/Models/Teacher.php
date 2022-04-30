@@ -16,6 +16,13 @@ class Teacher extends Model
      */
     protected $guarded = [];
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['teacherGrade', 'teacherStatus'];
+
 
     public function schedules()
     {

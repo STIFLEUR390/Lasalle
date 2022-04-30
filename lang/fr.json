@@ -774,7 +774,7 @@
     "App info": "Information sur l'application",
     "App name": "Nom de l'application",
     "App logo": "Logo de l'application",
-    "Appplication information updated successfully": "les informationssur l'application ont été mis à jour avec succès",
+    "Appplication information updated successfully": "les informations sur l'application ont été mis à jour avec succès",
     "Appplication updated successfully": "Application mis à jour avec succès",
     "Manage teacher status": "Gérer le statut des enseignants",
     "Manage teacher grade": "Gérer le grade des enseignants",
@@ -849,5 +849,18 @@
     "Departments": "Départements",
     "Faculties": "Filières",
     "Export schedules": "Exporter les emplois de temps",
-    "Export to :attribute": "Exporter en fichier :attribute"
+    "Export to :attribute": "Exporter en fichier :attribute",
+    "User signed in": "Utilisateur connecté",
+    "Unauthorised": "Non autorisé",
+    "Error validation": "Validation d'erreu",
+    "User created successfully.": "Utilisateur créé avec succès.",
+    "Teachers fetched.": "Professeurs récupéré.",
+    "Teacher does not exist.": "Le professeur  n'existe pas.",
+    "Teacher fetched.": "Professeur récupéré.",
+    "Teacher updated.": "Professeur mis à jour.",
+    "No data was sent": "Aucune données n'a été envoyée",
+    ":attribute fetched.": ":attribute récupéré.",
+    ":attribute does not exist.": ":attribute  n'existe pas.",
+    "the :attribute fetched.": "{0} le :attribute récupéré.|{1} la :attribute récupéré. |{2} l':attribute récupéré.",
+    ":attribute updated.": ":attribute mis à jour."
 }
