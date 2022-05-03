@@ -44,11 +44,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             class="fas fa-bars"></i></a>
                 </li>
                 {{-- <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li> --}}
+                    <a href="index3.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">Contact</a>
+                </li> --}}
                 <li class="nav-item d-none d-sm-inline-block">
                     <form action="{{ route('logout') }}" method="POST" hidden>
                         @csrf
@@ -60,8 +60,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
             </ul>
 
+
             <!-- Right navbar links -->
             <ul class="ml-auto navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <img src="{{ asset('custom/cm.svg') }}" style="height: 100%" alt="{{ Config::get('languages')[App::getLocale()]['display'] }}">
+                        {{ Config::get('languages')[App::getLocale()]['display'] }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                      @foreach (Config::get('languages') as $lang => $language)
+                        @if ($lang != App::getLocale())
+                            <a href="{{ route('lang.switch', $lang) }}" class="dropdown-item">
+                                <img src="{{$language['flag-icon']}}" style="width: 20%" alt="">
+                                {{$language['display']}}
+                            </a>
+                            <div class="dropdown-divider"></div>
+                        @endif
+                      @endforeach
+                    </div>
+                  </li>
+
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
@@ -160,23 +179,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </a>
                                             <ul class="nav nav-treeview">
                                                 @foreach ($elements['children'] as $child)
-                                                        {{-- Auth::user()->hasAnyRole((explode('|', $child['role'])); --}}
-                                                        @isset($child['active'])
-                                                            @if (activeFunction($child['active']))
-                                                                @if (Auth::user()->hasAnyRole(explode('|', $child['role'])) && $child['name'] !== 'fake')
-                                                                    <x-back.menu-item :route="$child['route']" :sub=true>
-                                                                        @lang($child['name'])
-                                                                    </x-back.menu-item>
-                                                                @endif
-                                                            @endif
-                                                        @else
+                                                    {{-- Auth::user()->hasAnyRole((explode('|', $child['role'])); --}}
+                                                    @isset($child['active'])
+                                                        @if (activeFunction($child['active']))
                                                             @if (Auth::user()->hasAnyRole(explode('|', $child['role'])) && $child['name'] !== 'fake')
                                                                 <x-back.menu-item :route="$child['route']" :sub=true>
                                                                     @lang($child['name'])
                                                                 </x-back.menu-item>
                                                             @endif
-                                                        @endisset
-                                                    @endforeach
+                                                        @endif
+                                                    @else
+                                                        @if (Auth::user()->hasAnyRole(explode('|', $child['role'])) && $child['name'] !== 'fake')
+                                                            <x-back.menu-item :route="$child['route']" :sub=true>
+                                                                @lang($child['name'])
+                                                            </x-back.menu-item>
+                                                        @endif
+                                                    @endisset
+                                                @endforeach
                                             </ul>
                                         </li>
                                     @endisset
@@ -335,7 +354,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset('custom/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('custom/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
     <script>
-        $(function () {
+        $(function() {
             bsCustomFileInput.init();
         });
     </script>

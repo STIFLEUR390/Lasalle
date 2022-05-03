@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\PDFController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Back\User\ProfileComponent;
@@ -26,6 +27,7 @@ Route::get('/', function () {
 Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'role:Admin|Super Admin|Invite'])->group(function () {
 
     // Route::get("/", [AdminController::class, 'index'])->name('home');
+    Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
 
     Route::name('dashboard')->get('/', DashboardComponent::class);
     Route::name('profile')->middleware(['password.confirm'])->get('user/profile', ProfileComponent::class);
