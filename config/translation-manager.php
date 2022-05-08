@@ -10,9 +10,17 @@ return [
     | The default group settings for the elFinder routes.
     |
     */
-    'route'          => [
+    /* 'route'          => [
         'prefix'     => 'translations',
         'middleware' => 'auth',
+    ], */
+
+    'route' => [
+        'prefix' => 'translations',
+        'middleware' => [
+	        'web',
+	        'auth',
+		],
     ],
 
     /**
