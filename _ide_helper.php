@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 9.9.0.
+ * Generated for Laravel 9.10.1.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -7235,6 +7235,7 @@
      * @method static \Illuminate\Http\Client\PendingRequest baseUrl(string $url)
      * @method static \Illuminate\Http\Client\PendingRequest beforeSending(callable $callback)
      * @method static \Illuminate\Http\Client\PendingRequest bodyFormat(string $format)
+     * @method static \Illuminate\Http\Client\PendingRequest connectTimeout(int $seconds)
      * @method static \Illuminate\Http\Client\PendingRequest contentType(string $contentType)
      * @method static \Illuminate\Http\Client\PendingRequest dd()
      * @method static \Illuminate\Http\Client\PendingRequest dump()
@@ -11524,6 +11525,32 @@
         {
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->input($key, $default);
+        }
+                    /**
+         * Retrieve input from the request as a Stringable instance.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return \Illuminate\Support\Stringable 
+         * @static 
+         */ 
+        public static function str($key, $default = null)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->str($key, $default);
+        }
+                    /**
+         * Retrieve input from the request as a Stringable instance.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return \Illuminate\Support\Stringable 
+         * @static 
+         */ 
+        public static function string($key, $default = null)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->string($key, $default);
         }
                     /**
          * Retrieve input as a boolean value.
@@ -16394,49 +16421,412 @@
      
 }
 
-        namespace niklasravnsborg\LaravelPdf\Facades { 
+        namespace Maatwebsite\Excel\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class Excel {
+                    /**
+         * 
+         *
+         * @param object $export
+         * @param string|null $fileName
+         * @param string $writerType
+         * @param array $headers
+         * @return \Symfony\Component\HttpFoundation\BinaryFileResponse 
+         * @throws \PhpOffice\PhpSpreadsheet\Exception
+         * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+         * @static 
+         */ 
+        public static function download($export, $fileName, $writerType = null, $headers = [])
+        {
+                        /** @var \Maatwebsite\Excel\Excel $instance */
+                        return $instance->download($export, $fileName, $writerType, $headers);
+        }
+                    /**
+         * 
+         *
+         * @param object $export
+         * @param string $filePath
+         * @param string|null $disk
+         * @param string $writerType
+         * @param mixed $diskOptions
+         * @return bool 
+         * @throws \PhpOffice\PhpSpreadsheet\Exception
+         * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+         * @static 
+         */ 
+        public static function store($export, $filePath, $diskName = null, $writerType = null, $diskOptions = [])
+        {
+                        /** @var \Maatwebsite\Excel\Excel $instance */
+                        return $instance->store($export, $filePath, $diskName, $writerType, $diskOptions);
+        }
+                    /**
+         * 
+         *
+         * @param object $export
+         * @param string $filePath
+         * @param string|null $disk
+         * @param string $writerType
+         * @param mixed $diskOptions
+         * @return \Illuminate\Foundation\Bus\PendingDispatch 
+         * @static 
+         */ 
+        public static function queue($export, $filePath, $disk = null, $writerType = null, $diskOptions = [])
+        {
+                        /** @var \Maatwebsite\Excel\Excel $instance */
+                        return $instance->queue($export, $filePath, $disk, $writerType, $diskOptions);
+        }
+                    /**
+         * 
+         *
+         * @param object $export
+         * @param string $writerType
+         * @return string 
+         * @static 
+         */ 
+        public static function raw($export, $writerType)
+        {
+                        /** @var \Maatwebsite\Excel\Excel $instance */
+                        return $instance->raw($export, $writerType);
+        }
+                    /**
+         * 
+         *
+         * @param object $import
+         * @param string|\Symfony\Component\HttpFoundation\File\UploadedFile $filePath
+         * @param string|null $disk
+         * @param string|null $readerType
+         * @return \Maatwebsite\Excel\Reader|\Illuminate\Foundation\Bus\PendingDispatch 
+         * @static 
+         */ 
+        public static function import($import, $filePath, $disk = null, $readerType = null)
+        {
+                        /** @var \Maatwebsite\Excel\Excel $instance */
+                        return $instance->import($import, $filePath, $disk, $readerType);
+        }
+                    /**
+         * 
+         *
+         * @param object $import
+         * @param string|\Symfony\Component\HttpFoundation\File\UploadedFile $filePath
+         * @param string|null $disk
+         * @param string|null $readerType
+         * @return array 
+         * @static 
+         */ 
+        public static function toArray($import, $filePath, $disk = null, $readerType = null)
+        {
+                        /** @var \Maatwebsite\Excel\Excel $instance */
+                        return $instance->toArray($import, $filePath, $disk, $readerType);
+        }
+                    /**
+         * 
+         *
+         * @param object $import
+         * @param string|\Symfony\Component\HttpFoundation\File\UploadedFile $filePath
+         * @param string|null $disk
+         * @param string|null $readerType
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function toCollection($import, $filePath, $disk = null, $readerType = null)
+        {
+                        /** @var \Maatwebsite\Excel\Excel $instance */
+                        return $instance->toCollection($import, $filePath, $disk, $readerType);
+        }
+                    /**
+         * 
+         *
+         * @param \Illuminate\Contracts\Queue\ShouldQueue $import
+         * @param string|\Symfony\Component\HttpFoundation\File\UploadedFile $filePath
+         * @param string|null $disk
+         * @param string $readerType
+         * @return \Illuminate\Foundation\Bus\PendingDispatch 
+         * @static 
+         */ 
+        public static function queueImport($import, $filePath, $disk = null, $readerType = null)
+        {
+                        /** @var \Maatwebsite\Excel\Excel $instance */
+                        return $instance->queueImport($import, $filePath, $disk, $readerType);
+        }
+                    /**
+         * 
+         *
+         * @param string $concern
+         * @param callable $handler
+         * @param string $event
+         * @static 
+         */ 
+        public static function extend($concern, $handler, $event = 'Maatwebsite\\Excel\\Events\\BeforeWriting')
+        {
+                        return \Maatwebsite\Excel\Excel::extend($concern, $handler, $event);
+        }
+                    /**
+         * When asserting downloaded, stored, queued or imported, use regular expression
+         * to look for a matching file path.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function matchByRegex()
+        {
+                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+                        $instance->matchByRegex();
+        }
+                    /**
+         * When asserting downloaded, stored, queued or imported, use regular string
+         * comparison for matching file path.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function doNotMatchByRegex()
+        {
+                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+                        $instance->doNotMatchByRegex();
+        }
+                    /**
+         * 
+         *
+         * @param string $fileName
+         * @param callable|null $callback
+         * @static 
+         */ 
+        public static function assertDownloaded($fileName, $callback = null)
+        {
+                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+                        return $instance->assertDownloaded($fileName, $callback);
+        }
+                    /**
+         * 
+         *
+         * @param string $filePath
+         * @param string|callable|null $disk
+         * @param callable|null $callback
+         * @static 
+         */ 
+        public static function assertStored($filePath, $disk = null, $callback = null)
+        {
+                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+                        return $instance->assertStored($filePath, $disk, $callback);
+        }
+                    /**
+         * 
+         *
+         * @param string $filePath
+         * @param string|callable|null $disk
+         * @param callable|null $callback
+         * @static 
+         */ 
+        public static function assertQueued($filePath, $disk = null, $callback = null)
+        {
+                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+                        return $instance->assertQueued($filePath, $disk, $callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function assertQueuedWithChain($chain)
+        {
+                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+                        return $instance->assertQueuedWithChain($chain);
+        }
+                    /**
+         * 
+         *
+         * @param string $classname
+         * @param callable|null $callback
+         * @static 
+         */ 
+        public static function assertExportedInRaw($classname, $callback = null)
+        {
+                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+                        return $instance->assertExportedInRaw($classname, $callback);
+        }
+                    /**
+         * 
+         *
+         * @param string $filePath
+         * @param string|callable|null $disk
+         * @param callable|null $callback
+         * @static 
+         */ 
+        public static function assertImported($filePath, $disk = null, $callback = null)
+        {
+                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+                        return $instance->assertImported($filePath, $disk, $callback);
+        }
+         
+    }
+     
+}
+
+    namespace Barryvdh\DomPDF\Facade { 
             /**
      * 
      *
      */ 
         class Pdf {
                     /**
-         * Load a HTML string
+         * Get the DomPDF instance
          *
-         * @param string $html
-         * @return \Pdf 
+         * @return \Dompdf\Dompdf 
          * @static 
          */ 
-        public static function loadHTML($html, $config = [])
+        public static function getDomPDF()
         {
-                        /** @var \niklasravnsborg\LaravelPdf\PdfWrapper $instance */
-                        return $instance->loadHTML($html, $config);
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->getDomPDF();
+        }
+                    /**
+         * Set the paper size (default A4)
+         *
+         * @param string|\Barryvdh\DomPDF\array<string> $paper
+         * @static 
+         */ 
+        public static function setPaper($paper, $orientation = 'portrait')
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->setPaper($paper, $orientation);
+        }
+                    /**
+         * Show or hide warnings
+         *
+         * @static 
+         */ 
+        public static function setWarnings($warnings)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->setWarnings($warnings);
+        }
+                    /**
+         * Load a HTML string
+         *
+         * @param string|null $encoding Not used yet
+         * @static 
+         */ 
+        public static function loadHTML($string, $encoding = null)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->loadHTML($string, $encoding);
         }
                     /**
          * Load a HTML file
          *
-         * @param string $file
-         * @return \Pdf 
          * @static 
          */ 
-        public static function loadFile($file, $config = [])
+        public static function loadFile($file)
         {
-                        /** @var \niklasravnsborg\LaravelPdf\PdfWrapper $instance */
-                        return $instance->loadFile($file, $config);
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->loadFile($file);
+        }
+                    /**
+         * Add metadata info
+         *
+         * @param \Barryvdh\DomPDF\array<string,  string> $info
+         * @return static 
+         * @static 
+         */ 
+        public static function addInfo($info)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->addInfo($info);
         }
                     /**
          * Load a View and convert to HTML
          *
-         * @param string $view
-         * @param array $data
-         * @param array $mergeData
-         * @return \Pdf 
+         * @param \Barryvdh\DomPDF\array<string,  mixed> $data
+         * @param \Barryvdh\DomPDF\array<string,  mixed> $mergeData
+         * @param string|null $encoding Not used yet
          * @static 
          */ 
-        public static function loadView($view, $data = [], $mergeData = [], $config = [])
+        public static function loadView($view, $data = [], $mergeData = [], $encoding = null)
         {
-                        /** @var \niklasravnsborg\LaravelPdf\PdfWrapper $instance */
-                        return $instance->loadView($view, $data, $mergeData, $config);
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->loadView($view, $data, $mergeData, $encoding);
+        }
+                    /**
+         * Set/Change an option in DomPdf
+         *
+         * @param \Barryvdh\DomPDF\array<string,  mixed> $options
+         * @static 
+         */ 
+        public static function setOptions($options)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->setOptions($options);
+        }
+                    /**
+         * Output the PDF as a string.
+         * 
+         * The options parameter controls the output. Accepted options are:
+         * 
+         * 'compress' = > 1 or 0 - apply content stream compression, this is
+         *    on (1) by default
+         *
+         * @param \Barryvdh\DomPDF\array<string,  int> $options
+         * @return string The rendered PDF as string
+         * @static 
+         */ 
+        public static function output($options = [])
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->output($options);
+        }
+                    /**
+         * Save the PDF to a file
+         *
+         * @static 
+         */ 
+        public static function save($filename)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->save($filename);
+        }
+                    /**
+         * Make the PDF downloadable by the user
+         *
+         * @static 
+         */ 
+        public static function download($filename = 'document.pdf')
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->download($filename);
+        }
+                    /**
+         * Return a response with the PDF to show in the browser
+         *
+         * @static 
+         */ 
+        public static function stream($filename = 'document.pdf')
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->stream($filename);
+        }
+                    /**
+         * Render the PDF
+         *
+         * @static 
+         */ 
+        public static function render()
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->render();
+        }
+                    /**
+         * 
+         *
+         * @param \Barryvdh\DomPDF\array<string> $pc
+         * @static 
+         */ 
+        public static function setEncryption($password, $ownerpassword = '', $pc = [])
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->setEncryption($password, $ownerpassword, $pc);
         }
          
     }
@@ -17306,250 +17696,6 @@
         {
                         /** @var \Livewire\LivewireManager $instance */
                         return $instance->flushState();
-        }
-         
-    }
-     
-}
-
-    namespace Maatwebsite\Excel\Facades { 
-            /**
-     * 
-     *
-     */ 
-        class Excel {
-                    /**
-         * 
-         *
-         * @param object $export
-         * @param string|null $fileName
-         * @param string $writerType
-         * @param array $headers
-         * @return \Symfony\Component\HttpFoundation\BinaryFileResponse 
-         * @throws \PhpOffice\PhpSpreadsheet\Exception
-         * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
-         * @static 
-         */ 
-        public static function download($export, $fileName, $writerType = null, $headers = [])
-        {
-                        /** @var \Maatwebsite\Excel\Excel $instance */
-                        return $instance->download($export, $fileName, $writerType, $headers);
-        }
-                    /**
-         * 
-         *
-         * @param object $export
-         * @param string $filePath
-         * @param string|null $disk
-         * @param string $writerType
-         * @param mixed $diskOptions
-         * @return bool 
-         * @throws \PhpOffice\PhpSpreadsheet\Exception
-         * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
-         * @static 
-         */ 
-        public static function store($export, $filePath, $diskName = null, $writerType = null, $diskOptions = [])
-        {
-                        /** @var \Maatwebsite\Excel\Excel $instance */
-                        return $instance->store($export, $filePath, $diskName, $writerType, $diskOptions);
-        }
-                    /**
-         * 
-         *
-         * @param object $export
-         * @param string $filePath
-         * @param string|null $disk
-         * @param string $writerType
-         * @param mixed $diskOptions
-         * @return \Illuminate\Foundation\Bus\PendingDispatch 
-         * @static 
-         */ 
-        public static function queue($export, $filePath, $disk = null, $writerType = null, $diskOptions = [])
-        {
-                        /** @var \Maatwebsite\Excel\Excel $instance */
-                        return $instance->queue($export, $filePath, $disk, $writerType, $diskOptions);
-        }
-                    /**
-         * 
-         *
-         * @param object $export
-         * @param string $writerType
-         * @return string 
-         * @static 
-         */ 
-        public static function raw($export, $writerType)
-        {
-                        /** @var \Maatwebsite\Excel\Excel $instance */
-                        return $instance->raw($export, $writerType);
-        }
-                    /**
-         * 
-         *
-         * @param object $import
-         * @param string|\Symfony\Component\HttpFoundation\File\UploadedFile $filePath
-         * @param string|null $disk
-         * @param string|null $readerType
-         * @return \Maatwebsite\Excel\Reader|\Illuminate\Foundation\Bus\PendingDispatch 
-         * @static 
-         */ 
-        public static function import($import, $filePath, $disk = null, $readerType = null)
-        {
-                        /** @var \Maatwebsite\Excel\Excel $instance */
-                        return $instance->import($import, $filePath, $disk, $readerType);
-        }
-                    /**
-         * 
-         *
-         * @param object $import
-         * @param string|\Symfony\Component\HttpFoundation\File\UploadedFile $filePath
-         * @param string|null $disk
-         * @param string|null $readerType
-         * @return array 
-         * @static 
-         */ 
-        public static function toArray($import, $filePath, $disk = null, $readerType = null)
-        {
-                        /** @var \Maatwebsite\Excel\Excel $instance */
-                        return $instance->toArray($import, $filePath, $disk, $readerType);
-        }
-                    /**
-         * 
-         *
-         * @param object $import
-         * @param string|\Symfony\Component\HttpFoundation\File\UploadedFile $filePath
-         * @param string|null $disk
-         * @param string|null $readerType
-         * @return \Illuminate\Support\Collection 
-         * @static 
-         */ 
-        public static function toCollection($import, $filePath, $disk = null, $readerType = null)
-        {
-                        /** @var \Maatwebsite\Excel\Excel $instance */
-                        return $instance->toCollection($import, $filePath, $disk, $readerType);
-        }
-                    /**
-         * 
-         *
-         * @param \Illuminate\Contracts\Queue\ShouldQueue $import
-         * @param string|\Symfony\Component\HttpFoundation\File\UploadedFile $filePath
-         * @param string|null $disk
-         * @param string $readerType
-         * @return \Illuminate\Foundation\Bus\PendingDispatch 
-         * @static 
-         */ 
-        public static function queueImport($import, $filePath, $disk = null, $readerType = null)
-        {
-                        /** @var \Maatwebsite\Excel\Excel $instance */
-                        return $instance->queueImport($import, $filePath, $disk, $readerType);
-        }
-                    /**
-         * 
-         *
-         * @param string $concern
-         * @param callable $handler
-         * @param string $event
-         * @static 
-         */ 
-        public static function extend($concern, $handler, $event = 'Maatwebsite\\Excel\\Events\\BeforeWriting')
-        {
-                        return \Maatwebsite\Excel\Excel::extend($concern, $handler, $event);
-        }
-                    /**
-         * When asserting downloaded, stored, queued or imported, use regular expression
-         * to look for a matching file path.
-         *
-         * @return void 
-         * @static 
-         */ 
-        public static function matchByRegex()
-        {
-                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
-                        $instance->matchByRegex();
-        }
-                    /**
-         * When asserting downloaded, stored, queued or imported, use regular string
-         * comparison for matching file path.
-         *
-         * @return void 
-         * @static 
-         */ 
-        public static function doNotMatchByRegex()
-        {
-                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
-                        $instance->doNotMatchByRegex();
-        }
-                    /**
-         * 
-         *
-         * @param string $fileName
-         * @param callable|null $callback
-         * @static 
-         */ 
-        public static function assertDownloaded($fileName, $callback = null)
-        {
-                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
-                        return $instance->assertDownloaded($fileName, $callback);
-        }
-                    /**
-         * 
-         *
-         * @param string $filePath
-         * @param string|callable|null $disk
-         * @param callable|null $callback
-         * @static 
-         */ 
-        public static function assertStored($filePath, $disk = null, $callback = null)
-        {
-                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
-                        return $instance->assertStored($filePath, $disk, $callback);
-        }
-                    /**
-         * 
-         *
-         * @param string $filePath
-         * @param string|callable|null $disk
-         * @param callable|null $callback
-         * @static 
-         */ 
-        public static function assertQueued($filePath, $disk = null, $callback = null)
-        {
-                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
-                        return $instance->assertQueued($filePath, $disk, $callback);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function assertQueuedWithChain($chain)
-        {
-                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
-                        return $instance->assertQueuedWithChain($chain);
-        }
-                    /**
-         * 
-         *
-         * @param string $classname
-         * @param callable|null $callback
-         * @static 
-         */ 
-        public static function assertExportedInRaw($classname, $callback = null)
-        {
-                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
-                        return $instance->assertExportedInRaw($classname, $callback);
-        }
-                    /**
-         * 
-         *
-         * @param string $filePath
-         * @param string|callable|null $disk
-         * @param callable|null $callback
-         * @static 
-         */ 
-        public static function assertImported($filePath, $disk = null, $callback = null)
-        {
-                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
-                        return $instance->assertImported($filePath, $disk, $callback);
         }
          
     }
@@ -18667,6 +18813,21 @@ namespace  {
             {
                                 /** @var \Illuminate\Database\Eloquent\Builder $instance */
                                 return $instance->findOrNew($id, $columns);
+            }
+             
+                /**
+             * Find a model by its primary key or call a callback.
+             *
+             * @param mixed $id
+             * @param \Closure|array $columns
+             * @param \Closure|null $callback
+             * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static[]|static|mixed 
+             * @static 
+             */ 
+            public static function findOr($id, $columns = [], $callback = null)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->findOr($id, $columns, $callback);
             }
              
                 /**
@@ -22051,10 +22212,10 @@ namespace  {
             class URL extends \Illuminate\Support\Facades\URL {}
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
-            class PDF extends \niklasravnsborg\LaravelPdf\Facades\Pdf {}
+            class Excel extends \Maatwebsite\Excel\Facades\Excel {}
+            class PDF extends \Barryvdh\DomPDF\Facade\Pdf {}
             class Agent extends \Jenssegers\Agent\Facades\Agent {}
             class Livewire extends \Livewire\Livewire {}
-            class Excel extends \Maatwebsite\Excel\Facades\Excel {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
             class sentMails extends \Spatie\MailPreview\Facades\SentMails {}
      

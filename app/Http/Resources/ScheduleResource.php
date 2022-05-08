@@ -24,7 +24,7 @@ class ScheduleResource extends JsonResource
             'end_time' => substr($this->end_time, 0, 5),
             'room' => new RoomResource($this->whenLoaded('room')),
             'course' => new CourseResource($this->whenLoaded('course')),
-            'ue_code' => $this->ue_code,
+            'ue_code' => new UeCodeResource($this->whenLoaded('UeCode')),
             'status' => __($this->status),
             // 'hours' => substr($this->start_time, 0, 5) - substr($this->end_time, 0, 5),
         ];

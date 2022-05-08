@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Course extends Model
+class UeCode extends Model
 {
     use HasFactory;
 
@@ -16,26 +16,13 @@ class Course extends Model
      */
     protected $guarded = [];
 
-    /**
-     * The relationships that should always be loaded.
-     *
-     * @var array
-     */
-    protected $with = ['ue_code'];
-
-
-    /* public function faculty()
+    public function courses()
     {
-        return $this->belongsTo(Faculty::class);
-    } */
+        return $this->hasMany(Course::class);
+    }
 
     public function schedules()
     {
         return $this->hasMany(Schedule::class);
-    }
-
-    public function ue_code()
-    {
-        return $this->belongsTo(UeCode::class, 'ue_id');
     }
 }

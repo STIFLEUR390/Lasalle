@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire\Schedule;
 
+use DB;
+use Carbon\Carbon;
+use App\Models\UeCode;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 use App\Models\{Course, Faculty, Room, Schedule, Teacher};
-use Carbon\Carbon;
-use DB;
 
 class EditScheduleComponent extends Component
 {
@@ -17,7 +18,8 @@ class EditScheduleComponent extends Component
     public $end_time;
     public $room_id;
     public $course_id;
-    public $ue_code;
+    public $ue_id;
+    public $ue_name;
     public $teacherArray;
     public $facultyArray;
     public $roomArray;
@@ -35,7 +37,7 @@ class EditScheduleComponent extends Component
             'end_time' => 'required',
             'room_id' => ['required',Rule::in($this->roomArray)],
             'course_id' => ['required',Rule::in($this->courseArray)],
-            'ue_code' => 'required|min:2',
+            'ue_id' => ['required',Rule::in($this->ueArray)],
         ];
     }
 
@@ -51,6 +53,8 @@ class EditScheduleComponent extends Component
         $this->roomArray = Room::pluck('id');
         $this->courseArray = Faculty::pluck('id');
         $this->day = Carbon::now()->format('Y-m-d');
+        $this->ueArray = UeCode::pluck('id');
+
 
         $schedule = Schedule::find($id);
         $this->teacher_id = $schedule->teacher_id;
@@ -72,6 +76,8 @@ class EditScheduleComponent extends Component
         $faculties = Faculty::orderBy('name')->get();
         $rooms = Room::orderBy('name')->get();
         $courses = Course::orderBy('title')->get();
+
+        $this->updateUeName();
         return view('livewire.schedule.edit-schedule-component', compact('teachers', 'faculties', 'rooms', 'courses'));
     }
 
@@ -88,5 +94,14 @@ class EditScheduleComponent extends Component
             'title' => appName(),
             'text'   => __(':attribute updated successfully', ['attribute' =>  __("Schedule")]),
         ]);
+    }
+
+    public function updateUeName()
+    {
+        if (!empty($this->course_id)) {
+            $course = Course::find($this->course_id);
+            $this->ue_id = $course->ue_code->id;
+            $this->ue_name = $course->ue_code->name;
+        }
     }
 }

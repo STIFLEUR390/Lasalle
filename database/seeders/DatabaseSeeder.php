@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\{AppSetting, Course, Department, Faculty, Room, Teacher, TeacherGrade, TeacherStatus, User};
+use App\Models\{AppSetting, Course, Department, Faculty, Room, Schedule, Teacher, TeacherGrade, TeacherStatus, UeCode, User};
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -33,8 +33,9 @@ class DatabaseSeeder extends Seeder
 
         $user->assignRole(['Super Admin']);
 
+        UeCode::factory(15)->create();
         Room::factory(15)->create();
-        Course::factory(10)->create();
+        Course::factory(15)->create();
         Department::factory(10)
             ->has(Faculty::factory()->count(3))
             ->create();
@@ -51,12 +52,13 @@ class DatabaseSeeder extends Seeder
             $teacherStatus = TeacherStatus::factory()->create();
 
             Teacher::factory()
-                ->count(2)
+                ->count(3)
                 ->for($teacherGrade)
                 ->for($teacherStatus)
                 ->create();
         }
 
+        Schedule::factory(50)->create();
 
     }
 }

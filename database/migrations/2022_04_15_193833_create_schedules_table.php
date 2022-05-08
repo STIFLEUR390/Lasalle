@@ -23,7 +23,7 @@ return new class extends Migration
             $table->time('end_time');
             $table->foreignId('room_id')->constrained('rooms')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('course_id')->constrained('courses')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('ue_code');
+            $table->foreignId('ue_id')->constrained('ue_codes')->cascadeOnUpdate()->cascadeOnDelete();
             $table->enum('status', ['waiting', 'in_progress', 'finish', 'absent'])->default('waiting');
             $table->timestamps();
         });

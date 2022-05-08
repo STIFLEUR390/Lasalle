@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Back\User\ProfileComponent;
 use App\Http\Livewire\Schedule\{CreateScheduleComponent, EditScheduleComponent, ScheduleComponent, UpdateStatusScheduleComponent};
 use App\Http\Livewire\Teacher\{CreateTeacherComponent, EditTeacherComponent, TeacherComponent};
-use App\Http\Livewire\{AppSetting, CourseComponent, DashboardComponent, DepartmentComponent, ExportDataComponent, FacultyComponent, ManageRoomComponent, TeacherGradeComponent, TeacherStatusComponent};
+use App\Http\Livewire\{AppSetting, CourseComponent, DashboardComponent, DepartmentComponent, DepartmentFacultyComponent, ExportDataComponent, FacultyComponent, ManageRoomComponent, TeacherGradeComponent, TeacherStatusComponent, UeCodeComponent};
 use App\Http\Livewire\User\{CreateUserComponent, EditUserComponent, UserComponent};
 
 /*
@@ -20,9 +20,11 @@ use App\Http\Livewire\User\{CreateUserComponent, EditUserComponent, UserComponen
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/login');
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'role:Admin|Super Admin|Invite'])->group(function () {
 
@@ -48,12 +50,14 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified', 'role:Admin|Supe
 
     // courses managent
     Route::name('courses')->get('courses', CourseComponent::class)->middleware(['role:Admin|Super Admin|Invite']);
+    Route::name('uecodes')->get('ue_codes', UeCodeComponent::class)->middleware(['role:Admin|Super Admin']);
 
     // departments managent
     Route::name('departments')->get('departments', DepartmentComponent::class)->middleware(['role:Admin|Super Admin|Invite']);
 
     // faculties managent
-    Route::name('faculties')->get('faculties', FacultyComponent::class)->middleware(['role:Admin|Super Admin|Invite']);
+    Route::name('faculties')->get('faculties/{id?}', FacultyComponent::class)->middleware(['role:Admin|Super Admin|Invite']);
+
 
     //schedule management
     Route::prefix("schedules")->name('schedules.')->group(function () {

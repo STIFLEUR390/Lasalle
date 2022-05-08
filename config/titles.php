@@ -13,6 +13,7 @@ return [
     'rooms' => 'All rooms',
     'settings' => 'App setting',
     'courses' => 'Manage courses',
+    'uecodes' => 'Manage teaching unit',
     'departments' => 'Manage departments',
     'faculties' => 'Manage faculties',
     'schedules' => [

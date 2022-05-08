@@ -10,6 +10,12 @@
                             <option value="desc">@lang('From newest to oldest')</option>
                             <option value="asc">@lang('From oldest to newest')</option>
                         </select>
+                        <select wire:model='search_ue' class="mx-1 custom-select rounded-0">
+                            <option value="">@lang('Select teaching unit')</option>
+                            @foreach ($ue_codes as $ue_code)
+                                    <option value="{{ $ue_code->id }}">{{ $ue_code->name }}</option>
+                            @endforeach
+                        </select>
                         <select wire:model='pageSize' class="mx-1 custom-select rounded-0">
                             <option value="5">5</option>
                             <option value="7">7</option>
@@ -21,7 +27,7 @@
                         </select>
 
                         @hasanyrole('Admin|Super Admin') @endhasanyrole
-                            <div class="float-right" style="margin-left: 10% !important;">
+                            <div class="float-right" style="margin-left: 1% !important;">
                                 <button wire:click='initializeForCreateCourse' type="button" class="btn btn-primary">
                                     @lang("Add cours")
                                 </button>
@@ -35,7 +41,7 @@
                         <thead>
                             <tr>
                                 <th>@lang('Name')</th>
-                                <th>@lang('UE code')</th>
+                                <th>@lang('Teaching unit')</th>
                                 @hasanyrole('Admin|Super Admin')
                                     <th>@lang('Action')</th>
                                 @endhasanyrole
@@ -45,12 +51,12 @@
                             @foreach ($courses as $cours)
                                 <tr>
                                     <td>{{ $cours->title }}</td>
-                                    <td>{{ $cours->ue_code }}</td>
+                                    <td>{{ $cours->ue_code->name }}</td>
                                     @hasanyrole('Admin|Super Admin')
                                         <td>
                                             <button type="button" wire:click="getData('{{ $cours->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
 
-                                            <button type="button" class="btn btn-danger ml-1" wire:click="confirmDeletion('{{ $cours->id }}')"><i class="fa fa-trash"></i></button>
+                                            <button type="button" class="ml-1 btn btn-danger" wire:click="confirmDeletion('{{ $cours->id }}')"><i class="fa fa-trash"></i></button>
                                         </td>
                                     @endhasanyrole
                                 </tr>
@@ -65,7 +71,7 @@
             </div>
             <!-- /.card -->
             <div class="modal fade" id="modal-update">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h4 class="modal-title">@lang("Edit a cours")</h4>
@@ -82,9 +88,13 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label>@lang('UE code')</label>
-                            <input type="text" class="form-control @error('ue_code') is-invalid @enderror" wire:model.defer='ue_code' placeholder="{{ trans_choice("Enter :name", 0, ['name'=> __('UE code')]) }}">
-                            @error('ue_code')
+                            <label for="ue-code">@lang("Select teaching unit")</label>
+                            <select wire:model.defer='ue_id' class="custom-select rounded-0 @error('ue_id') is-invalid @enderror" id="ue-code">
+                                @foreach ($ue_codes as $ue_code)
+                                    <option value="{{ $ue_code->id }}">{{ $ue_code->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('ue_id')
                                     <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
@@ -99,7 +109,7 @@
                 <!-- /.modal-dialog -->
             </div>
             <div class="modal fade" id="modal-default">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h4 class="modal-title">@lang("Add cours")</h4>
@@ -116,9 +126,13 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label>@lang('UE code')</label>
-                            <input type="text" class="form-control @error('ue_code') is-invalid @enderror" wire:model.defer='ue_code' placeholder="{{ trans_choice("Enter :name", 0, ['name'=> __('UE code')]) }}">
-                            @error('ue_code')
+                            <label for="ue-code">@lang("Select teaching unit")</label>
+                            <select wire:model.defer='ue_id' class="custom-select rounded-0 @error('ue_id') is-invalid @enderror" id="ue-code">
+                                @foreach ($ue_codes as $ue_code)
+                                    <option value="{{ $ue_code->id }}">{{ $ue_code->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('ue_id')
                                     <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>

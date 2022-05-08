@@ -16,6 +16,13 @@ class Schedule extends Model
      */
     protected $guarded = [];
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['ue_code'];
+
 
     public function teacher()
     {
@@ -35,5 +42,10 @@ class Schedule extends Model
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function ue_code()
+    {
+        return $this->belongsTo(UeCode::class, 'ue_id');
     }
 }

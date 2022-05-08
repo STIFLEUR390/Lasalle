@@ -98,9 +98,9 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>@lang('UE code')</label>
-                                    <input type="text" wire:model='ue_code' placeholder="{{ trans_choice('Enter :name', 0, ['name' => __('UE code')]) }}" class="form-control @error('ue_code') is-invalid @enderror">
-                                    @error('ue_code') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                                    <label>@lang('Teaching unit')</label>
+                                    <input type="text" wire:model='ue_name' disabled placeholder="{{ trans_choice('Enter :name', 2, ['name' => __('Teaching unit')]) }}" class="form-control @error('ue_code') is-invalid @enderror">
+                                    @error('ue_name') <span class="invalid-feedback">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                         </div>

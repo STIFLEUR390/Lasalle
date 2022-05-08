@@ -33,12 +33,13 @@ class FacultyComponent extends Component
         ];
     }
 
-    public function mount()
+    public function mount($id=null)
     {
         $this->oderBy = 'desc';
         $this->pageSize = 7;
         $this->initializeFaculty();
         $this->departmentArray = Department::pluck('id');
+        $this->departement_search = !empty($id) ? $id : null;
     }
 
     public function render()

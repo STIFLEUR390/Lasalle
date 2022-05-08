@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Course>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UeCode>
  */
-class CourseFactory extends Factory
+class UeCodeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,7 @@ class CourseFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->word,
-            'ue_id' => rand(1, 15),
+            'name' => $this->faker->unique()->company(),
         ];
     }
 }

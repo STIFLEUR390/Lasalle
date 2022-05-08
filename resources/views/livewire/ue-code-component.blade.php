@@ -22,8 +22,8 @@
 
                         @hasanyrole('Admin|Super Admin')
                             <div class="float-right" style="margin-left: 10% !important;">
-                                <button wire:click='initializeForCreateDepartment' type="button" class="btn btn-primary">
-                                    @lang("Add department")
+                                <button type="button" class="btn btn-primary" wire:click='initializeForCreateUeCode'>
+                                    @lang("Create teaching unit")
                                 </button>
                             </div>
                         @endhasanyrole
@@ -41,25 +41,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($departments as $department)
+                            @foreach ($UeCodes as $UeCode)
                                 <tr>
-                                    <td>{{ $department->name }}</td>
-                                    <td>
-                                        <a class="btn btn-info" href="{{ route('faculties', ['id' => $department->id]) }}">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                        @hasanyrole('Admin|Super Admin')
-                                            <button type="button" wire:click="getData('{{ $department->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="ml-1 btn btn-danger" wire:click="confirmDeletion('{{ $department->id }}')"><i class="fa fa-trash"></i></button>
-
-                                        @endhasanyrole
-                                    </td>
+                                    <td>{{ $UeCode->name }}</td>
+                                    @hasanyrole('Admin|Super Admin')
+                                        <td>
+                                            <button type="button" wire:click="getData('{{ $UeCode->id }}')" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="ml-1 btn btn-danger" wire:click="confirmDeletion('{{ $UeCode->id }}')"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    @endhasanyrole
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                     <span class="float-right mr-2">
-                        {{ $departments->links() }}
+                        {{ $UeCodes->links() }}
                     </span>
                 </div>
                 <!-- /.card-body -->
@@ -69,7 +65,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title">@lang("Edit a department")</h4>
+                      <h4 class="modal-title">@lang("Edit teaching unit")</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -85,7 +81,7 @@
                     </div>
                     <div class="modal-footer justify-content-between">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">@lang("Close")</button>
-                      <button type="button" wire:click="updateDepartment" class="btn btn-primary">@lang('Update')</button>
+                      <button type="button" wire:click="updateUeCode" class="btn btn-primary">@lang('Update')</button>
                     </div>
                   </div>
                   <!-- /.modal-content -->
@@ -96,7 +92,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title">@lang("Add department")</h4>
+                      <h4 class="modal-title">@lang("Create teaching unit")</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -112,7 +108,7 @@
                     </div>
                     <div class="modal-footer justify-content-between">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">@lang("Close")</button>
-                      <button type="button" wire:click="createDepartment" class="btn btn-primary">@lang('Save')</button>
+                      <button type="button" wire:click="createUeCode" class="btn btn-primary">@lang('Save')</button>
                     </div>
                   </div>
                   <!-- /.modal-content -->

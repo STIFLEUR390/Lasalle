@@ -863,5 +863,14 @@
     ":attribute does not exist.": ":attribute  n'existe pas.",
     "the :attribute fetched.": "{0} le :attribute récupéré.|{1} la :attribute récupéré. |{2} l':attribute récupéré.",
     ":attribute updated.": ":attribute mis à jour.",
-    "Teacher abscent for the day": "Professeur absent pour la journée"
+    "Teacher abscent for the day": "Professeur absent pour la journée",
+    "Teaching unit": "Unité d'enseignement",
+    "Manage teaching unit": "Gérer l'unité d'enseignement",
+    "All teaching units": "Toutes les unités d'enseignement",
+    "Create teaching unit": "Créer une unité d'enseignement",
+    "Edit teaching unit": "Modifier l'unité d'enseignement",
+    "Teaching unit created with success": "Unité d'enseignement créer avec succès",
+    "Teaching unit updated with success": "Unité d'enseignement mise à jour avec succès",
+    "Teaching unit deleted with success": "Unité d'enseignement supprimée avec succès",
+    "Select teaching unit": "Choisir l'unité d'enseignement"
 }

@@ -46,11 +46,12 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $title
- * @property string $ue_code
+ * @property int $ue_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedules
  * @property-read int|null $schedules_count
+ * @property-read \App\Models\UeCode $ue_code
  * @method static \Database\Factories\CourseFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Course newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Course newQuery()
@@ -58,7 +59,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Course whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Course whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Course whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Course whereUeCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Course whereUeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Course whereUpdatedAt($value)
  */
 	class Course extends \Eloquent {}
@@ -158,7 +159,7 @@ namespace App\Models{
  * @property string $end_time
  * @property int $room_id
  * @property int $course_id
- * @property string $ue_code
+ * @property int $ue_id
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -166,6 +167,8 @@ namespace App\Models{
  * @property-read \App\Models\Faculty $faculty
  * @property-read \App\Models\Room $room
  * @property-read \App\Models\Teacher $teacher
+ * @property-read \App\Models\UeCode $ue_code
+ * @method static \Database\Factories\ScheduleFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Schedule newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Schedule newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Schedule query()
@@ -179,7 +182,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereStartTime($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereTeacherId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereUeCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereUeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Schedule whereUpdatedAt($value)
  */
 	class Schedule extends \Eloquent {}
@@ -304,6 +307,30 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\UeCode
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Course[] $courses
+ * @property-read int|null $courses_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Schedule[] $schedules
+ * @property-read int|null $schedules_count
+ * @method static \Database\Factories\UeCodeFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|UeCode newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UeCode newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UeCode query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UeCode whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UeCode whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UeCode whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UeCode whereUpdatedAt($value)
+ */
+	class UeCode extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id
@@ -354,6 +381,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Query\Builder|User withTrashed()
  * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  */
-	class User extends \Eloquent {}
+	class User extends \Eloquent implements \Illuminate\Contracts\Auth\MustVerifyEmail {}
 }
 

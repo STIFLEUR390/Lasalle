@@ -24,61 +24,63 @@
                         </div>
 
                         @isset($search_type)
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>@lang('Filter value')</label>
-                                    @if ($search_type == 'teacher_id')
-                                        <select wire:model='search_value' class="custom-select rounded-0">
-                                            <option value="" selected="selected">@lang('Select filter value')</option>
-                                            @foreach ($teachers as $teacher)
-                                                <option value="{{ $teacher->id }}">{{ $teacher->last_name }}
-                                                    {{ $teacher->first_name }}</option>
-                                            @endforeach
-                                        </select>
-                                    @endif
+                            @if (!empty($search_type))
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>@lang('Filter value')</label>
+                                        @if ($search_type == 'teacher_id')
+                                            <select wire:model='search_value' class="custom-select rounded-0">
+                                                <option value="" selected="selected">@lang('Select filter value')</option>
+                                                @foreach ($teachers as $teacher)
+                                                    <option value="{{ $teacher->id }}">{{ $teacher->last_name }}
+                                                        {{ $teacher->first_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        @endif
 
-                                    @if ($search_type == 'faculty_id')
-                                        <select wire:model='search_value' class="custom-select rounded-0">
-                                            <option value="" selected="selected">@lang('Select filter value')</option>
-                                            @foreach ($faculties as $faculty)
-                                                <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    @endif
+                                        @if ($search_type == 'faculty_id')
+                                            <select wire:model='search_value' class="custom-select rounded-0">
+                                                <option value="" selected="selected">@lang('Select filter value')</option>
+                                                @foreach ($faculties as $faculty)
+                                                    <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        @endif
 
-                                    @if ($search_type == 'room_id')
-                                        <select wire:model='search_value' class="custom-select rounded-0">
-                                            <option value="" selected="selected">@lang('Select filter value')</option>
-                                            @foreach ($rooms as $room)
-                                                <option value="{{ $room->id }}">{{ $room->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    @endif
+                                        @if ($search_type == 'room_id')
+                                            <select wire:model='search_value' class="custom-select rounded-0">
+                                                <option value="" selected="selected">@lang('Select filter value')</option>
+                                                @foreach ($rooms as $room)
+                                                    <option value="{{ $room->id }}">{{ $room->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        @endif
 
-                                    @if ($search_type == 'course_id')
-                                        <select wire:model='search_value' class="custom-select rounded-0">
-                                            <option value="" selected="selected">@lang('Select filter value')</option>
-                                            @foreach ($courses as $course)
-                                                <option value="{{ $course->id }}">{{ $course->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    @endif
+                                        @if ($search_type == 'course_id')
+                                            <select wire:model='search_value' class="custom-select rounded-0">
+                                                <option value="" selected="selected">@lang('Select filter value')</option>
+                                                @foreach ($courses as $course)
+                                                    <option value="{{ $course->id }}">{{ $course->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        @endif
 
-                                    @if ($search_type == 'date')
-                                        <input type="date" wire:model='search_value' class="form-control">
-                                    @endif
+                                        @if ($search_type == 'date')
+                                            <input type="date" wire:model='search_value' class="form-control">
+                                        @endif
 
-                                    @if ($search_type == 'status')
-                                        <select wire:model='search_value' class="custom-select rounded-0">
-                                            <option value="" selected="selected">@lang('Select filter value')</option>
-                                            <option value="waiting">@lang('waiting')</option>
-                                            <option value="in_progress">@lang('in_progress')</option>
-                                            <option value="finish">@lang('finish')</option>
-                                            <option value="absent">@lang('absent')</option>
-                                        </select>
-                                    @endif
+                                        @if ($search_type == 'status')
+                                            <select wire:model='search_value' class="custom-select rounded-0">
+                                                <option value="" selected="selected">@lang('Select filter value')</option>
+                                                <option value="waiting">@lang('waiting')</option>
+                                                <option value="in_progress">@lang('in_progress')</option>
+                                                <option value="finish">@lang('finish')</option>
+                                                <option value="absent">@lang('absent')</option>
+                                            </select>
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         @endisset
 
                         <div class="col-md-3">

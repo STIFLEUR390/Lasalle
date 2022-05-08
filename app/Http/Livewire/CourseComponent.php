@@ -3,8 +3,10 @@
 namespace App\Http\Livewire;
 
 use App\Models\Course;
+use App\Models\UeCode;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Validation\Rule;
 
 class CourseComponent extends Component
 {
@@ -14,33 +16,47 @@ class CourseComponent extends Component
     protected $listeners = ['delete' => 'deleteCourse'];
 
     public $title;
-    public $ue_code;
+    public $ue_id;
     public $course_id;
     public $search;
     public $oderBy;
     public $pageSize;
+    public $ueArray;
+    public $search_ue;
 
-    protected $rules = [
-        'title' => 'required|min:2|string',
-        'ue_code' => 'required|min:2|string',
-    ];
+    protected function rules()
+    {
+        return [
+            'title' => 'required|min:2|string',
+            'ue_id' => ['required',Rule::in($this->ueArray)],
+        ];
+    }
 
     public function mount()
     {
         $this->oderBy = 'desc';
         $this->pageSize = 7;
         $this->initializeCourse();
+
+        $this->ueArray = UeCode::pluck('id');
     }
 
     public function render()
     {
-        if (!empty($this->search)) {
+        if (!empty($this->search) && !empty($this->search_ue)) {
             $search = '%'.$this->search.'%';
-            $courses = Course::where('title', 'like', $search)->where('ue_code', 'like', $search)->orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
-        } else {
+            $courses = Course::where('ue_id', $this->search_ue)->where('title', 'like', $search)->orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
+        }else if (!empty($this->search)) {
+            $search = '%'.$this->search.'%';
+            $courses = Course::where('title', 'like', $search)->orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
+        } else if (!empty($this->search_ue)) {
+            $courses = Course::where('ue_id', $this->search_ue)->orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
+        }else {
             $courses = Course::orderBy('created_at', $this->oderBy)->paginate($this->pageSize);
         }
-        return view('livewire.course-component', compact('courses'));
+
+        $ue_codes = UeCode::orderBy('name', 'asc')->get();
+        return view('livewire.course-component', compact('courses', 'ue_codes'));
     }
 
     public function confirmDeletion($id)
@@ -71,14 +87,14 @@ class CourseComponent extends Component
     public function initializeCourse()
     {
         $this->title = null;
-        $this->ue_code = null;
+        $this->ue_id = null;
         $this->course_id = null;
     }
 
     public function initializeForCreateCourse()
     {
         $this->title = null;
-        $this->ue_code = null;
+        $this->ue_id = null;
         $this->course_id = null;
         $this->resetValidation();
         $this->resetErrorBag();
@@ -110,7 +126,7 @@ class CourseComponent extends Component
 
         $Course = Course::find($id);
         $this->title = $Course->title;
-        $this->ue_code = $Course->ue_code;
+        $this->ue_id = $Course->ue_id;
         $this->course_id = $Course->id;
         $this->emit("modalShow", ['id'=> 'modal-update']);
     }

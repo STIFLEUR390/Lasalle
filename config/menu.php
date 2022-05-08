@@ -42,8 +42,20 @@ return [
     ],
     'Manage courses' => [
         'role' => 'Admin|Super Admin|Invite',
-        'route' => 'courses',
+        // 'route' => 'courses',
         'icon' => 'book-open',
+        'children' => [
+            [
+                'role' => 'Admin|Super Admin|Invite',
+                'route' => 'courses',
+                'name' => 'Manage courses'
+            ],
+            [
+                'role' => 'Admin|Super Admin',
+                'route' => 'uecodes',
+                'name' => 'Manage teaching unit'
+            ],
+        ]
     ],
     'Manage departments' => [
         'role' => 'Admin|Super Admin|Invite',
